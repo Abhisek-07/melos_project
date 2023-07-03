@@ -89,9 +89,13 @@ class _AllOptionsState extends State<AllOptions> {
             child: ListView.separated(
               separatorBuilder: (context, index) {
                 return const Padding(
-                  padding: EdgeInsets.only(left: 16, right: 16),
+                  padding: EdgeInsets.only(
+                    left: 16,
+                    right: 16,
+                  ),
                   child: Divider(
                     color: Color.fromARGB(34, 21, 20, 20),
+                    height: 1,
                   ),
                 );
               },
@@ -101,62 +105,31 @@ class _AllOptionsState extends State<AllOptions> {
                     widget.options.indexOf(searchOptions[index]);
                 bool isSelected = selectedIndex == originalIndex;
 
-                /// THIS WILL BE IMPLEMENTED LATER TO TRACK THE SELECTED OPTION IN THE LISTVIEW
-
-                return SizedBox(
-                  width: double.infinity,
-                  child: RadioListTile(
-                    // fillColor: MaterialStateProperty.all(Colors.purple),
-                    activeColor: Theme.of(context).colorScheme.primary,
-                    selected: isSelected,
-                    value: originalIndex,
-                    groupValue: selectedIndex,
-                    onChanged: (value) {
-                      setState(() {
-                        selectedIndex = originalIndex;
-                      });
-                      // widget.onSelectListOption(selectedIndex);
-                      // Navigator.pop(context);
-                    },
-                    controlAffinity: ListTileControlAffinity.trailing,
-                    title: Row(
-                      children: [
-                        widget.showIcons
-                            ? Image.network(
-                                widget.options[originalIndex].icon,
-                                height: 24,
-                                width: 24,
-                              )
-                            : Container(),
-                        const SizedBox(
-                          width: 8,
-                        ),
-                        Text(widget.options[originalIndex].name),
-                      ],
-                    ),
+                return ListTile(
+                  onTap: () {
+                    setState(() {
+                      selectedIndex = originalIndex;
+                    });
+                  },
+                  leading: widget.showIcons
+                      ? Image.network(
+                          widget.options[originalIndex].icon,
+                          height: 24,
+                          width: 24,
+                        )
+                      // : Container(
+                      //     width: 0,
+                      //   ),
+                      : null,
+                  title: Text(widget.options[originalIndex].name),
+                  trailing: Container(
+                    width: 20,
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: isSelected
+                            ? Border.all(width: 4, color: Colors.purple)
+                            : Border.all(width: 2, color: Colors.grey)),
                   ),
-                  // child: ListTile(
-                  //   leading: widget.showIcons
-                  //       ? Image.network(
-                  //           widget.options[index].icon,
-                  //           height: 24,
-                  //           width: 24,
-                  //         )
-                  //       : Container(),
-                  //   title: Text(widget.options[index].name),
-                  //   trailing: Radio(
-                  //       focusColor:
-                  //           isSelected ? Theme.of(context).primaryColor : null,
-                  //       value: index,
-                  //       groupValue: selectedIndex,
-                  //       onChanged: (index) {
-                  //         setState(() {
-                  //           selectedIndex = index;
-                  //         });
-                  //         widget.onSelectListOption(index);
-                  //         Navigator.pop(context);
-                  //       }),
-                  // ),
                 );
               },
             ),

@@ -40,6 +40,7 @@ class _PaymentOptionsState extends State<PaymentOptions> {
         widget.selectOption(optionIndex);
       },
       child: Card(
+        shadowColor: Colors.transparent,
         shape: isSelected
             ? RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8),
@@ -50,31 +51,35 @@ class _PaymentOptionsState extends State<PaymentOptions> {
         margin: const EdgeInsets.symmetric(horizontal: 6, vertical: 8),
         surfaceTintColor: Colors.transparent,
         color: Colors.white,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              width: 48,
-              height: 48,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                  image: NetworkImage(isSelected
-                      ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3YBdeGL3VflF9KdKQFFmE2y6zfCf9bACn0A&usqp=CAU'
-                      : widget.options[optionIndex]
-                          .icon), // Replace with your image path
-                  fit: BoxFit.cover,
+        child: Padding(
+          padding: const EdgeInsets.only(top: 18),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                width: 48,
+                height: 48,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    image: NetworkImage(isSelected
+                        ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3YBdeGL3VflF9KdKQFFmE2y6zfCf9bACn0A&usqp=CAU'
+                        : widget.options[optionIndex]
+                            .icon), // Replace with your image path
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 16),
-            Text(
-              widget.options[optionIndex].name,
-              style: const TextStyle(fontSize: 10),
-              textAlign: TextAlign.center,
-            ), // Display the option name
-          ],
+              const SizedBox(height: 12),
+              Text(
+                widget.options[optionIndex].name,
+                style: const TextStyle(fontSize: 10),
+                textAlign: TextAlign.center,
+              ), // Display the option name
+            ],
+          ),
         ),
       ),
     );
@@ -99,7 +104,7 @@ class _PaymentOptionsState extends State<PaymentOptions> {
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 shrinkWrap: true,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3, childAspectRatio: 1),
+                    crossAxisCount: 3, childAspectRatio: 0.9),
                 itemCount: widget.options.length <= widget.totalVisibleOptions
                     ? widget.options.length
                     : widget.totalVisibleOptions + 1,
@@ -109,6 +114,7 @@ class _PaymentOptionsState extends State<PaymentOptions> {
                     return GestureDetector(
                       onTap: widget.selectMore,
                       child: Card(
+                        shadowColor: Colors.transparent,
                         surfaceTintColor: Colors.transparent,
                         color: Colors.white,
                         // shape: RoundedRectangleBorder(
@@ -116,29 +122,33 @@ class _PaymentOptionsState extends State<PaymentOptions> {
                         //     side: const BorderSide()),
                         margin: const EdgeInsets.symmetric(
                             horizontal: 4, vertical: 8),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Container(
-                              width: 48,
-                              height: 48,
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                  image: NetworkImage(
-                                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYLb4fHlPF-aw_5Ea494xaBQDJ7b6DOlY2ng&usqp=CAU'), // Replace with your image path
-                                  fit: BoxFit.cover,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 18),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Container(
+                                width: 48,
+                                height: 48,
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                    image: NetworkImage(
+                                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYLb4fHlPF-aw_5Ea494xaBQDJ7b6DOlY2ng&usqp=CAU'), // Replace with your image path
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
-                            ),
-                            const SizedBox(height: 16),
-                            const Text(
-                              'More',
-                              style: TextStyle(fontSize: 10),
-                              textAlign: TextAlign.center,
-                            ), // Display the option name
-                          ],
+                              const SizedBox(height: 12),
+                              const Text(
+                                'More',
+                                style: TextStyle(fontSize: 10),
+                                textAlign: TextAlign.center,
+                              ), // Display the option name
+                            ],
+                          ),
                         ),
                       ),
                     );
