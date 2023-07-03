@@ -1,0 +1,16 @@
+name: melos_project
+
+packages:
+  - apps/**
+  - packages/**
+
+scripts:
+  analyze:
+    run: melos exec -- “flutter run analyze .”
+    description: Run ‘flutter analyze’ in all the packages
+  get:all:
+    run: melos exec -- “flutter pub get”
+    description: Run ‘flutter pub get' in all the packages
+  clean:get:
+    exec: flutter clean && flutter pub get
+    description: Run ‘flutter clean && flutter pub get’ in all the packages
