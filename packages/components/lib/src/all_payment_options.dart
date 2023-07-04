@@ -67,8 +67,21 @@ class _AllOptionsState extends State<AllOptions> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Select an option'),
+        titleSpacing: 12,
+        leading: IconButton(
+          padding: const EdgeInsets.only(left: 20),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Image.asset(
+            'assets/back.png',
+            width: 32,
+            height: 32,
+          ),
+        ),
+        title: const Text('Choose Category'),
       ),
       body: Column(
         mainAxisSize: MainAxisSize.min,
@@ -135,7 +148,7 @@ class _AllOptionsState extends State<AllOptions> {
             ),
           ),
           Container(
-            padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+            padding: const EdgeInsets.fromLTRB(16, 0, 16, 20),
             width: double.infinity,
             child: ElevatedButton(
                 onPressed: () {

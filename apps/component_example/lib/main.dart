@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-// import '../packages/components/lib/payment_options.dart';
 import 'package:flutter/services.dart';
-// import '../packages/models/option.dart';
 import 'dart:convert';
-// import '../packages/components/lib/all_payment_options.dart';
 import 'package:components/components.dart';
 
 void main() {
   runApp(MaterialApp(
     theme: ThemeData(
+      // fontFamily: ,
       useMaterial3: true,
       colorScheme: ColorScheme.fromSeed(
-        seedColor: const Color.fromARGB(255, 111, 26, 176),
+        background: const Color.fromARGB(255, 253, 247, 253),
+        seedColor: const Color.fromARGB(255, 95, 21, 152),
       ),
     ),
     home: const MyApp(),
@@ -110,6 +109,7 @@ class _MyAppState extends State<MyApp> {
     print(options);
 
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         title: const Text('Component'),
       ),

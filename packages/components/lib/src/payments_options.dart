@@ -1,5 +1,6 @@
 // import 'dart:math';
 
+import 'package:components/src/widgets/more.dart';
 import 'package:flutter/material.dart';
 // import '../../models/option.dart';
 import 'package:components/src/model/option.dart';
@@ -48,7 +49,7 @@ class _PaymentOptionsState extends State<PaymentOptions> {
                     width: 2,
                     color: Theme.of(context).colorScheme.inversePrimary))
             : null,
-        margin: const EdgeInsets.symmetric(horizontal: 6, vertical: 8),
+        margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 8),
         surfaceTintColor: Colors.transparent,
         color: Colors.white,
         child: Padding(
@@ -65,7 +66,7 @@ class _PaymentOptionsState extends State<PaymentOptions> {
                   shape: BoxShape.circle,
                   image: DecorationImage(
                     image: NetworkImage(isSelected
-                        ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3YBdeGL3VflF9KdKQFFmE2y6zfCf9bACn0A&usqp=CAU'
+                        ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-uiLoP-wwWSf1QbBjZ08aDtbMATzc2BwFsg&usqp=CAU'
                         : widget.options[optionIndex]
                             .icon), // Replace with your image path
                     fit: BoxFit.cover,
@@ -111,47 +112,52 @@ class _PaymentOptionsState extends State<PaymentOptions> {
                 itemBuilder: (context, index) {
                   if (index == widget.totalVisibleOptions &&
                       widget.options.length > widget.totalVisibleOptions) {
-                    return GestureDetector(
-                      onTap: widget.selectMore,
-                      child: Card(
-                        shadowColor: Colors.transparent,
-                        surfaceTintColor: Colors.transparent,
-                        color: Colors.white,
-                        // shape: RoundedRectangleBorder(
-                        //     borderRadius: BorderRadius.circular(8),
-                        //     side: const BorderSide()),
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: 4, vertical: 8),
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 18),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Container(
-                                width: 48,
-                                height: 48,
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  image: DecorationImage(
-                                    image: NetworkImage(
-                                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYLb4fHlPF-aw_5Ea494xaBQDJ7b6DOlY2ng&usqp=CAU'), // Replace with your image path
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(height: 12),
-                              const Text(
-                                'More',
-                                style: TextStyle(fontSize: 10),
-                                textAlign: TextAlign.center,
-                              ), // Display the option name
-                            ],
-                          ),
-                        ),
-                      ),
+                    return MoreCard(
+                      iconUrl:
+                          'https://cdn4.iconfinder.com/data/icons/pictype-free-vector-icons/16/more-512.png',
+                      selectMore: widget.selectMore,
                     );
+                    // return GestureDetector(
+                    //   onTap: widget.selectMore,
+                    //   child: Card(
+                    //     shadowColor: Colors.transparent,
+                    //     surfaceTintColor: Colors.transparent,
+                    //     color: Colors.white,
+                    //     // shape: RoundedRectangleBorder(
+                    //     //     borderRadius: BorderRadius.circular(8),
+                    //     //     side: const BorderSide()),
+                    //     margin: const EdgeInsets.symmetric(
+                    //         horizontal: 5, vertical: 8),
+                    //     child: Padding(
+                    //       padding: const EdgeInsets.only(top: 18),
+                    //       child: Column(
+                    //         mainAxisAlignment: MainAxisAlignment.start,
+                    //         crossAxisAlignment: CrossAxisAlignment.center,
+                    //         mainAxisSize: MainAxisSize.min,
+                    //         children: [
+                    //           Container(
+                    //             width: 48,
+                    //             height: 48,
+                    //             decoration: const BoxDecoration(
+                    //               shape: BoxShape.circle,
+                    //               image: DecorationImage(
+                    //                 image: NetworkImage(
+                    //                     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYLb4fHlPF-aw_5Ea494xaBQDJ7b6DOlY2ng&usqp=CAU'), // Replace with your image path
+                    //                 fit: BoxFit.cover,
+                    //               ),
+                    //             ),
+                    //           ),
+                    //           const SizedBox(height: 12),
+                    //           const Text(
+                    //             'More',
+                    //             style: TextStyle(fontSize: 10),
+                    //             textAlign: TextAlign.center,
+                    //           ), // Display the option name
+                    //         ],
+                    //       ),
+                    //     ),
+                    //   ),
+                    // );
                   } else {
                     // final listItemIndex =
                     //     index < widget.totalVisibleOptions ? index : index - 1;
