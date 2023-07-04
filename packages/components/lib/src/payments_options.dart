@@ -1,9 +1,6 @@
-// import 'dart:math';
-
 import 'package:components/src/widgets/card_item.dart';
 import 'package:components/src/widgets/more.dart';
 import 'package:flutter/material.dart';
-// import '../../models/option.dart';
 import 'package:components/src/model/option.dart';
 
 class PaymentOptions extends StatefulWidget {
@@ -34,59 +31,6 @@ class _PaymentOptionsState extends State<PaymentOptions> {
     super.initState();
   }
 
-  // Widget buildOptionItem(int optionIndex) {
-  //   bool isSelected = widget.selectedIndex == optionIndex;
-
-  //   return GestureDetector(
-  //     onTap: () {
-  //       widget.selectOption(optionIndex);
-  //     },
-  //     child: Card(
-  //       shadowColor: Colors.transparent,
-  //       shape: isSelected
-  //           ? RoundedRectangleBorder(
-  //               borderRadius: BorderRadius.circular(8),
-  //               side: BorderSide(
-  //                   width: 2,
-  //                   color: Theme.of(context).colorScheme.inversePrimary))
-  //           : null,
-  //       margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 8),
-  //       surfaceTintColor: Colors.transparent,
-  //       color: Colors.white,
-  //       child: Padding(
-  //         padding: const EdgeInsets.only(top: 18),
-  //         child: Column(
-  //           mainAxisAlignment: MainAxisAlignment.start,
-  //           crossAxisAlignment: CrossAxisAlignment.center,
-  //           mainAxisSize: MainAxisSize.min,
-  //           children: [
-  //             Container(
-  //               width: 48,
-  //               height: 48,
-  //               decoration: BoxDecoration(
-  //                 shape: BoxShape.circle,
-  //                 image: DecorationImage(
-  //                   image: NetworkImage(isSelected
-  //                       ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-uiLoP-wwWSf1QbBjZ08aDtbMATzc2BwFsg&usqp=CAU'
-  //                       : widget.options[optionIndex]
-  //                           .icon), // Replace with your image path
-  //                   fit: BoxFit.cover,
-  //                 ),
-  //               ),
-  //             ),
-  //             const SizedBox(height: 12),
-  //             Text(
-  //               widget.options[optionIndex].name,
-  //               style: const TextStyle(fontSize: 10),
-  //               textAlign: TextAlign.center,
-  //             ), // Display the option name
-  //           ],
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
-
   @override
   Widget build(BuildContext context) {
     print(widget.options);
@@ -97,7 +41,10 @@ class _PaymentOptionsState extends State<PaymentOptions> {
         children: [
           Text(
             widget.title,
-            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            style: const TextStyle(
+              fontSize: 24,
+              // fontWeight: FontWeight.bold,
+            ),
           ),
           const SizedBox(height: 8),
           Expanded(

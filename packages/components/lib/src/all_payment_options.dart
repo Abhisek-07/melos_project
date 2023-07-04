@@ -27,20 +27,6 @@ class _AllOptionsState extends State<AllOptions> {
   int? selectedIndex;
   final searchController = TextEditingController();
 
-// search feature
-  // void searchCategorys(String query) {
-  //   final suggestions = searchOptions.where((option) {
-  //     final title = option.name.toLowerCase();
-  //     final input = query.toLowerCase();
-
-  //     return title.contains(input);
-  //   }).toList();
-
-  //   setState(() {
-  //     searchOptions = suggestions;
-  //   });
-  // }
-
   void searchCategory(String query) {
     List results = [];
     if (query.isEmpty) {
@@ -130,9 +116,6 @@ class _AllOptionsState extends State<AllOptions> {
                           height: 24,
                           width: 24,
                         )
-                      // : Container(
-                      //     width: 0,
-                      //   ),
                       : null,
                   title: Text(widget.options[originalIndex].name),
                   trailing: Container(
