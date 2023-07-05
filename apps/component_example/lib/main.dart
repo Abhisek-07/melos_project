@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       appBar: AppBar(
         title: const Text('My components examples'),
       ),
-      body: Expanded(
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,

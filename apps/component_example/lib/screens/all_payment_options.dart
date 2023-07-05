@@ -1,4 +1,4 @@
-// import '../../../../../apps/component_example/lib/model/option.dart';
+import 'package:components/components.dart';
 import 'package:flutter/material.dart';
 
 class AllOptions extends StatefulWidget {
@@ -11,7 +11,7 @@ class AllOptions extends StatefulWidget {
     required this.selectedIndexInListView,
   });
 
-  final List options;
+  final List<Option> options;
   final int selectedIndex;
   final void Function(int?) onSelectListOption;
   final bool showIcons;
@@ -22,13 +22,13 @@ class AllOptions extends StatefulWidget {
 }
 
 class _AllOptionsState extends State<AllOptions> {
-  List searchOptions = [];
+  List<Option> searchOptions = [];
 
   int? selectedIndex;
   final searchController = TextEditingController();
 
   void searchCategory(String query) {
-    List results = [];
+    List<Option> results = [];
     if (query.isEmpty) {
       results = widget.options;
     } else {

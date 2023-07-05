@@ -34,11 +34,7 @@ class CustomListTile extends StatelessWidget {
     return ListTile(
       tileColor: isSelected ? Colors.yellow : null,
       onTap: () {
-        // setState(() {
-        //   selectedIndex = index;
-        // });
         selectedOption(index);
-        // widget.selectOption(index);
       },
       // Icon Component
       leading: showLeading
