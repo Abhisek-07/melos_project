@@ -41,7 +41,6 @@ class _UserListState extends State<UserList> {
   }
 
   void selectedOption(int index) {
-    selectedIndex = index;
     Navigator.push(context, MaterialPageRoute(
       builder: (context) {
         return BankTransferScreen(
@@ -65,10 +64,10 @@ class _UserListState extends State<UserList> {
           child: ListView.separated(
             separatorBuilder: (context, index) {
               return const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                padding: EdgeInsets.symmetric(horizontal: 16),
                 child: Divider(
                   height: 1,
-                  color: Colors.black,
+                  color: Color.fromARGB(108, 158, 158, 158),
                 ),
               );
             },
@@ -78,14 +77,16 @@ class _UserListState extends State<UserList> {
               bool isSelected = selectedIndex == index;
 
               return CustomListTile(
-                userName: user.name,
-                accountNumber: user.accountNumber,
-                ifsc: user.ifsc,
-
+                title: user.name,
+                subtitle: '${user.accountNumber}/${user.ifsc}',
                 isSelected: isSelected,
-
                 index: index,
                 selectedOption: selectedOption,
+                leadingIcon: CircularNameIcon(
+                  // size: 'low',
+                  name: user.name,
+                  backgroundColor: index % 2 == 0 ? Colors.blue : Colors.green,
+                ),
                 // showTrailing: true,
                 // showLeading: false,
               );

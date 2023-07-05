@@ -50,6 +50,12 @@ class _AllOptionsState extends State<AllOptions> {
     super.initState();
   }
 
+  void getSelectedIndex(int index) {
+    setState(() {
+      selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,7 +98,7 @@ class _AllOptionsState extends State<AllOptions> {
             child: ListView.separated(
               separatorBuilder: (context, index) {
                 return const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  padding: EdgeInsets.symmetric(horizontal: 24),
                   child: Divider(
                     color: Color.fromARGB(34, 21, 20, 20),
                     height: 1,
@@ -104,59 +110,51 @@ class _AllOptionsState extends State<AllOptions> {
                 final originalIndex =
                     widget.options.indexOf(searchOptions[index]);
                 bool isSelected = selectedIndex == originalIndex;
+                final option = widget.options[originalIndex];
 
-                return ListTile(
-                  contentPadding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
-                  onTap: () {
-                    setState(() {
-                      selectedIndex = originalIndex;
-                    });
-                  },
-                  leading: widget.showIcons
-                      ? Image.network(
-                          widget.options[originalIndex].icon,
-                          height: 24,
-                          width: 24,
-                        )
-                      : null,
-                  title: Text(widget.options[originalIndex].name),
-                  trailing: Container(
-                    width: 20,
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: isSelected
-                            ? Border.all(width: 4, color: Colors.purple)
-                            : Border.all(
-                                width: 2,
-                                color:
-                                    const Color.fromARGB(112, 158, 158, 158))),
+                return CustomListTile(
+                  title: option.name,
+                  isSelected: isSelected,
+                  index: originalIndex,
+                  selectedOption: getSelectedIndex,
+                  leadingIcon:
+                      // Image.network(
+                      //   widget.options[originalIndex].icon,
+                      //   height: 24,
+                      //   width: 24,
+                      // ),
+                      CircularBankIcon.network(
+                    networkUrl: option.icon,
                   ),
+                  showTrailing: true,
                 );
+
+                // return ListTile(
+                //   contentPadding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+                //   onTap: () {
+                //     setState(() {
+                //       selectedIndex = originalIndex;
+                //     });
+                //   },
+                //   leading: widget.showIcons
+                //       ? Image.network(
+                //           widget.options[originalIndex].icon,
+                //           height: 24,
+                //           width: 24,
+                //         )
+                //       : null,
+                //   title: Text(widget.options[originalIndex].name),
+                //   trailing: CircularSelectButton(
+                //     isSelected: isSelected,
+                //   ),
+                // );
               },
             ),
           ),
-          SizedBox(
-            // padding: const EdgeInsets.fromLTRB(16, 0, 16, 20),
-            width: double.infinity,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: ElevatedButton(
-                  onPressed: () {
-                    widget.onSelectListOption(selectedIndex);
-                    Navigator.pop(context);
-                  },
-                  style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      backgroundColor: const Color.fromARGB(255, 122, 44, 195),
-                      foregroundColor: Colors.white),
-                  child: const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 16),
-                    child: Text('Finish'),
-                  )),
-            ),
-          )
+          CustomElevatedButton(onPressed: () {
+            widget.onSelectListOption(selectedIndex);
+            Navigator.pop(context);
+          })
         ],
       ),
     );
