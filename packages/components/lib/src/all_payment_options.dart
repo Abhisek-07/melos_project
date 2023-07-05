@@ -55,9 +55,10 @@ class _AllOptionsState extends State<AllOptions> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        titleSpacing: 12,
+        leadingWidth: 68,
+        titleSpacing: 0,
         leading: IconButton(
-          padding: const EdgeInsets.only(left: 16),
+          padding: const EdgeInsets.all(4),
           onPressed: () {
             Navigator.pop(context);
           },
