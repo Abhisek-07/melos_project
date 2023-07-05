@@ -65,6 +65,10 @@ flutter:
     - assets/options.json
     - assets/download.png
     - assets/back.png
+    - assets/hdfc.png
+    - assets/icici.jpeg
+    - assets/open.png
+    - assets/yes.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

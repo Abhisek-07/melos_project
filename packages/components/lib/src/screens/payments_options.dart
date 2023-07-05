@@ -1,7 +1,7 @@
-import 'package:components/src/widgets/card_item.dart';
-import 'package:components/src/widgets/more.dart';
+import 'package:components/src/widgets_payments_component/card_item.dart';
+import 'package:components/src/widgets_payments_component/more.dart';
 import 'package:flutter/material.dart';
-import 'package:components/src/model/option.dart';
+// import '../../../../../apps/component_example/lib/model/option.dart';
 
 class PaymentOptions extends StatefulWidget {
   const PaymentOptions({
@@ -66,17 +66,37 @@ class _PaymentOptionsState extends State<PaymentOptions> {
                       selectMore: widget.selectMore,
                     );
                   } else {
+                    final option = widget.options[index];
                     // final listItemIndex =
                     //     index < widget.totalVisibleOptions ? index : index - 1;
                     return CardItem(
                       optionIndex: index,
-                      options: widget.options,
+                      // options: widget.options,
                       selectedIndex: widget.selectedIndex,
                       selectOption: widget.selectOption,
+                      cardName: option.name,
+                      iconUrl: option.icon,
                     );
                   }
                 }),
           ),
         ]);
+  }
+}
+
+class Option {
+  final String name;
+  final String icon;
+
+  Option({
+    required this.name,
+    required this.icon,
+  });
+
+  factory Option.fromJson(Map<String, dynamic> json) {
+    return Option(
+      name: json['name'],
+      icon: json['icon'],
+    );
   }
 }

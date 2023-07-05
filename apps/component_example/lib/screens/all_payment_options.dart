@@ -1,4 +1,4 @@
-import 'package:components/src/model/option.dart';
+// import '../../../../../apps/component_example/lib/model/option.dart';
 import 'package:flutter/material.dart';
 
 class AllOptions extends StatefulWidget {
@@ -11,7 +11,7 @@ class AllOptions extends StatefulWidget {
     required this.selectedIndexInListView,
   });
 
-  final List<Option> options;
+  final List options;
   final int selectedIndex;
   final void Function(int?) onSelectListOption;
   final bool showIcons;

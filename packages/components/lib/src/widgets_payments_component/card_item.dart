@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:components/src/model/option.dart';
+// import '../../../../../apps/component_example/lib/model/option.dart';
 
 class CardItem extends StatelessWidget {
-  const CardItem(
-      {super.key,
-      required this.optionIndex,
-      required this.selectedIndex,
-      required this.selectOption,
-      required this.options});
+  const CardItem({
+    super.key,
+    required this.optionIndex,
+    required this.selectedIndex,
+    required this.selectOption,
+    // required this.options,
+    required this.cardName,
+    required this.iconUrl,
+  });
 
   final int optionIndex;
   final int selectedIndex;
   final void Function(int) selectOption;
-  final List<Option> options;
+  // final List options;
+  final String iconUrl;
+  final String cardName;
 
   @override
   Widget build(BuildContext context) {
@@ -47,17 +52,18 @@ class CardItem extends StatelessWidget {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   image: DecorationImage(
-                    image: NetworkImage(isSelected
-                        ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-uiLoP-wwWSf1QbBjZ08aDtbMATzc2BwFsg&usqp=CAU'
-                        : options[optionIndex]
-                            .icon), // Replace with your image path
+                    image: NetworkImage(
+                      isSelected
+                          ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-uiLoP-wwWSf1QbBjZ08aDtbMATzc2BwFsg&usqp=CAU'
+                          : iconUrl,
+                    ), // Replace with your image path
                     fit: BoxFit.cover,
                   ),
                 ),
               ),
               const SizedBox(height: 8),
               Text(
-                options[optionIndex].name,
+                cardName,
                 style: const TextStyle(fontSize: 12),
                 textAlign: TextAlign.center,
                 overflow: TextOverflow.ellipsis,
