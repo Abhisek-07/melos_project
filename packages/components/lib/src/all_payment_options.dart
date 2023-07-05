@@ -142,8 +142,8 @@ class _AllOptionsState extends State<AllOptions> {
                       backgroundColor: const Color.fromARGB(255, 122, 44, 195),
                       foregroundColor: Colors.white),
                   child: const Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    child: const Text('Finish'),
+                    padding: EdgeInsets.symmetric(vertical: 16),
+                    child: Text('Finish'),
                   )),
             )
           ],

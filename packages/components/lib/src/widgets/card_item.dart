@@ -35,7 +35,7 @@ class CardItem extends StatelessWidget {
         surfaceTintColor: Colors.transparent,
         color: Colors.white,
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(8, 16, 8, 14),
+          padding: const EdgeInsets.fromLTRB(8, 16, 8, 8),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
