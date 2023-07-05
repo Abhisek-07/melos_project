@@ -58,7 +58,7 @@ class _AllOptionsState extends State<AllOptions> {
         leadingWidth: 68,
         titleSpacing: 0,
         leading: IconButton(
-          padding: const EdgeInsets.all(4),
+          // padding: const EdgeInsets.all(4),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -70,12 +70,12 @@ class _AllOptionsState extends State<AllOptions> {
         ),
         title: const Text('Choose Category'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            SizedBox(
+      body: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: SizedBox(
               height: 40,
               child: TextField(
                 onChanged: searchCategory,
@@ -84,53 +84,62 @@ class _AllOptionsState extends State<AllOptions> {
                     prefixIcon: Icon(Icons.search), hintText: 'Search'),
               ),
             ),
-            Expanded(
-              child: ListView.separated(
-                separatorBuilder: (context, index) {
-                  return const Divider(
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          Expanded(
+            child: ListView.separated(
+              separatorBuilder: (context, index) {
+                return const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  child: Divider(
                     color: Color.fromARGB(34, 21, 20, 20),
                     height: 1,
-                  );
-                },
-                itemCount: searchOptions.length,
-                itemBuilder: (context, index) {
-                  final originalIndex =
-                      widget.options.indexOf(searchOptions[index]);
-                  bool isSelected = selectedIndex == originalIndex;
+                  ),
+                );
+              },
+              itemCount: searchOptions.length,
+              itemBuilder: (context, index) {
+                final originalIndex =
+                    widget.options.indexOf(searchOptions[index]);
+                bool isSelected = selectedIndex == originalIndex;
 
-                  return ListTile(
-                    contentPadding: const EdgeInsets.fromLTRB(4, 8, 4, 8),
-                    onTap: () {
-                      setState(() {
-                        selectedIndex = originalIndex;
-                      });
-                    },
-                    leading: widget.showIcons
-                        ? Image.network(
-                            widget.options[originalIndex].icon,
-                            height: 24,
-                            width: 24,
-                          )
-                        : null,
-                    title: Text(widget.options[originalIndex].name),
-                    trailing: Container(
-                      width: 20,
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: isSelected
-                              ? Border.all(width: 4, color: Colors.purple)
-                              : Border.all(
-                                  width: 2,
-                                  color: const Color.fromARGB(
-                                      112, 158, 158, 158))),
-                    ),
-                  );
-                },
-              ),
+                return ListTile(
+                  contentPadding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+                  onTap: () {
+                    setState(() {
+                      selectedIndex = originalIndex;
+                    });
+                  },
+                  leading: widget.showIcons
+                      ? Image.network(
+                          widget.options[originalIndex].icon,
+                          height: 24,
+                          width: 24,
+                        )
+                      : null,
+                  title: Text(widget.options[originalIndex].name),
+                  trailing: Container(
+                    width: 20,
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: isSelected
+                            ? Border.all(width: 4, color: Colors.purple)
+                            : Border.all(
+                                width: 2,
+                                color:
+                                    const Color.fromARGB(112, 158, 158, 158))),
+                  ),
+                );
+              },
             ),
-            SizedBox(
-              // padding: const EdgeInsets.fromLTRB(16, 0, 16, 20),
-              width: double.infinity,
+          ),
+          SizedBox(
+            // padding: const EdgeInsets.fromLTRB(16, 0, 16, 20),
+            width: double.infinity,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               child: ElevatedButton(
                   onPressed: () {
                     widget.onSelectListOption(selectedIndex);
@@ -146,9 +155,9 @@ class _AllOptionsState extends State<AllOptions> {
                     padding: EdgeInsets.symmetric(vertical: 16),
                     child: Text('Finish'),
                   )),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }

@@ -55,13 +55,13 @@ class CardItem extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: 8),
               Text(
                 options[optionIndex].name,
                 style: const TextStyle(fontSize: 12),
                 textAlign: TextAlign.center,
                 overflow: TextOverflow.ellipsis,
-                maxLines: 1,
+                maxLines: 2,
               ), // Display the option name
             ],
           ),
