@@ -19,7 +19,7 @@ class MoreCard extends StatelessWidget {
         //     side: const BorderSide()),
         margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 8),
         child: Padding(
-          padding: const EdgeInsets.only(top: 18),
+          padding: const EdgeInsets.fromLTRB(8, 16, 8, 8),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -40,7 +40,7 @@ class MoreCard extends StatelessWidget {
               const SizedBox(height: 12),
               const Text(
                 'More',
-                style: TextStyle(fontSize: 10),
+                style: TextStyle(fontSize: 12),
                 textAlign: TextAlign.center,
               ), // Display the option name
             ],

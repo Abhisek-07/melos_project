@@ -61,8 +61,8 @@ class _PaymentOptionsState extends State<PaymentOptions> {
                   if (index == widget.totalVisibleOptions &&
                       widget.options.length > widget.totalVisibleOptions) {
                     return MoreCard(
-                      iconUrl:
-                          'https://cdn4.iconfinder.com/data/icons/pictype-free-vector-icons/16/more-512.png',
+                      // iconUrl:
+                      //     'https://cdn4.iconfinder.com/data/icons/pictype-free-vector-icons/16/more-512.png',
                       selectMore: widget.selectMore,
                     );
                   } else {

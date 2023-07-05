@@ -57,7 +57,7 @@ class _AllOptionsState extends State<AllOptions> {
       appBar: AppBar(
         titleSpacing: 12,
         leading: IconButton(
-          padding: const EdgeInsets.only(left: 20),
+          padding: const EdgeInsets.only(left: 16),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -69,12 +69,12 @@ class _AllOptionsState extends State<AllOptions> {
         ),
         title: const Text('Choose Category'),
       ),
-      body: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(18),
-            child: SizedBox(
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SizedBox(
               height: 40,
               child: TextField(
                 onChanged: searchCategory,
@@ -83,70 +83,71 @@ class _AllOptionsState extends State<AllOptions> {
                     prefixIcon: Icon(Icons.search), hintText: 'Search'),
               ),
             ),
-          ),
-          Expanded(
-            child: ListView.separated(
-              separatorBuilder: (context, index) {
-                return const Padding(
-                  padding: EdgeInsets.only(
-                    left: 16,
-                    right: 16,
-                  ),
-                  child: Divider(
+            Expanded(
+              child: ListView.separated(
+                separatorBuilder: (context, index) {
+                  return const Divider(
                     color: Color.fromARGB(34, 21, 20, 20),
                     height: 1,
-                  ),
-                );
-              },
-              itemCount: searchOptions.length,
-              itemBuilder: (context, index) {
-                final originalIndex =
-                    widget.options.indexOf(searchOptions[index]);
-                bool isSelected = selectedIndex == originalIndex;
-
-                return ListTile(
-                  onTap: () {
-                    setState(() {
-                      selectedIndex = originalIndex;
-                    });
-                  },
-                  leading: widget.showIcons
-                      ? Image.network(
-                          widget.options[originalIndex].icon,
-                          height: 24,
-                          width: 24,
-                        )
-                      : null,
-                  title: Text(widget.options[originalIndex].name),
-                  trailing: Container(
-                    width: 20,
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: isSelected
-                            ? Border.all(width: 4, color: Colors.purple)
-                            : Border.all(width: 2, color: Colors.grey)),
-                  ),
-                );
-              },
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.fromLTRB(16, 0, 16, 20),
-            width: double.infinity,
-            child: ElevatedButton(
-                onPressed: () {
-                  widget.onSelectListOption(selectedIndex);
-                  Navigator.pop(context);
+                  );
                 },
-                style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),
+                itemCount: searchOptions.length,
+                itemBuilder: (context, index) {
+                  final originalIndex =
+                      widget.options.indexOf(searchOptions[index]);
+                  bool isSelected = selectedIndex == originalIndex;
+
+                  return ListTile(
+                    contentPadding: const EdgeInsets.fromLTRB(4, 8, 4, 8),
+                    onTap: () {
+                      setState(() {
+                        selectedIndex = originalIndex;
+                      });
+                    },
+                    leading: widget.showIcons
+                        ? Image.network(
+                            widget.options[originalIndex].icon,
+                            height: 24,
+                            width: 24,
+                          )
+                        : null,
+                    title: Text(widget.options[originalIndex].name),
+                    trailing: Container(
+                      width: 20,
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: isSelected
+                              ? Border.all(width: 4, color: Colors.purple)
+                              : Border.all(
+                                  width: 2,
+                                  color: const Color.fromARGB(
+                                      112, 158, 158, 158))),
                     ),
-                    backgroundColor: const Color.fromARGB(255, 122, 44, 195),
-                    foregroundColor: Colors.white),
-                child: const Text('Finish')),
-          )
-        ],
+                  );
+                },
+              ),
+            ),
+            SizedBox(
+              // padding: const EdgeInsets.fromLTRB(16, 0, 16, 20),
+              width: double.infinity,
+              child: ElevatedButton(
+                  onPressed: () {
+                    widget.onSelectListOption(selectedIndex);
+                    Navigator.pop(context);
+                  },
+                  style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      backgroundColor: const Color.fromARGB(255, 122, 44, 195),
+                      foregroundColor: Colors.white),
+                  child: const Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    child: const Text('Finish'),
+                  )),
+            )
+          ],
+        ),
       ),
     );
   }
