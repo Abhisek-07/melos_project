@@ -25,7 +25,7 @@ class BankTransferContainerComponent extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
           // height: 100,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(8),
             border: Border.all(
               color: const Color.fromARGB(102, 158, 158, 158),
               width: 1.0,
@@ -53,7 +53,7 @@ class BankTransferContainerComponent extends StatelessWidget {
                       // softWrap: false,
                     ),
                     const SizedBox(
-                      height: 8,
+                      height: 4,
                     ),
                     Text(
                       subtitle,

@@ -53,8 +53,14 @@ class _BankTransferScreenState extends State<BankTransferScreen> {
         return Padding(
           padding: const EdgeInsets.all(24),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
             children: [
-              const Text('Your connected current accounts'),
+              const Text(
+                'Your connected current accounts',
+                style: TextStyle(fontSize: 20),
+              ),
               const SizedBox(
                 height: 24,
               ),
@@ -79,7 +85,7 @@ class _BankTransferScreenState extends State<BankTransferScreen> {
                           vertical: 4, horizontal: 16),
                       showBorder: isSelected,
                       borderColor: const Color.fromARGB(88, 158, 158, 158),
-                      borderRadius: 16,
+                      borderRadius: 8,
                     );
                   },
                 ),

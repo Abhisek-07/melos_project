@@ -1,9 +1,10 @@
+import 'package:components/components.dart';
 import 'package:flutter/material.dart';
 
 class PreviewScreen extends StatelessWidget {
   const PreviewScreen({super.key, required this.bankTransferComponent});
 
-  final Widget bankTransferComponent;
+  final BankTransferComponent bankTransferComponent;
 
   @override
   Widget build(BuildContext context) {

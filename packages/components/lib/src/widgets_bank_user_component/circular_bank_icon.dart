@@ -38,10 +38,12 @@ class CircularBankIcon extends StatelessWidget {
 
     return networkUrl.isNotEmpty
         ? CircleAvatar(
+            backgroundColor: Colors.transparent,
             radius: radius,
             backgroundImage: NetworkImage(networkUrl),
           )
         : CircleAvatar(
+            backgroundColor: Colors.transparent,
             radius: radius,
             backgroundImage: AssetImage(bankIcon),
           );

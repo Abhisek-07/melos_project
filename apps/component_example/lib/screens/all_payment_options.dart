@@ -23,7 +23,7 @@ class AllOptions extends StatefulWidget {
 
 class _AllOptionsState extends State<AllOptions> {
   List<Option> searchOptions = [];
-
+  bool clearIcon = false;
   int? selectedIndex;
   final searchController = TextEditingController();
 
@@ -47,12 +47,33 @@ class _AllOptionsState extends State<AllOptions> {
   void initState() {
     searchOptions = widget.options;
     selectedIndex = widget.selectedIndexInListView;
+    searchController.addListener(showClearIcon);
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
   }
 
   void getSelectedIndex(int index) {
     setState(() {
       selectedIndex = index;
+    });
+  }
+
+  void showClearIcon() {
+    setState(() {
+      clearIcon = true;
+    });
+  }
+
+  void clearSearchText() {
+    setState(() {
+      searchController.clear();
+      searchOptions = widget.options;
+      clearIcon = false;
     });
   }
 
@@ -86,8 +107,16 @@ class _AllOptionsState extends State<AllOptions> {
               child: TextField(
                 onChanged: searchCategory,
                 controller: searchController,
-                decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.search), hintText: 'Search'),
+                decoration: InputDecoration(
+                  prefixIcon: const Icon(Icons.search),
+                  hintText: 'Search',
+                  suffixIcon: clearIcon
+                      ? GestureDetector(
+                          onTap: clearSearchText,
+                          child: const Icon(Icons.clear_rounded),
+                        )
+                      : null,
+                ),
               ),
             ),
           ),
