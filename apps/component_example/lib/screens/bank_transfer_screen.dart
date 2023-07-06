@@ -51,7 +51,11 @@ class _BankTransferScreenState extends State<BankTransferScreen> {
 
   void openBankListModal() {
     showModalBottomSheet(
-      // isScrollControlled: true,
+      constraints: BoxConstraints.loose(Size(
+        MediaQuery.of(context).size.width,
+        MediaQuery.of(context).size.height * 0.52,
+      )),
+      isScrollControlled: true,
       context: context,
       builder: (context) {
         return Padding(

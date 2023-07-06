@@ -156,6 +156,7 @@ class _AllOptionsState extends State<AllOptions> {
                   showTrailing: true,
                   titleTextStyle:
                       const TextStyle(fontWeight: FontWeight.normal),
+                  // contentPadding: EdgeInsets.all(16),
                 );
 
                 // return ListTile(

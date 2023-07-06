@@ -25,9 +25,9 @@ class CustomElevatedButton extends StatelessWidget {
                 ),
                 backgroundColor: const Color.fromARGB(255, 122, 44, 195),
                 foregroundColor: Colors.white),
-            child: const Padding(
-              padding: EdgeInsets.symmetric(vertical: 16),
-              child: Text('Finish'),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16),
+              child: Text(title),
             )),
       ),
     );

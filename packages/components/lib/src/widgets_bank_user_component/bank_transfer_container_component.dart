@@ -36,7 +36,7 @@ class BankTransferContainerComponent extends StatelessWidget {
             children: [
               icon,
               const SizedBox(
-                width: 12,
+                width: 8,
               ),
               Expanded(
                 child: Column(
@@ -49,7 +49,7 @@ class BankTransferContainerComponent extends StatelessWidget {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 16),
+                          fontWeight: FontWeight.bold, fontSize: 14),
                       // softWrap: false,
                     ),
                     const SizedBox(
@@ -57,17 +57,17 @@ class BankTransferContainerComponent extends StatelessWidget {
                     ),
                     Text(
                       subtitle,
-                      style: const TextStyle(color: Colors.grey),
+                      style: const TextStyle(color: Colors.grey, fontSize: 12),
                     ),
                   ],
                 ),
               ),
               const SizedBox(
-                width: 12,
+                width: 8,
               ),
               if (showTrailingIcon)
                 Container(
-                  height: 16,
+                  height: 18,
                   constraints: const BoxConstraints(maxWidth: 18),
                   decoration: const BoxDecoration(
                     shape: BoxShape.circle,

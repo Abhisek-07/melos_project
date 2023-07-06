@@ -31,7 +31,7 @@ class BankTransferComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(24),
       child: Row(
         children: [
           BankTransferContainerComponent(
@@ -44,15 +44,15 @@ class BankTransferComponent extends StatelessWidget {
             ),
             showTrailingIcon: showTrailingIconOnBankComponent,
           ),
-          const SizedBox(width: 8),
+          const SizedBox(width: 4),
           Container(
             width: 12,
             color: const Color.fromARGB(112, 158, 158, 158),
             height: 1,
           ),
-          const SizedBox(width: 8),
+          const SizedBox(width: 4),
           BankTransferContainerComponent(
-            title: userName,
+            title: userName.truncateUserName(userName),
             subtitle: userAccountNumber.displayAccountNumber(userAccountNumber),
             icon: CircularNameIcon(
               name: userName,

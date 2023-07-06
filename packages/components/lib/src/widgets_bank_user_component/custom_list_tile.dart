@@ -63,9 +63,13 @@ class CustomListTile extends StatelessWidget {
         // Icon Component
         leading: showLeading ? leadingIcon : null,
         // Text Component
-        title: Text(
-          title,
-          style: titleTextStyle ?? const TextStyle(fontWeight: FontWeight.bold),
+        title: Padding(
+          padding: EdgeInsets.only(bottom: subtitle != null ? 4 : 0),
+          child: Text(
+            title,
+            style:
+                titleTextStyle ?? const TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
         // subtitle component
         subtitle: subtitle != null
