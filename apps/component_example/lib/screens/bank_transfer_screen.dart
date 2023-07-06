@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:component_example/model/bank_account.dart';
 import 'package:component_example/model/user.dart';
 import 'package:components/components.dart';
+import 'package:utils/utils.dart';
 
 class BankTransferScreen extends StatefulWidget {
   const BankTransferScreen(
@@ -73,7 +74,8 @@ class _BankTransferScreenState extends State<BankTransferScreen> {
                     final bank = widget.banks[index];
                     final isSelected = bank.isDefault;
                     return CustomListTile(
-                      title: '${bank.name} - ₹${bank.money}.00',
+                      title:
+                          '${bank.name} - ${bank.money.addRuppeIcon(bank.money)}',
                       subtitle: '${bank.accountNumber} / ${bank.ifsc}',
                       isSelected: isSelected,
                       index: index,

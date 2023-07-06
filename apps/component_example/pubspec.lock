@@ -183,6 +183,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.5.1"
+  utils:
+    dependency: "direct main"
+    description:
+      path: "/Users/abhisek.dash/Desktop/flutter_projects/melos_project/packages/utils"
+      relative: false
+    source: path
+    version: "0.0.1"
   vector_math:
     dependency: transitive
     description:
@@ -193,3 +200,4 @@ packages:
     version: "2.1.4"
 sdks:
   dart: ">=3.0.5 <4.0.0"
+  flutter: ">=1.17.0"
