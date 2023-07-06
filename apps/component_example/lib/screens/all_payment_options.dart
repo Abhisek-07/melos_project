@@ -1,5 +1,6 @@
 import 'package:components/components.dart';
 import 'package:flutter/material.dart';
+import 'package:utils/utils.dart';
 
 class AllOptions extends StatefulWidget {
   const AllOptions({
@@ -149,7 +150,7 @@ class _AllOptionsState extends State<AllOptions> {
                     getSelectedIndex(originalIndex);
                   },
                   leadingIcon: CircularBankIcon.network(
-                    size: CircularBankIconSize.low,
+                    size: IconSize.low,
                     networkUrl: option.icon,
                   ),
                   showTrailing: true,

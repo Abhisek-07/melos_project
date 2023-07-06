@@ -10,6 +10,7 @@ import 'package:component_example/model/bank_account.dart';
 import 'package:component_example/model/user.dart';
 import 'package:component_example/screens/bank_transfer_screen.dart';
 import 'package:components/components.dart';
+import 'package:utils/utils.dart';
 
 class UserList extends StatefulWidget {
   const UserList({
@@ -87,7 +88,7 @@ class _UserListState extends State<UserList> {
                 leadingIcon: CircularNameIcon(
                   index: index,
                   name: user.name,
-                  // size: CircularNameIconSize.high,
+                  size: IconSize.medium,
                 ),
                 // showTrailing: true,
                 // showLeading: false,

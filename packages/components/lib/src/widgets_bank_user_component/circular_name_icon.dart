@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:utils/utils.dart';
 
-enum CircularNameIconSize { low, medium, high }
+// enum CircularNameIconSize { low, medium, high }
 
 class CircularNameIcon extends StatelessWidget {
   CircularNameIcon({
     super.key,
     required this.name,
-    this.size = CircularNameIconSize.medium,
+    this.size = IconSize.medium,
     this.index,
     // required this.backgroundColor,
   });
 
   final String name;
-  final CircularNameIconSize size;
+  final IconSize size;
   final int? index;
   // final Color backgroundColor;
 
@@ -27,18 +28,18 @@ class CircularNameIcon extends StatelessWidget {
     ],
   ];
 
-  double _getSizeValue() {
-    switch (size) {
-      case CircularNameIconSize.low:
-        return 32;
-      case CircularNameIconSize.medium:
-        return 48;
-      case CircularNameIconSize.high:
-        return 64;
-      default:
-        return 48;
-    }
-  }
+  // double _getSizeValue() {
+  //   switch (size) {
+  //     case CircularNameIconSize.low:
+  //       return 32;
+  //     case CircularNameIconSize.medium:
+  //       return 48;
+  //     case CircularNameIconSize.high:
+  //       return 64;
+  //     default:
+  //       return 48;
+  //   }
+  // }
 
   String _getInitials() {
     List<String> nameParts = name.split(' ');
@@ -57,7 +58,7 @@ class CircularNameIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double radius = _getSizeValue() / 2;
+    final double radius = getIconSize(size) / 2;
 
     return CircleAvatar(
       // backgroundColor: backgroundColor,

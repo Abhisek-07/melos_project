@@ -1,5 +1,6 @@
 import 'package:components/components.dart';
 import 'package:flutter/material.dart';
+import 'package:utils/utils.dart';
 // import '../../../../../apps/component_example/lib/model/option.dart';
 
 class CardItem extends StatelessWidget {
@@ -61,7 +62,7 @@ class CardItem extends StatelessWidget {
               //   ),
               // ),
               CircularBankIcon.network(
-                  size: CircularBankIconSize.medium,
+                  size: IconSize.medium,
                   networkUrl: isSelected
                       ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-uiLoP-wwWSf1QbBjZ08aDtbMATzc2BwFsg&usqp=CAU'
                       : iconUrl),

@@ -23,14 +23,16 @@ class _BankTransferScreenState extends State<BankTransferScreen> {
   late BankAccount defaultAccount = getDefaultBankAccount();
 
   BankAccount getDefaultBankAccount() {
-    for (int i = 0; i < widget.banks.length; i++) {
-      if (widget.banks[i].isDefault) {
-        widget.banks[i].isDefault = false;
-      }
-    }
-    widget.banks[0].isDefault = true;
-    BankAccount defaultAccount = widget.banks[0];
-    // widget.banks.firstWhere((account) => account.isDefault);
+    // for (int i = 0; i < widget.banks.length; i++) {
+    //   if (widget.banks[i].isDefault) {
+    //     widget.banks[i].isDefault = false;
+    //   }
+    // }
+    // widget.banks[0].isDefault = true;
+    // BankAccount defaultAccount = widget.banks[0];
+
+    BankAccount defaultAccount =
+        widget.banks.firstWhere((account) => account.isDefault);
     return defaultAccount;
   }
 

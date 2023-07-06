@@ -40,7 +40,7 @@ class BankTransferComponent extends StatelessWidget {
             subtitle: bankAccountNumber.displayAccountNumber(bankAccountNumber),
             icon: CircularBankIcon(
               bankIcon: bankIcon,
-              size: CircularBankIconSize.low,
+              size: IconSize.low,
             ),
             showTrailingIcon: showTrailingIconOnBankComponent,
           ),
@@ -56,7 +56,7 @@ class BankTransferComponent extends StatelessWidget {
             subtitle: userAccountNumber.displayAccountNumber(userAccountNumber),
             icon: CircularNameIcon(
               name: userName,
-              size: CircularNameIconSize.low,
+              size: IconSize.low,
             ),
             showTrailingIcon: showTrailingIconOnUserComponent,
           ),
