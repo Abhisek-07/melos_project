@@ -1,8 +1,7 @@
-name: components
+name: utils
 description: A new Flutter package project.
 version: 0.0.1
-publish_to: none
-# homepage:
+homepage:
 
 environment:
   sdk: '>=3.0.5 <4.0.0'
@@ -11,8 +10,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  utils:
-    path: /Users/abhisek.dash/Desktop/flutter_projects/melos_project/packages/utils
 
 dev_dependencies:
   flutter_test:

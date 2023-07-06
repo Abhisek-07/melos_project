@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:components/src/widgets_bank_user_component/bank_transfer_container_component.dart';
 import 'package:components/src/widgets_bank_user_component/circular_bank_icon.dart';
 import 'package:components/src/widgets_bank_user_component/circular_name_icon.dart';
-import 'package:components/src/extensions/extended_strings.dart';
+// import 'package:components/src/extensions/extended_strings.dart';
+import 'package:utils/utils.dart';
 
 class BankTransferComponent extends StatelessWidget {
   const BankTransferComponent({
