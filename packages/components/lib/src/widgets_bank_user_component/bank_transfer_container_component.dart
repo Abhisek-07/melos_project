@@ -7,12 +7,14 @@ class BankTransferContainerComponent extends StatelessWidget {
     required this.title,
     required this.subtitle,
     this.onTap,
+    this.showTrailingIcon = false,
   });
 
   final Widget icon;
   final String title;
   final String subtitle;
   final void Function()? onTap;
+  final bool showTrailingIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class BankTransferContainerComponent extends StatelessWidget {
       child: GestureDetector(
         onTap: onTap,
         child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
+          padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
           // height: 100,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
@@ -59,7 +61,19 @@ class BankTransferContainerComponent extends StatelessWidget {
                     ),
                   ],
                 ),
-              )
+              ),
+              if (showTrailingIcon)
+                Container(
+                  height: 16,
+                  constraints: const BoxConstraints(maxWidth: 18),
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      fit: BoxFit.scaleDown,
+                      image: AssetImage('assets/more.png'),
+                    ),
+                  ),
+                ),
             ],
           ),
         ),

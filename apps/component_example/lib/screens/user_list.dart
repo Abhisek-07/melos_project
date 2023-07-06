@@ -31,8 +31,6 @@ class UserList extends StatefulWidget {
 
 class _UserListState extends State<UserList> {
   int selectedIndex = -1;
-  // bool showTrailing = true;
-  // bool showLeading = true;
 
   @override
   void initState() {
@@ -78,7 +76,7 @@ class _UserListState extends State<UserList> {
 
               return CustomListTile(
                 title: user.name,
-                subtitle: '${user.accountNumber}/${user.ifsc}',
+                subtitle: '${user.accountNumber} / ${user.ifsc}',
                 isSelected: isSelected,
                 index: index,
                 selectedOption: selectedOption,

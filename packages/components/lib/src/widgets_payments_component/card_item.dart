@@ -1,3 +1,4 @@
+import 'package:components/components.dart';
 import 'package:flutter/material.dart';
 // import '../../../../../apps/component_example/lib/model/option.dart';
 
@@ -46,21 +47,25 @@ class CardItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Container(
-                width: 48,
-                height: 48,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                    image: NetworkImage(
-                      isSelected
-                          ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-uiLoP-wwWSf1QbBjZ08aDtbMATzc2BwFsg&usqp=CAU'
-                          : iconUrl,
-                    ), // Replace with your image path
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
+              // Container(
+              //   width: 48,
+              //   height: 48,
+              //   decoration: BoxDecoration(
+              //     shape: BoxShape.circle,
+              //     image: DecorationImage(
+              //       image: NetworkImage(
+              //         isSelected
+              //             ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-uiLoP-wwWSf1QbBjZ08aDtbMATzc2BwFsg&usqp=CAU'
+              //             : iconUrl,
+              //       ), // Replace with your image path
+              //       fit: BoxFit.cover,
+              //     ),
+              //   ),
+              // ),
+              CircularBankIcon.network(
+                  networkUrl: isSelected
+                      ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-uiLoP-wwWSf1QbBjZ08aDtbMATzc2BwFsg&usqp=CAU'
+                      : iconUrl),
               const SizedBox(height: 8),
               Text(
                 cardName,

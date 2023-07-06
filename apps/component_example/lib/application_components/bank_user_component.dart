@@ -30,8 +30,6 @@ class _BankUserComponentState extends State<BankUserComponent> {
       appBar: AppBar(title: const Text('New component')),
       body: UserList(
         banks: banks,
-        // selectedIndex: selectedIndex,
-        // selectOption: selectOption,
         userList: userList,
       ),
     );

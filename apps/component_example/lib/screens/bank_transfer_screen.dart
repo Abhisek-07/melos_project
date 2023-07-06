@@ -26,23 +26,46 @@ class _BankTransferScreenState extends State<BankTransferScreen> {
     return defaultAccount;
   }
 
+  void updateDefaultAccount(int tappedIndex) {
+    setState(() {
+      for (int i = 0; i < widget.banks.length; i++) {
+        if (i == tappedIndex) {
+          widget.banks[i].isDefault = true;
+          defaultAccount = widget.banks[i];
+        } else {
+          widget.banks[i].isDefault = false;
+        }
+      }
+    });
+  }
+
   void openBankListModal() {
     showModalBottomSheet(
       context: context,
       builder: (context) {
         return Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(24),
           child: Column(
             children: [
               const Text('Your connected current accounts'),
               const SizedBox(
-                height: 16,
+                height: 24,
               ),
               Expanded(
                 child: ListView.builder(
                   itemCount: widget.banks.length,
                   itemBuilder: (context, index) {
-                    return Text(widget.banks[index].name);
+                    final bank = widget.banks[index];
+                    final isSelected = bank.isDefault;
+                    return CustomListTile(
+                      title: '${bank.name} - ₹${bank.money}.00',
+                      subtitle: '${bank.accountNumber} / ${bank.ifsc}',
+                      isSelected: isSelected,
+                      index: index,
+                      selectedOption: updateDefaultAccount,
+                      leadingIcon: CircularBankIcon(bankIcon: bank.icon),
+                      showTrailing: true,
+                    );
                   },
                 ),
               ),

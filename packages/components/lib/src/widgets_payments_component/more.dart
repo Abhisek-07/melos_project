@@ -1,3 +1,4 @@
+import 'package:components/components.dart';
 import 'package:flutter/material.dart';
 
 class MoreCard extends StatelessWidget {
@@ -25,18 +26,21 @@ class MoreCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Container(
-                width: 48,
-                height: 48,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                    image: NetworkImage(iconUrl ??
-                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYLb4fHlPF-aw_5Ea494xaBQDJ7b6DOlY2ng&usqp=CAU'), // Replace with your image path
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
+              // Container(
+              //   width: 48,
+              //   height: 48,
+              //   decoration: BoxDecoration(
+              //     shape: BoxShape.circle,
+              //     image: DecorationImage(
+              //       image: NetworkImage(iconUrl ??
+              //           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYLb4fHlPF-aw_5Ea494xaBQDJ7b6DOlY2ng&usqp=CAU'), // Replace with your image path
+              //       fit: BoxFit.cover,
+              //     ),
+              //   ),
+              // ),
+              CircularBankIcon.network(
+                  networkUrl: iconUrl ??
+                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYLb4fHlPF-aw_5Ea494xaBQDJ7b6DOlY2ng&usqp=CAU'),
               const SizedBox(height: 8),
               const Text(
                 'More',

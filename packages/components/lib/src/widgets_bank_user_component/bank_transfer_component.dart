@@ -37,6 +37,7 @@ class BankTransferComponent extends StatelessWidget {
               bankIcon: bankIcon,
               size: CircularBankIconSize.low,
             ),
+            showTrailingIcon: true,
           ),
           const SizedBox(width: 8),
           Container(

@@ -118,7 +118,7 @@ class _AllOptionsState extends State<AllOptions> {
                   index: originalIndex,
                   selectedOption: getSelectedIndex,
                   leadingIcon: CircularBankIcon.network(
-                    // size: ,
+                    size: CircularBankIconSize.low,
                     networkUrl: option.icon,
                   ),
                   showTrailing: true,
