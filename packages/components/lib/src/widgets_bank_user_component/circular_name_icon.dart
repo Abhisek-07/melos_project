@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
 
+enum CircularNameIconSize { low, medium, high }
+
 class CircularNameIcon extends StatelessWidget {
   const CircularNameIcon({
     super.key,
     required this.name,
-    this.size = 'medium',
+    this.size = CircularNameIconSize.medium,
     required this.backgroundColor,
   });
 
   final String name;
-  final String size;
+  final CircularNameIconSize size;
   final Color backgroundColor;
 
   double _getSizeValue() {
     switch (size) {
-      case 'low':
+      case CircularNameIconSize.low:
         return 32;
-      case 'medium':
+      case CircularNameIconSize.medium:
         return 48;
-      case 'high':
+      case CircularNameIconSize.high:
         return 64;
       default:
         return 48;

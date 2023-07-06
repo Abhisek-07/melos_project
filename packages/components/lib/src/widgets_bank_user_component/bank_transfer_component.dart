@@ -1,9 +1,3 @@
-// import 'package:bank_user_component/extensions/extended_strings.dart';
-// import 'package:bank_user_component/models/bank_account.dart';
-// import 'package:bank_user_component/models/user.dart';
-// import 'package:bank_user_component/widgets/bank_transfer_container_component.dart';
-// import 'package:bank_user_component/widgets/circular_bank_icon.dart';
-// import 'package:bank_user_component/widgets/circular_name_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:components/src/widgets_bank_user_component/bank_transfer_container_component.dart';
 import 'package:components/src/widgets_bank_user_component/circular_bank_icon.dart';
@@ -13,9 +7,6 @@ import 'package:components/src/extensions/extended_strings.dart';
 class BankTransferComponent extends StatelessWidget {
   const BankTransferComponent({
     super.key,
-    // required this.user,
-    // required this.banks,
-    // required this.defaultBankAccount,
     required this.userName,
     required this.userAccountNumber,
     required this.bankName,
@@ -32,12 +23,6 @@ class BankTransferComponent extends StatelessWidget {
 
   final void Function() openBankListModal;
 
-  // final User user;
-  // final List<BankAccount> banks;
-  // final BankAccount defaultBankAccount;
-  // late String displayAccountNumber =
-  //     '*${defaultBankAccount.accountNumber.substring(defaultBankAccount.accountNumber.length - 4)}';
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -50,7 +35,7 @@ class BankTransferComponent extends StatelessWidget {
             subtitle: bankAccountNumber.displayAccountNumber(bankAccountNumber),
             icon: CircularBankIcon(
               bankIcon: bankIcon,
-              size: 'low',
+              size: CircularBankIconSize.low,
             ),
           ),
           const SizedBox(width: 8),
@@ -66,7 +51,7 @@ class BankTransferComponent extends StatelessWidget {
             icon: CircularNameIcon(
               name: userName,
               backgroundColor: Colors.red,
-              size: 'low',
+              size: CircularNameIconSize.low,
             ),
           ),
         ],
