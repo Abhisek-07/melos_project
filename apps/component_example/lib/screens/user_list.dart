@@ -82,10 +82,12 @@ class _UserListState extends State<UserList> {
                 onTap: () {
                   selectedOption(index);
                 },
+                contentPadding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                 leadingIcon: CircularNameIcon(
-                  // size: 'low',
+                  index: index,
                   name: user.name,
-                  backgroundColor: index % 2 == 0 ? Colors.blue : Colors.green,
+                  // size: CircularNameIconSize.high,
                 ),
                 // showTrailing: true,
                 // showLeading: false,

@@ -12,7 +12,8 @@ class BankTransferComponent extends StatelessWidget {
     required this.bankName,
     required this.bankAccountNumber,
     required this.bankIcon,
-    required this.openBankListModal,
+    this.openBankListModal,
+    this.showTrailingIconOnBankComponent = false,
   });
 
   final String userName;
@@ -20,8 +21,9 @@ class BankTransferComponent extends StatelessWidget {
   final String bankName;
   final String bankAccountNumber;
   final String bankIcon;
+  final bool showTrailingIconOnBankComponent;
 
-  final void Function() openBankListModal;
+  final void Function()? openBankListModal;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +39,7 @@ class BankTransferComponent extends StatelessWidget {
               bankIcon: bankIcon,
               size: CircularBankIconSize.low,
             ),
-            showTrailingIcon: true,
+            showTrailingIcon: showTrailingIconOnBankComponent,
           ),
           const SizedBox(width: 8),
           Container(
@@ -51,7 +53,6 @@ class BankTransferComponent extends StatelessWidget {
             subtitle: userAccountNumber.displayAccountNumber(userAccountNumber),
             icon: CircularNameIcon(
               name: userName,
-              backgroundColor: Colors.red,
               size: CircularNameIconSize.low,
             ),
           ),

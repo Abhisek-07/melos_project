@@ -1,6 +1,7 @@
 // import 'package:bank_user_component/models/bank_account.dart';
 // import 'package:bank_user_component/models/user.dart';
 // import 'package:bank_user_component/widgets/bank_transfer_component.dart';
+import 'package:component_example/screens/preview_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:component_example/model/bank_account.dart';
 import 'package:component_example/model/user.dart';
@@ -21,8 +22,14 @@ class _BankTransferScreenState extends State<BankTransferScreen> {
   late BankAccount defaultAccount = getDefaultBankAccount();
 
   BankAccount getDefaultBankAccount() {
-    BankAccount defaultAccount =
-        widget.banks.firstWhere((account) => account.isDefault);
+    for (int i = 0; i < widget.banks.length; i++) {
+      if (widget.banks[i].isDefault) {
+        widget.banks[i].isDefault = false;
+      }
+    }
+    widget.banks[0].isDefault = true;
+    BankAccount defaultAccount = widget.banks[0];
+    // widget.banks.firstWhere((account) => account.isDefault);
     return defaultAccount;
   }
 
@@ -68,6 +75,11 @@ class _BankTransferScreenState extends State<BankTransferScreen> {
                       },
                       leadingIcon: CircularBankIcon(bankIcon: bank.icon),
                       showTrailing: true,
+                      contentPadding: const EdgeInsets.symmetric(
+                          vertical: 4, horizontal: 16),
+                      showBorder: isSelected,
+                      borderColor: const Color.fromARGB(88, 158, 158, 158),
+                      borderRadius: 16,
                     );
                   },
                 ),
@@ -85,17 +97,42 @@ class _BankTransferScreenState extends State<BankTransferScreen> {
       appBar: AppBar(
         title: const Text('Bank Transfer'),
       ),
-      body: BankTransferComponent(
-        openBankListModal: openBankListModal,
-        userName: widget.user.name,
-        userAccountNumber: widget.user.accountNumber,
-        bankName: defaultAccount.name,
-        bankAccountNumber: defaultAccount.accountNumber,
-        bankIcon: defaultAccount.icon,
-
-        // user: widget.user,
-        // banks: widget.banks,
-        // defaultBankAccount: defaultAccount,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            BankTransferComponent(
+              openBankListModal: openBankListModal,
+              userName: widget.user.name,
+              userAccountNumber: widget.user.accountNumber,
+              bankName: defaultAccount.name,
+              bankAccountNumber: defaultAccount.accountNumber,
+              bankIcon: defaultAccount.icon,
+              showTrailingIconOnBankComponent: true,
+            ),
+            CustomElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) {
+                    return PreviewScreen(
+                      bankTransferComponent: BankTransferComponent(
+                        userName: widget.user.name,
+                        userAccountNumber: widget.user.accountNumber,
+                        bankName: defaultAccount.name,
+                        bankAccountNumber: defaultAccount.accountNumber,
+                        bankIcon: defaultAccount.icon,
+                        // showTrailingIconOnBankComponent: true,
+                      ),
+                    );
+                  },
+                ));
+              },
+              title: 'Preview',
+            )
+          ],
+        ),
       ),
     );
   }

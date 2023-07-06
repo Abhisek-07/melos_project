@@ -16,6 +16,13 @@ class CustomListTile extends StatelessWidget {
     this.showTrailing = false,
     this.showLeading = true,
     required this.leadingIcon,
+    this.contentPadding = const EdgeInsets.fromLTRB(24, 8, 24, 8),
+    this.showBorder = false,
+    this.borderColor = Colors.grey,
+    this.borderWidth = 1,
+    this.borderRadius = 8,
+    this.titleTextStyle,
+    this.subtitleTextStyle,
   });
 
   final String title;
@@ -27,24 +34,51 @@ class CustomListTile extends StatelessWidget {
   final bool showTrailing;
   final bool showLeading;
   final Widget leadingIcon;
+  final EdgeInsetsGeometry contentPadding;
+  final bool showBorder;
+  final Color borderColor;
+  final double borderWidth;
+  final double borderRadius;
+  final TextStyle? titleTextStyle;
+  final TextStyle? subtitleTextStyle;
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      contentPadding: const EdgeInsets.fromLTRB(24, 8, 24, 8),
+    return Container(
+      decoration: showBorder
+          ? BoxDecoration(
+              border: Border.all(
+                color: borderColor,
+                width: borderWidth,
+              ),
+              borderRadius: BorderRadius.circular(borderRadius),
+            )
+          : null,
+      child: ListTile(
+        contentPadding: contentPadding,
 
-      // tileColor:
-      //     isSelected ? Theme.of(context).colorScheme.secondaryContainer : null,
-      onTap: onTap,
-      // Icon Component
-      leading: showLeading ? leadingIcon : null,
-      // Text Component
-      title: Text(title),
-      // subtitle component
-      subtitle: subtitle != null ? Text(subtitle!) : null,
-      // Radio button component
-      trailing:
-          showTrailing ? CircularSelectButton(isSelected: isSelected) : null,
+        // tileColor:
+        //     isSelected ? Theme.of(context).colorScheme.secondaryContainer : null,
+        onTap: onTap,
+        // Icon Component
+        leading: showLeading ? leadingIcon : null,
+        // Text Component
+        title: Text(
+          title,
+          style: titleTextStyle ?? const TextStyle(fontWeight: FontWeight.bold),
+        ),
+        // subtitle component
+        subtitle: subtitle != null
+            ? Text(
+                subtitle!,
+                style: subtitleTextStyle ??
+                    const TextStyle(color: Color.fromARGB(101, 0, 0, 0)),
+              )
+            : null,
+        // Radio button component
+        trailing:
+            showTrailing ? CircularSelectButton(isSelected: isSelected) : null,
+      ),
     );
   }
 }

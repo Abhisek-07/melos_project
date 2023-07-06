@@ -124,6 +124,8 @@ class _AllOptionsState extends State<AllOptions> {
                     networkUrl: option.icon,
                   ),
                   showTrailing: true,
+                  titleTextStyle:
+                      const TextStyle(fontWeight: FontWeight.normal),
                 );
 
                 // return ListTile(
