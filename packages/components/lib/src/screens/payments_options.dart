@@ -73,7 +73,9 @@ class _PaymentOptionsState extends State<PaymentOptions> {
                       optionIndex: index,
                       // options: widget.options,
                       selectedIndex: widget.selectedIndex,
-                      selectOption: widget.selectOption,
+                      selectOption: () {
+                        widget.selectOption(index);
+                      },
                       cardName: option.name,
                       iconUrl: option.icon,
                     );

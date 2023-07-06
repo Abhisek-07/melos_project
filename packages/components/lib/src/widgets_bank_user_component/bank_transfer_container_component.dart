@@ -62,6 +62,9 @@ class BankTransferContainerComponent extends StatelessWidget {
                   ],
                 ),
               ),
+              const SizedBox(
+                width: 12,
+              ),
               if (showTrailingIcon)
                 Container(
                   height: 16,

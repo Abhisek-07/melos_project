@@ -48,6 +48,7 @@ class _BankTransferScreenState extends State<BankTransferScreen> {
 
   void openBankListModal() {
     showModalBottomSheet(
+      // isScrollControlled: true,
       context: context,
       builder: (context) {
         return Padding(
@@ -66,6 +67,7 @@ class _BankTransferScreenState extends State<BankTransferScreen> {
               ),
               Expanded(
                 child: ListView.builder(
+                  // shrinkWrap: true,
                   itemCount: widget.banks.length,
                   itemBuilder: (context, index) {
                     final bank = widget.banks[index];
@@ -117,6 +119,7 @@ class _BankTransferScreenState extends State<BankTransferScreen> {
               bankAccountNumber: defaultAccount.accountNumber,
               bankIcon: defaultAccount.icon,
               showTrailingIconOnBankComponent: true,
+              // showTrailingIconOnUserComponent: true,
             ),
             CustomElevatedButton(
               onPressed: () {

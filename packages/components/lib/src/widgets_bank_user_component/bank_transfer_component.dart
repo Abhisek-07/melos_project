@@ -14,6 +14,7 @@ class BankTransferComponent extends StatelessWidget {
     required this.bankIcon,
     this.openBankListModal,
     this.showTrailingIconOnBankComponent = false,
+    this.showTrailingIconOnUserComponent = false,
   });
 
   final String userName;
@@ -22,6 +23,7 @@ class BankTransferComponent extends StatelessWidget {
   final String bankAccountNumber;
   final String bankIcon;
   final bool showTrailingIconOnBankComponent;
+  final bool showTrailingIconOnUserComponent;
 
   final void Function()? openBankListModal;
 
@@ -55,6 +57,7 @@ class BankTransferComponent extends StatelessWidget {
               name: userName,
               size: CircularNameIconSize.low,
             ),
+            showTrailingIcon: showTrailingIconOnUserComponent,
           ),
         ],
       ),

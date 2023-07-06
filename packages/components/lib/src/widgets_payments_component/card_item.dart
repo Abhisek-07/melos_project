@@ -15,7 +15,7 @@ class CardItem extends StatelessWidget {
 
   final int optionIndex;
   final int selectedIndex;
-  final void Function(int) selectOption;
+  final void Function() selectOption;
   // final List options;
   final String iconUrl;
   final String cardName;
@@ -25,9 +25,7 @@ class CardItem extends StatelessWidget {
     bool isSelected = selectedIndex == optionIndex;
 
     return GestureDetector(
-      onTap: () {
-        selectOption(optionIndex);
-      },
+      onTap: selectOption,
       child: Card(
         shadowColor: Colors.transparent,
         shape: isSelected
@@ -63,6 +61,7 @@ class CardItem extends StatelessWidget {
               //   ),
               // ),
               CircularBankIcon.network(
+                  size: CircularBankIconSize.medium,
                   networkUrl: isSelected
                       ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-uiLoP-wwWSf1QbBjZ08aDtbMATzc2BwFsg&usqp=CAU'
                       : iconUrl),
