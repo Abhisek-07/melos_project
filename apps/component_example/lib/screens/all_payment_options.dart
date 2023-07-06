@@ -116,7 +116,9 @@ class _AllOptionsState extends State<AllOptions> {
                   title: option.name,
                   isSelected: isSelected,
                   index: originalIndex,
-                  selectedOption: getSelectedIndex,
+                  onTap: () {
+                    getSelectedIndex(originalIndex);
+                  },
                   leadingIcon: CircularBankIcon.network(
                     size: CircularBankIconSize.low,
                     networkUrl: option.icon,

@@ -12,7 +12,7 @@ class CustomListTile extends StatelessWidget {
     this.subtitle,
     required this.isSelected,
     required this.index,
-    required this.selectedOption,
+    required this.onTap,
     this.showTrailing = false,
     this.showLeading = true,
     required this.leadingIcon,
@@ -23,7 +23,7 @@ class CustomListTile extends StatelessWidget {
   final String? subtitle;
   final bool isSelected;
   final int index;
-  final void Function(int) selectedOption;
+  final void Function() onTap;
   final bool showTrailing;
   final bool showLeading;
   final Widget leadingIcon;
@@ -35,9 +35,7 @@ class CustomListTile extends StatelessWidget {
 
       // tileColor:
       //     isSelected ? Theme.of(context).colorScheme.secondaryContainer : null,
-      onTap: () {
-        selectedOption(index);
-      },
+      onTap: onTap,
       // Icon Component
       leading: showLeading ? leadingIcon : null,
       // Text Component

@@ -62,7 +62,10 @@ class _BankTransferScreenState extends State<BankTransferScreen> {
                       subtitle: '${bank.accountNumber} / ${bank.ifsc}',
                       isSelected: isSelected,
                       index: index,
-                      selectedOption: updateDefaultAccount,
+                      onTap: () {
+                        updateDefaultAccount(index);
+                        Navigator.of(context).pop();
+                      },
                       leadingIcon: CircularBankIcon(bankIcon: bank.icon),
                       showTrailing: true,
                     );

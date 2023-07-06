@@ -79,7 +79,9 @@ class _UserListState extends State<UserList> {
                 subtitle: '${user.accountNumber} / ${user.ifsc}',
                 isSelected: isSelected,
                 index: index,
-                selectedOption: selectedOption,
+                onTap: () {
+                  selectedOption(index);
+                },
                 leadingIcon: CircularNameIcon(
                   // size: 'low',
                   name: user.name,
