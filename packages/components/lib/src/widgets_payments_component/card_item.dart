@@ -1,4 +1,5 @@
-import 'package:components/components.dart';
+import 'package:components/src/constants.dart';
+import 'package:components/src/widgets_bank_user_component/circular_bank_icon.dart';
 import 'package:flutter/material.dart';
 // import 'package:utils/utils.dart';
 // import '../../../../../apps/component_example/lib/model/option.dart';
@@ -6,24 +7,28 @@ import 'package:flutter/material.dart';
 class CardItem extends StatelessWidget {
   const CardItem({
     super.key,
-    required this.optionIndex,
-    required this.selectedIndex,
+    // required this.optionIndex,
+    // required this.selectedIndex,
     required this.selectOption,
     required this.cardName,
     required this.iconUrl,
     required this.selectedIconUrl,
+    required this.iconGradientColors,
+    required this.isSelected,
   });
 
-  final int optionIndex;
-  final int selectedIndex;
+  // final int optionIndex;
+  // final int selectedIndex;
   final void Function() selectOption;
   final String iconUrl;
   final String cardName;
   final String selectedIconUrl;
+  final List<Color> iconGradientColors;
+  final bool isSelected;
 
   @override
   Widget build(BuildContext context) {
-    bool isSelected = selectedIndex == optionIndex;
+    // bool isSelected = selectedIndex == optionIndex;
 
     return GestureDetector(
       onTap: selectOption,
@@ -46,32 +51,12 @@ class CardItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: [
-              // Container(
-              //   width: 48,
-              //   height: 48,
-              //   decoration: BoxDecoration(
-              //     shape: BoxShape.circle,
-              //     image: DecorationImage(
-              //       image: NetworkImage(
-              //         isSelected
-              //             ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-uiLoP-wwWSf1QbBjZ08aDtbMATzc2BwFsg&usqp=CAU'
-              //             : iconUrl,
-              //       ), // Replace with your image path
-              //       fit: BoxFit.cover,
-              //     ),
-              //   ),
-              // ),
-              // isSelected
-              //     ? CircularBankIcon.svg(
-              //         isSelected: isSelected,
-              //         size: IconSize.medium,
-              //         svgIcon: 'assets/icons/check.svg')
-              // :
               CircularBankIcon.svg(
-                isSelected: isSelected,
-                svgIcon: isSelected ? selectedIconUrl : iconUrl,
-                index: optionIndex,
-              ),
+                  // isSelected: isSelected,
+                  svgIcon: isSelected ? selectedIconUrl : iconUrl,
+                  // index: optionIndex,
+                  linearGradientColors:
+                      isSelected ? checkGradientColors : iconGradientColors),
               const SizedBox(height: 8),
               Text(
                 cardName,

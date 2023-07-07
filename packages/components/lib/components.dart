@@ -15,3 +15,4 @@ export 'package:components/src/widgets_bank_user_component/custom_elevated_butto
 export 'package:components/src/widgets_bank_user_component/custom_list_tile.dart';
 export 'package:components/src/widgets_payments_component/card_item.dart';
 export 'package:components/src/widgets_payments_component/more.dart';
+export 'package:components/src/constants.dart';

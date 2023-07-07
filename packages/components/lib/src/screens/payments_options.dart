@@ -1,3 +1,4 @@
+import 'package:components/src/constants.dart';
 import 'package:components/src/widgets_payments_component/card_item.dart';
 import 'package:components/src/widgets_payments_component/more.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ class PaymentOptions extends StatefulWidget {
     required this.title,
   });
 
-  final List<Option> options;
+  final List<OptionItem> options;
   final int totalVisibleOptions;
   final void Function(int) selectOption;
   final int selectedIndex;
@@ -71,14 +72,21 @@ class _PaymentOptionsState extends State<PaymentOptions> {
                     // final listItemIndex =
                     //     index < widget.totalVisibleOptions ? index : index - 1;
                     return CardItem(
-                      optionIndex: index,
-                      selectedIndex: widget.selectedIndex,
+                      isSelected: index == widget.selectedIndex,
+                      // optionIndex: index,
+                      // selectedIndex: widget.selectedIndex,
                       selectOption: () {
                         widget.selectOption(index);
                       },
                       cardName: option.name,
                       iconUrl: option.icon,
                       selectedIconUrl: 'assets/icons/check.svg',
+                      iconGradientColors:
+                          index % gradientColorsForBankIcon.length == 0
+                              ? gradientColorsForBankIcon[0]
+                              : index % gradientColorsForBankIcon.length == 1
+                                  ? gradientColorsForBankIcon[1]
+                                  : gradientColorsForBankIcon[2],
                     );
                   }
                 }),
@@ -87,19 +95,12 @@ class _PaymentOptionsState extends State<PaymentOptions> {
   }
 }
 
-class Option {
+class OptionItem {
   final String name;
   final String icon;
 
-  Option({
+  OptionItem({
     required this.name,
     required this.icon,
   });
-
-  factory Option.fromJson(Map<String, dynamic> json) {
-    return Option(
-      name: json['name'],
-      icon: json['icon'],
-    );
-  }
 }

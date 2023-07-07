@@ -1,4 +1,5 @@
 import 'package:components/components.dart';
+import 'package:components/src/constants.dart';
 import 'package:flutter/material.dart';
 
 class MoreCard extends StatelessWidget {
@@ -41,7 +42,8 @@ class MoreCard extends StatelessWidget {
               if (iconUrl != null)
                 CircularBankIcon.svg(
                   svgIcon: iconUrl!,
-                  isMore: true,
+                  // isMore: true,
+                  linearGradientColors: moreGradientColors,
                 )
               else
                 CircularBankIcon.network(

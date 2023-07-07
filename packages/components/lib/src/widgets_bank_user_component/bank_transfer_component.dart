@@ -13,9 +13,10 @@ class BankTransferComponent extends StatelessWidget {
     required this.bankName,
     required this.bankAccountNumber,
     required this.bankIcon,
-    this.openBankListModal,
+    this.onTapBankComponent,
     this.trailingIconOnBankComponent,
     this.trailingIconOnUserComponent,
+    this.onTapUserComponent,
   });
 
   final String userName;
@@ -26,7 +27,8 @@ class BankTransferComponent extends StatelessWidget {
   final String? trailingIconOnBankComponent;
   final String? trailingIconOnUserComponent;
 
-  final void Function()? openBankListModal;
+  final void Function()? onTapBankComponent;
+  final void Function()? onTapUserComponent;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +37,7 @@ class BankTransferComponent extends StatelessWidget {
       child: Row(
         children: [
           BankTransferContainerComponent(
-            onTap: openBankListModal,
+            onTap: onTapBankComponent,
             title: bankName,
             subtitle: bankAccountNumber.displayAccountNumber(bankAccountNumber),
             icon: CircularBankIcon(
@@ -52,6 +54,7 @@ class BankTransferComponent extends StatelessWidget {
           ),
           const SizedBox(width: 4),
           BankTransferContainerComponent(
+            onTap: onTapUserComponent,
             title: userName.truncateUserName(userName),
             subtitle: userAccountNumber.displayAccountNumber(userAccountNumber),
             icon: CircularNameIcon(
