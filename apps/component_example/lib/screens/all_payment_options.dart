@@ -149,9 +149,10 @@ class _AllOptionsState extends State<AllOptions> {
                   onTap: () {
                     getSelectedIndex(originalIndex);
                   },
-                  leadingIcon: CircularBankIcon.network(
+                  leadingIcon: CircularBankIcon.svg(
                     size: IconSize.low,
-                    networkUrl: option.icon,
+                    svgIcon: option.icon,
+                    index: originalIndex,
                   ),
                   showTrailing: true,
                   titleTextStyle:

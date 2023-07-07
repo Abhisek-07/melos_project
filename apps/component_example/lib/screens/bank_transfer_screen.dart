@@ -126,8 +126,7 @@ class _BankTransferScreenState extends State<BankTransferScreen> {
               bankName: defaultAccount.name,
               bankAccountNumber: defaultAccount.accountNumber,
               bankIcon: defaultAccount.icon,
-              showTrailingIconOnBankComponent: true,
-              // showTrailingIconOnUserComponent: true,
+              trailingIconOnBankComponent: 'assets/icons/more.svg',
             ),
             CustomElevatedButton(
               onPressed: () {
@@ -140,7 +139,8 @@ class _BankTransferScreenState extends State<BankTransferScreen> {
                         bankName: defaultAccount.name,
                         bankAccountNumber: defaultAccount.accountNumber,
                         bankIcon: defaultAccount.icon,
-                        // showTrailingIconOnBankComponent: true,
+                        // trailingIconOnUserComponent:
+                        //     'assets/icons/downloads.svg',
                       ),
                     );
                   },

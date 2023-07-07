@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class BankTransferContainerComponent extends StatelessWidget {
   const BankTransferContainerComponent({
@@ -7,14 +8,14 @@ class BankTransferContainerComponent extends StatelessWidget {
     required this.title,
     required this.subtitle,
     this.onTap,
-    this.showTrailingIcon = false,
+    this.trailingIcon,
   });
 
   final Widget icon;
   final String title;
   final String subtitle;
   final void Function()? onTap;
-  final bool showTrailingIcon;
+  final String? trailingIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -65,18 +66,25 @@ class BankTransferContainerComponent extends StatelessWidget {
               const SizedBox(
                 width: 8,
               ),
-              if (showTrailingIcon)
-                Container(
+              if (trailingIcon != null)
+                SvgPicture.asset(
+                  trailingIcon!,
+                  width: 18,
                   height: 18,
-                  constraints: const BoxConstraints(maxWidth: 18),
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                      fit: BoxFit.scaleDown,
-                      image: AssetImage('assets/more.png'),
-                    ),
-                  ),
                 ),
+              // Container(
+              //   width: 18,
+              //   height: 18,
+              //   child: ,
+              //   // constraints: const BoxConstraints(maxWidth: 18),
+              //   // decoration: const BoxDecoration(
+              //   //   shape: BoxShape.circle,
+              //   //   image: DecorationImage(
+              //   //     // fit: BoxFit.scaleDown,
+              //   //     image: AssetImage('assets/downloads.svg'),
+              //   //   ),
+              //   // ),
+              // ),
             ],
           ),
         ),

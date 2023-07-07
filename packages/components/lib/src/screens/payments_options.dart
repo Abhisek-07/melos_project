@@ -61,6 +61,7 @@ class _PaymentOptionsState extends State<PaymentOptions> {
                   if (index == widget.totalVisibleOptions &&
                       widget.options.length > widget.totalVisibleOptions) {
                     return MoreCard(
+                      iconUrl: 'assets/icons/more_icon.svg',
                       // iconUrl:
                       //     'https://cdn4.iconfinder.com/data/icons/pictype-free-vector-icons/16/more-512.png',
                       selectMore: widget.selectMore,
@@ -71,13 +72,13 @@ class _PaymentOptionsState extends State<PaymentOptions> {
                     //     index < widget.totalVisibleOptions ? index : index - 1;
                     return CardItem(
                       optionIndex: index,
-                      // options: widget.options,
                       selectedIndex: widget.selectedIndex,
                       selectOption: () {
                         widget.selectOption(index);
                       },
                       cardName: option.name,
                       iconUrl: option.icon,
+                      selectedIconUrl: 'assets/icons/check.svg',
                     );
                   }
                 }),

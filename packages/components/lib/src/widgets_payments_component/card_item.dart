@@ -1,6 +1,6 @@
 import 'package:components/components.dart';
 import 'package:flutter/material.dart';
-import 'package:utils/utils.dart';
+// import 'package:utils/utils.dart';
 // import '../../../../../apps/component_example/lib/model/option.dart';
 
 class CardItem extends StatelessWidget {
@@ -9,17 +9,17 @@ class CardItem extends StatelessWidget {
     required this.optionIndex,
     required this.selectedIndex,
     required this.selectOption,
-    // required this.options,
     required this.cardName,
     required this.iconUrl,
+    required this.selectedIconUrl,
   });
 
   final int optionIndex;
   final int selectedIndex;
   final void Function() selectOption;
-  // final List options;
   final String iconUrl;
   final String cardName;
+  final String selectedIconUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -61,11 +61,17 @@ class CardItem extends StatelessWidget {
               //     ),
               //   ),
               // ),
-              CircularBankIcon.network(
-                  size: IconSize.medium,
-                  networkUrl: isSelected
-                      ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-uiLoP-wwWSf1QbBjZ08aDtbMATzc2BwFsg&usqp=CAU'
-                      : iconUrl),
+              // isSelected
+              //     ? CircularBankIcon.svg(
+              //         isSelected: isSelected,
+              //         size: IconSize.medium,
+              //         svgIcon: 'assets/icons/check.svg')
+              // :
+              CircularBankIcon.svg(
+                isSelected: isSelected,
+                svgIcon: isSelected ? selectedIconUrl : iconUrl,
+                index: optionIndex,
+              ),
               const SizedBox(height: 8),
               Text(
                 cardName,

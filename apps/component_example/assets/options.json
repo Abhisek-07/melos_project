@@ -4,61 +4,61 @@
             "l2_categories_id": 9,
             "l1_categories_id": 2,
             "name": "Cost of goods sold",
-            "icon" :  "https://static.vecteezy.com/system/resources/previews/010/223/497/original/cost-of-goods-sold-cogs-report-line-icon-illustration-vector.jpg"
+            "icon" :  "assets/icons/furniture.svg"
         },
         {
             "l2_categories_id": 10,
             "l1_categories_id": 2,
             "name": "Accounting fee",
-            "icon" :  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQ33CagmZ4g0CN3OULxoSXa9jggrmAAUgPeA&usqp=CAU"
+            "icon" :  "assets/icons/legal.svg"
         },
         {
             "l2_categories_id": 11,
             "l1_categories_id": 2,
             "name": "Annual Maintance charges",
-            "icon" :  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRssSVMaImAbmUIMvCtva9PlfAFyUYDq_m0IQ&usqp=CAU"
+            "icon" :  "assets/icons/refund.svg"
         },
         {
             "l2_categories_id": 12,
             "l1_categories_id": 2,
             "name": "Bank charges",
-            "icon" :  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSu1o667dYxf-1eyrgTMacrnlE5EG0YyAN3ig&usqp=CAU"
+            "icon" :  "assets/icons/insurance.svg"
         },
         {
             "l2_categories_id": 13,
             "l1_categories_id": 2,
             "name": "Consulting charges",
-            "icon" :  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlSPeVVA0s-HxGrkE-VNXHX9t1k2TYgjaxAA&usqp=CAU"
+            "icon" :  "assets/icons/consulting.svg"
         },
         {
             "l2_categories_id": 14,
             "l1_categories_id": 2,
             "name": "Depreciation",
-            "icon" :  "https://cdn-icons-png.flaticon.com/512/2641/2641089.png"
+            "icon" :  "assets/icons/travel.svg"
         },
         {
             "l2_categories_id": 15,
             "l1_categories_id": 2,
             "name": "Refund from vendors",
-            "icon" :  "https://cdn-icons-png.flaticon.com/512/2856/2856969.png"
+            "icon" :  "assets/icons/refund.svg"
         },
         {
             "l2_categories_id": 16,
             "l1_categories_id": 2,
             "name": "Dues & Subcription",
-            "icon" :  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0k_jXpqXSLEFeRimtX8RPpbQPaTBKtYWiyw&usqp=CAU"
+            "icon" :  "assets/icons/insurance.svg"
         },
         {
             "l2_categories_id": 17,
             "l1_categories_id": 2,
             "name": "Education & Training",
-            "icon" :  "https://cdn-icons-png.flaticon.com/512/5388/5388122.png"
+            "icon" :  "assets/icons/training.svg"
         },
         {
             "l2_categories_id": 18,
             "l1_categories_id": 2,
             "name": "Employee Reimbursements",
-            "icon" :  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXXruNkh_FwY7Ry8HM9c80Prf5QcSaQwFjIw&usqp=CAU"
+            "icon" :  "assets/icons/consulting.svg"
         }
         
     ]

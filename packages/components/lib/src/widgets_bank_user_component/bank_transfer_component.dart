@@ -14,8 +14,8 @@ class BankTransferComponent extends StatelessWidget {
     required this.bankAccountNumber,
     required this.bankIcon,
     this.openBankListModal,
-    this.showTrailingIconOnBankComponent = false,
-    this.showTrailingIconOnUserComponent = false,
+    this.trailingIconOnBankComponent,
+    this.trailingIconOnUserComponent,
   });
 
   final String userName;
@@ -23,8 +23,8 @@ class BankTransferComponent extends StatelessWidget {
   final String bankName;
   final String bankAccountNumber;
   final String bankIcon;
-  final bool showTrailingIconOnBankComponent;
-  final bool showTrailingIconOnUserComponent;
+  final String? trailingIconOnBankComponent;
+  final String? trailingIconOnUserComponent;
 
   final void Function()? openBankListModal;
 
@@ -42,7 +42,7 @@ class BankTransferComponent extends StatelessWidget {
               bankIcon: bankIcon,
               size: IconSize.low,
             ),
-            showTrailingIcon: showTrailingIconOnBankComponent,
+            trailingIcon: trailingIconOnBankComponent,
           ),
           const SizedBox(width: 4),
           Container(
@@ -58,7 +58,7 @@ class BankTransferComponent extends StatelessWidget {
               name: userName,
               size: IconSize.low,
             ),
-            showTrailingIcon: showTrailingIconOnUserComponent,
+            trailingIcon: trailingIconOnUserComponent,
           ),
         ],
       ),

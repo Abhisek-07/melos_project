@@ -38,9 +38,15 @@ class MoreCard extends StatelessWidget {
               //     ),
               //   ),
               // ),
-              CircularBankIcon.network(
-                  networkUrl: iconUrl ??
-                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYLb4fHlPF-aw_5Ea494xaBQDJ7b6DOlY2ng&usqp=CAU'),
+              if (iconUrl != null)
+                CircularBankIcon.svg(
+                  svgIcon: iconUrl!,
+                  isMore: true,
+                )
+              else
+                CircularBankIcon.network(
+                    networkUrl:
+                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYLb4fHlPF-aw_5Ea494xaBQDJ7b6DOlY2ng&usqp=CAU'),
               const SizedBox(height: 8),
               const Text(
                 'More',
