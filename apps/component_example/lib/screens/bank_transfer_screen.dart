@@ -1,6 +1,7 @@
 // import 'package:bank_user_component/models/bank_account.dart';
 // import 'package:bank_user_component/models/user.dart';
 // import 'package:bank_user_component/widgets/bank_transfer_component.dart';
+import 'package:component_example/application_components/bank_user_component.dart';
 import 'package:component_example/screens/preview_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:component_example/model/bank_account.dart';
@@ -9,10 +10,13 @@ import 'package:components/components.dart';
 import 'package:utils/utils.dart';
 
 class BankTransferScreen extends StatefulWidget {
-  const BankTransferScreen(
-      {super.key, required this.user, required this.banks});
+  const BankTransferScreen({
+    super.key,
+    required this.selectedUser,
+    required this.banks,
+  });
 
-  final User user;
+  final User selectedUser;
   final List<BankAccount> banks;
 
   @override
@@ -107,6 +111,14 @@ class _BankTransferScreenState extends State<BankTransferScreen> {
     );
   }
 
+  void openUserList() {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) {
+        return const BankUserComponent();
+      },
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -120,13 +132,18 @@ class _BankTransferScreenState extends State<BankTransferScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             BankTransferComponent(
-              openBankListModal: openBankListModal,
-              userName: widget.user.name,
-              userAccountNumber: widget.user.accountNumber,
+              onTapBankComponent: () {
+                openBankListModal();
+              },
+              userName: widget.selectedUser.name,
+              userAccountNumber: widget.selectedUser.accountNumber,
               bankName: defaultAccount.name,
               bankAccountNumber: defaultAccount.accountNumber,
               bankIcon: defaultAccount.icon,
               trailingIconOnBankComponent: 'assets/icons/more.svg',
+              onTapUserComponent: () {
+                openUserList();
+              },
             ),
             CustomElevatedButton(
               onPressed: () {
@@ -134,8 +151,8 @@ class _BankTransferScreenState extends State<BankTransferScreen> {
                   builder: (context) {
                     return PreviewScreen(
                       bankTransferComponent: BankTransferComponent(
-                        userName: widget.user.name,
-                        userAccountNumber: widget.user.accountNumber,
+                        userName: widget.selectedUser.name,
+                        userAccountNumber: widget.selectedUser.accountNumber,
                         bankName: defaultAccount.name,
                         bankAccountNumber: defaultAccount.accountNumber,
                         bankIcon: defaultAccount.icon,

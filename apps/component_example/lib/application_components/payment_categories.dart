@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'dart:convert';
 import 'package:components/components.dart';
 import 'package:component_example/screens/all_payment_options.dart';
+import 'package:component_example/model/option.dart';
 
 class PaymentCategories extends StatefulWidget {
   const PaymentCategories({super.key});
@@ -102,7 +103,10 @@ class _PaymentCategoriesState extends State<PaymentCategories> {
       ),
       body: PaymentOptions(
         title: title,
-        options: visibleOptions,
+        options: visibleOptions
+            .map((visibleOption) =>
+                OptionItem(name: visibleOption.name, icon: visibleOption.icon))
+            .toList(),
         totalVisibleOptions: totalVisibleOptions,
         selectOption: selectOption,
         selectedIndex: selectedIndex,

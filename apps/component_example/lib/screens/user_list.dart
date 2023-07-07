@@ -43,7 +43,9 @@ class _UserListState extends State<UserList> {
     Navigator.push(context, MaterialPageRoute(
       builder: (context) {
         return BankTransferScreen(
-            user: widget.userList[index], banks: widget.banks);
+          selectedUser: widget.userList[index],
+          banks: widget.banks,
+        );
       },
     ));
     // setState(() {
@@ -86,7 +88,11 @@ class _UserListState extends State<UserList> {
                 contentPadding:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                 leadingIcon: CircularNameIcon(
-                  index: index,
+                  // index: index,
+                  linearGradientColors:
+                      index % gradientColorsForNameIcon.length == 0
+                          ? gradientColorsForNameIcon[0]
+                          : gradientColorsForNameIcon[1],
                   name: user.name,
                   size: IconSize.medium,
                 ),

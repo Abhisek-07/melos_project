@@ -1,6 +1,7 @@
 import 'package:components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:utils/utils.dart';
+import 'package:component_example/model/option.dart';
 
 class AllOptions extends StatefulWidget {
   const AllOptions({
@@ -152,7 +153,13 @@ class _AllOptionsState extends State<AllOptions> {
                   leadingIcon: CircularBankIcon.svg(
                     size: IconSize.low,
                     svgIcon: option.icon,
-                    index: originalIndex,
+                    // index: originalIndex,
+                    linearGradientColors:
+                        index % gradientColorsForBankIcon.length == 0
+                            ? gradientColorsForBankIcon[0]
+                            : index % gradientColorsForBankIcon.length == 1
+                                ? gradientColorsForBankIcon[1]
+                                : gradientColorsForBankIcon[2],
                   ),
                   showTrailing: true,
                   titleTextStyle:

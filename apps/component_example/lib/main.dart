@@ -1,10 +1,6 @@
 import 'package:component_example/application_components/bank_user_component.dart';
 import 'package:component_example/application_components/payment_categories.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter/services.dart';
-// import 'dart:convert';
-// import 'package:components/components.dart';
-// import 'package:component_example/screens/all_payment_options.dart';
 
 void main() {
   runApp(MaterialApp(
