@@ -1,6 +1,6 @@
 import 'package:components/components.dart';
-import 'package:components/src/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:utils/utils.dart';
 
 class MoreCard extends StatelessWidget {
   const MoreCard({super.key, this.iconUrl, required this.selectMore});

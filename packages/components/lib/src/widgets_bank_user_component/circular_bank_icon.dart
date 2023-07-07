@@ -1,10 +1,10 @@
-import 'package:components/components.dart';
+// import 'package:components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:utils/utils.dart';
 
 class CircularBankIcon extends StatelessWidget {
-  CircularBankIcon({
+  const CircularBankIcon({
     super.key,
     required this.bankIcon,
     this.size = IconSize.medium,
@@ -15,7 +15,7 @@ class CircularBankIcon extends StatelessWidget {
         // isSelected = false,
         linearGradientColors = null;
 
-  CircularBankIcon.network({
+  const CircularBankIcon.network({
     super.key,
     required this.networkUrl,
     this.size = IconSize.medium,
@@ -26,7 +26,7 @@ class CircularBankIcon extends StatelessWidget {
         // isSelected = false,
         linearGradientColors = null;
 
-  CircularBankIcon.svg({
+  const CircularBankIcon.svg({
     super.key,
     required this.svgIcon,
     this.size = IconSize.medium,

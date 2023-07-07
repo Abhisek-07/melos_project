@@ -1,4 +1,4 @@
-import 'package:components/src/constants.dart';
+import 'package:utils/utils.dart';
 import 'package:components/src/widgets_payments_component/card_item.dart';
 import 'package:components/src/widgets_payments_component/more.dart';
 import 'package:flutter/material.dart';

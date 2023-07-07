@@ -1,4 +1,4 @@
-import 'package:components/src/constants.dart';
+import 'package:utils/utils.dart';
 import 'package:components/src/widgets_bank_user_component/circular_bank_icon.dart';
 import 'package:flutter/material.dart';
 // import 'package:utils/utils.dart';
