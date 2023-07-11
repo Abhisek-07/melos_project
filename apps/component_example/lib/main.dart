@@ -1,18 +1,21 @@
 import 'package:component_example/application_components/bank_user_component.dart';
 import 'package:component_example/application_components/payment_categories.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
-  runApp(MaterialApp(
-    theme: ThemeData(
-      // fontFamily: ,
-      useMaterial3: true,
-      colorScheme: ColorScheme.fromSeed(
-        background: const Color.fromARGB(255, 253, 247, 253),
-        seedColor: const Color.fromARGB(255, 95, 21, 152),
+  runApp(ProviderScope(
+    child: MaterialApp(
+      theme: ThemeData(
+        // fontFamily: ,
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+          background: const Color.fromARGB(255, 253, 247, 253),
+          seedColor: const Color.fromARGB(255, 95, 21, 152),
+        ),
       ),
+      home: const MyApp(),
     ),
-    home: const MyApp(),
   ));
 }
 

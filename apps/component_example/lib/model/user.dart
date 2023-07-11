@@ -18,4 +18,13 @@ class User {
       ifsc: json['ifsc'],
     );
   }
+
+  factory User.empty() {
+    return User(
+      id: '',
+      name: '',
+      accountNumber: '',
+      ifsc: '',
+    );
+  }
 }

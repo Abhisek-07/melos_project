@@ -5,14 +5,16 @@
 // // import 'package:bank_user_component/widgets/circular_name_icon.dart';
 // // import 'package:bank_user_component/widgets/circular_select_button.dart';
 // import 'package:bank_user_component/widgets/custom_list_tile.dart';
+import 'package:component_example/providers/selected_user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:component_example/model/bank_account.dart';
 import 'package:component_example/model/user.dart';
 import 'package:component_example/screens/bank_transfer_screen.dart';
 import 'package:components/components.dart';
 import 'package:utils/utils.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class UserList extends StatefulWidget {
+class UserList extends ConsumerStatefulWidget {
   const UserList({
     super.key,
     required this.userList,
@@ -27,10 +29,10 @@ class UserList extends StatefulWidget {
   // final int selectedIndex;
 
   @override
-  State<UserList> createState() => _UserListState();
+  ConsumerState<UserList> createState() => _UserListState();
 }
 
-class _UserListState extends State<UserList> {
+class _UserListState extends ConsumerState<UserList> {
   int selectedIndex = -1;
 
   @override
@@ -39,11 +41,12 @@ class _UserListState extends State<UserList> {
     super.initState();
   }
 
-  void selectedOption(int index) {
+  void selectedOption(User user) {
+    // final selectedUser =
     Navigator.push(context, MaterialPageRoute(
       builder: (context) {
         return BankTransferScreen(
-          selectedUser: widget.userList[index],
+          selectedUser: user,
           banks: widget.banks,
         );
       },
@@ -83,7 +86,10 @@ class _UserListState extends State<UserList> {
                 isSelected: isSelected,
                 index: index,
                 onTap: () {
-                  selectedOption(index);
+                  ref
+                      .read(selectedUserProvider.notifier)
+                      .updateUser(widget.userList[index]);
+                  selectedOption(ref.read(selectedUserProvider));
                 },
                 contentPadding:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 4),

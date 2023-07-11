@@ -1,15 +1,17 @@
 // import 'package:bank_user_component/models/bank_account.dart';
 // import 'package:bank_user_component/models/user.dart';
 // import 'package:bank_user_component/widgets/bank_transfer_component.dart';
-import 'package:component_example/application_components/bank_user_component.dart';
+// import 'package:component_example/application_components/bank_user_component.dart';
+import 'package:component_example/providers/selected_user_provider.dart';
 import 'package:component_example/screens/preview_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:component_example/model/bank_account.dart';
 import 'package:component_example/model/user.dart';
 import 'package:components/components.dart';
 import 'package:utils/utils.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class BankTransferScreen extends StatefulWidget {
+class BankTransferScreen extends ConsumerStatefulWidget {
   const BankTransferScreen({
     super.key,
     required this.selectedUser,
@@ -20,10 +22,10 @@ class BankTransferScreen extends StatefulWidget {
   final List<BankAccount> banks;
 
   @override
-  State<BankTransferScreen> createState() => _BankTransferScreenState();
+  ConsumerState<BankTransferScreen> createState() => _BankTransferScreenState();
 }
 
-class _BankTransferScreenState extends State<BankTransferScreen> {
+class _BankTransferScreenState extends ConsumerState<BankTransferScreen> {
   late BankAccount defaultAccount = getDefaultBankAccount();
 
   BankAccount getDefaultBankAccount() {
@@ -112,60 +114,63 @@ class _BankTransferScreenState extends State<BankTransferScreen> {
   }
 
   void openUserList() {
-    Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) {
-        return const BankUserComponent();
-      },
-    ));
+    Navigator.pop(context);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Bank Transfer'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            BankTransferComponent(
-              onTapBankComponent: () {
-                openBankListModal();
-              },
-              userName: widget.selectedUser.name,
-              userAccountNumber: widget.selectedUser.accountNumber,
-              bankName: defaultAccount.name,
-              bankAccountNumber: defaultAccount.accountNumber,
-              bankIcon: defaultAccount.icon,
-              trailingIconOnBankComponent: 'assets/icons/more.svg',
-              onTapUserComponent: () {
-                openUserList();
-              },
-            ),
-            CustomElevatedButton(
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) {
-                    return PreviewScreen(
-                      bankTransferComponent: BankTransferComponent(
-                        userName: widget.selectedUser.name,
-                        userAccountNumber: widget.selectedUser.accountNumber,
-                        bankName: defaultAccount.name,
-                        bankAccountNumber: defaultAccount.accountNumber,
-                        bankIcon: defaultAccount.icon,
-                        // trailingIconOnUserComponent:
-                        //     'assets/icons/downloads.svg',
-                      ),
-                    );
-                  },
-                ));
-              },
-              title: 'Preview',
-            )
-          ],
+    return WillPopScope(
+      onWillPop: () async {
+        ref.read(selectedUserProvider.notifier).clearUser();
+        Navigator.pop(context);
+        return false;
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Bank Transfer'),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              BankTransferComponent(
+                onTapBankComponent: () {
+                  openBankListModal();
+                },
+                userName: widget.selectedUser.name,
+                userAccountNumber: widget.selectedUser.accountNumber,
+                bankName: defaultAccount.name,
+                bankAccountNumber: defaultAccount.accountNumber,
+                bankIcon: defaultAccount.icon,
+                trailingIconOnBankComponent: 'assets/icons/more.svg',
+                onTapUserComponent: () {
+                  openUserList();
+                },
+              ),
+              CustomElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) {
+                      return PreviewScreen(
+                        bankTransferComponent: BankTransferComponent(
+                          userName: widget.selectedUser.name,
+                          userAccountNumber: widget.selectedUser.accountNumber,
+                          bankName: defaultAccount.name,
+                          bankAccountNumber: defaultAccount.accountNumber,
+                          bankIcon: defaultAccount.icon,
+                          // trailingIconOnUserComponent:
+                          //     'assets/icons/downloads.svg',
+                        ),
+                      );
+                    },
+                  ));
+                },
+                title: 'Preview',
+              )
+            ],
+          ),
         ),
       ),
     );
