@@ -11,6 +11,7 @@ import 'package:component_example/model/bank_account.dart';
 import 'package:component_example/model/user.dart';
 import 'package:component_example/screens/bank_transfer_screen.dart';
 import 'package:components/components.dart';
+import 'package:go_router/go_router.dart';
 import 'package:utils/utils.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -42,7 +43,8 @@ class _UserListState extends ConsumerState<UserList> {
   }
 
   void selectedOption(User user) {
-    // final selectedUser =
+    // context.pushNamed('bank transfer',);
+
     Navigator.push(context, MaterialPageRoute(
       builder: (context) {
         return BankTransferScreen(
@@ -51,6 +53,7 @@ class _UserListState extends ConsumerState<UserList> {
         );
       },
     ));
+
     // setState(() {
     //   selectedIndex = index;
     // });

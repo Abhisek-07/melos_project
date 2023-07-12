@@ -2,6 +2,7 @@
 // import 'package:component_example/application_components/payment_categories.dart';
 import 'package:component_example/application_components/bank_user_component.dart';
 import 'package:component_example/application_components/payment_categories.dart';
+import 'package:component_example/screens/bank_transfer_screen.dart';
 import 'package:component_example/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -26,6 +27,7 @@ final goRouter = GoRouter(
             navigatorKey: _shellNavigatorHomeKey,
             routes: [
               GoRoute(
+                name: 'home',
                 path: '/home',
                 builder: (context, state) {
                   return const HomeScreen();
@@ -37,17 +39,27 @@ final goRouter = GoRouter(
             navigatorKey: _shellNavigatorAKey,
             routes: [
               GoRoute(
-                path: '/bank-user',
-                builder: (context, state) {
-                  return const BankUserComponent();
-                },
-              )
+                  name: 'bank transfer component',
+                  path: '/bank-user',
+                  builder: (context, state) {
+                    return const BankUserComponent();
+                  },
+                  routes: [
+                    // GoRoute(
+                    //   path: 'bank-transfer',
+                    //   name: 'bank transfer',
+                    //   builder: (context, state) {
+                    //     BankTransferScreen();
+                    //   },
+                    // )
+                  ])
             ],
           ),
           StatefulShellBranch(
             navigatorKey: _shellNavigatorBKey,
             routes: [
               GoRoute(
+                name: 'payment catergories',
                 path: '/payment-catergories',
                 builder: (context, state) {
                   return const PaymentCategories();
