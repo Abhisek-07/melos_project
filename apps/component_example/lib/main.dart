@@ -2,8 +2,9 @@
 // import 'package:component_example/application_components/payment_categories.dart';
 import 'package:component_example/application_components/bank_user_component.dart';
 import 'package:component_example/application_components/payment_categories.dart';
-import 'package:component_example/screens/all_payment_options.dart';
+// import 'package:component_example/screens/all_payment_options.dart';
 import 'package:component_example/screens/bank_transfer_screen.dart';
+import 'package:component_example/screens/bank_user_home.dart';
 import 'package:component_example/screens/grid_view_home.dart';
 import 'package:component_example/screens/home_screen.dart';
 import 'package:component_example/screens/preview_screen.dart';
@@ -43,28 +44,38 @@ final goRouter = GoRouter(
             navigatorKey: _shellNavigatorAKey,
             routes: [
               GoRoute(
-                  name: 'bank transfer component',
-                  path: '/bank-user',
+                  path: '/bank-user-home',
+                  name: 'bank user home',
                   builder: (context, state) {
-                    return const BankUserComponent();
+                    return const BankUserHome();
                   },
                   routes: [
                     GoRoute(
-                        path: 'bank-transfer',
-                        name: 'bank transfer',
+                        name: 'bank transfer component',
+                        path: 'bank-user',
                         builder: (context, state) {
-                          return const BankTransferScreen();
+                          return const BankUserComponent();
                         },
                         routes: [
                           GoRoute(
-                            path: 'preview-screen',
-                            builder: (context, state) {
-                              BankTransferComponent bankTransferComponent =
-                                  state.extra as BankTransferComponent;
-                              return PreviewScreen(
-                                  bankTransferComponent: bankTransferComponent);
-                            },
-                          )
+                              path: 'bank-transfer',
+                              name: 'bank transfer',
+                              builder: (context, state) {
+                                return const BankTransferScreen();
+                              },
+                              routes: [
+                                GoRoute(
+                                  path: 'preview-screen',
+                                  builder: (context, state) {
+                                    BankTransferComponent
+                                        bankTransferComponent =
+                                        state.extra as BankTransferComponent;
+                                    return PreviewScreen(
+                                        bankTransferComponent:
+                                            bankTransferComponent);
+                                  },
+                                )
+                              ])
                         ])
                   ])
             ],

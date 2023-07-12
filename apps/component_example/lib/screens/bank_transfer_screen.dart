@@ -2,7 +2,7 @@
 // import 'package:bank_user_component/models/user.dart';
 // import 'package:bank_user_component/widgets/bank_transfer_component.dart';
 // import 'package:component_example/application_components/bank_user_component.dart';
-import 'dart:developer';
+// import 'dart:developer';
 
 import 'package:component_example/providers/banks_provider.dart';
 import 'package:component_example/providers/selected_user_provider.dart';
