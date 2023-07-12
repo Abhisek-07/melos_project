@@ -65,7 +65,9 @@ class _PaymentOptionsState extends State<PaymentOptions> {
                       iconUrl: 'assets/icons/more_icon.svg',
                       // iconUrl:
                       //     'https://cdn4.iconfinder.com/data/icons/pictype-free-vector-icons/16/more-512.png',
-                      selectMore: widget.selectMore,
+                      selectMore: () {
+                        widget.selectMore();
+                      },
                     );
                   } else {
                     final option = widget.options[index];
