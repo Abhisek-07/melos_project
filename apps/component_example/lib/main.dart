@@ -2,8 +2,10 @@
 // import 'package:component_example/application_components/payment_categories.dart';
 import 'package:component_example/application_components/bank_user_component.dart';
 import 'package:component_example/application_components/payment_categories.dart';
-// import 'package:component_example/screens/bank_transfer_screen.dart';
+import 'package:component_example/screens/bank_transfer_screen.dart';
 import 'package:component_example/screens/home_screen.dart';
+import 'package:component_example/screens/preview_screen.dart';
+import 'package:components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -45,13 +47,23 @@ final goRouter = GoRouter(
                     return const BankUserComponent();
                   },
                   routes: [
-                    // GoRoute(
-                    //   path: 'bank-transfer',
-                    //   name: 'bank transfer',
-                    //   builder: (context, state) {
-                    //     BankTransferScreen();
-                    //   },
-                    // )
+                    GoRoute(
+                        path: 'bank-transfer',
+                        name: 'bank transfer',
+                        builder: (context, state) {
+                          return const BankTransferScreen();
+                        },
+                        routes: [
+                          GoRoute(
+                            path: 'preview-screen',
+                            builder: (context, state) {
+                              BankTransferComponent bankTransferComponent =
+                                  state.extra as BankTransferComponent;
+                              return PreviewScreen(
+                                  bankTransferComponent: bankTransferComponent);
+                            },
+                          )
+                        ])
                   ])
             ],
           ),
@@ -59,12 +71,12 @@ final goRouter = GoRouter(
             navigatorKey: _shellNavigatorBKey,
             routes: [
               GoRoute(
-                name: 'payment catergories',
-                path: '/payment-catergories',
-                builder: (context, state) {
-                  return const PaymentCategories();
-                },
-              )
+                  name: 'payment catergories',
+                  path: '/payment-catergories',
+                  builder: (context, state) {
+                    return const PaymentCategories();
+                  },
+                  routes: [GoRoute(path: 'all-')])
             ],
           ),
         ],

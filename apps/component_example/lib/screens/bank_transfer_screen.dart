@@ -4,11 +4,12 @@
 // import 'package:component_example/application_components/bank_user_component.dart';
 import 'package:component_example/providers/banks_provider.dart';
 import 'package:component_example/providers/selected_user_provider.dart';
-import 'package:component_example/screens/preview_screen.dart';
+// import 'package:component_example/screens/preview_screen.dart';
 import 'package:flutter/material.dart';
 // import 'package:component_example/model/bank_account.dart';
 import 'package:component_example/model/user.dart';
 import 'package:components/components.dart';
+import 'package:go_router/go_router.dart';
 import 'package:utils/utils.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -170,22 +171,36 @@ class _BankTransferScreenState extends ConsumerState<BankTransferScreen> {
               else
                 CustomElevatedButton(
                   onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) {
-                        return PreviewScreen(
-                          bankTransferComponent: BankTransferComponent(
-                            userName: selectedUser.name,
-                            userAccountNumber: selectedUser.accountNumber,
-                            bankName: banksNotifier.defaultAccount.name,
-                            bankAccountNumber:
-                                banksNotifier.defaultAccount.accountNumber,
-                            bankIcon: banksNotifier.defaultAccount.icon,
-                            // trailingIconOnUserComponent:
-                            //     'assets/icons/downloads.svg',
-                          ),
-                        );
-                      },
-                    ));
+                    context.push(
+                      '/bank-user/bank-transfer/preview-screen',
+                      extra: BankTransferComponent(
+                        userName: selectedUser.name,
+                        userAccountNumber: selectedUser.accountNumber,
+                        bankName: banksNotifier.defaultAccount.name,
+                        bankAccountNumber:
+                            banksNotifier.defaultAccount.accountNumber,
+                        bankIcon: banksNotifier.defaultAccount.icon,
+                        // trailingIconOnUserComponent:
+                        //     'assets/icons/downloads.svg',
+                      ),
+                    );
+
+                    // Navigator.of(context).push(MaterialPageRoute(
+                    //   builder: (context) {
+                    //     return PreviewScreen(
+                    //       bankTransferComponent: BankTransferComponent(
+                    //         userName: selectedUser.name,
+                    //         userAccountNumber: selectedUser.accountNumber,
+                    //         bankName: banksNotifier.defaultAccount.name,
+                    //         bankAccountNumber:
+                    //             banksNotifier.defaultAccount.accountNumber,
+                    //         bankIcon: banksNotifier.defaultAccount.icon,
+                    //         // trailingIconOnUserComponent:
+                    //         //     'assets/icons/downloads.svg',
+                    //       ),
+                    //     );
+                    //   },
+                    // ));
                   },
                   title: 'Preview',
                 )

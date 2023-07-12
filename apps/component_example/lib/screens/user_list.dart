@@ -10,9 +10,9 @@ import 'package:component_example/providers/users_provider.dart';
 import 'package:flutter/material.dart';
 // import 'package:component_example/model/bank_account.dart';
 import 'package:component_example/model/user.dart';
-import 'package:component_example/screens/bank_transfer_screen.dart';
+// import 'package:component_example/screens/bank_transfer_screen.dart';
 import 'package:components/components.dart';
-// import 'package:go_router/go_router.dart';
+import 'package:go_router/go_router.dart';
 import 'package:utils/utils.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -39,16 +39,16 @@ class _UserListState extends ConsumerState<UserList> {
   }
 
   void selectedOption() {
-    // context.pushNamed('bank transfer',);
+    context.pushNamed('bank transfer');
 
-    Navigator.push(context, MaterialPageRoute(
-      builder: (context) {
-        return const BankTransferScreen(
-            // selectedUser: user,
-            // banks: widget.banks,
-            );
-      },
-    ));
+    // Navigator.push(context, MaterialPageRoute(
+    //   builder: (context) {
+    //     return const BankTransferScreen(
+    //         // selectedUser: user,
+    //         // banks: widget.banks,
+    //         );
+    //   },
+    // ));
   }
 
   @override
