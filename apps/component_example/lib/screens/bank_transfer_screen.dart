@@ -2,6 +2,8 @@
 // import 'package:bank_user_component/models/user.dart';
 // import 'package:bank_user_component/widgets/bank_transfer_component.dart';
 // import 'package:component_example/application_components/bank_user_component.dart';
+import 'dart:developer';
+
 import 'package:component_example/providers/banks_provider.dart';
 import 'package:component_example/providers/selected_user_provider.dart';
 // import 'package:component_example/screens/preview_screen.dart';
@@ -50,20 +52,18 @@ class _BankTransferScreenState extends ConsumerState<BankTransferScreen> {
   //   });
   // }
 
-  late BanksNotifier _banksNotifier;
+  BanksNotifier? _banksNotifier;
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      _banksNotifier = ref.read(banksProvider);
-      _banksNotifier.getDefaultBankAccount();
+      _banksNotifier = ref.watch(banksProvider);
+      _banksNotifier!.getDefaultBankAccount();
     });
   }
 
   void openBankListModal() {
-    BanksNotifier banksNotifier = ref.watch(banksProvider);
-
     showModalBottomSheet(
       constraints: BoxConstraints.loose(Size(
         MediaQuery.of(context).size.width,
@@ -72,6 +72,10 @@ class _BankTransferScreenState extends ConsumerState<BankTransferScreen> {
       isScrollControlled: true,
       context: context,
       builder: (context) {
+        if (_banksNotifier == null) {
+          return const CircularProgressIndicator();
+        }
+
         return Padding(
           padding: const EdgeInsets.all(24),
           child: Column(
@@ -90,10 +94,10 @@ class _BankTransferScreenState extends ConsumerState<BankTransferScreen> {
                 child: ListView.builder(
                   // shrinkWrap: true,
                   // itemCount: widget.banks.length,
-                  itemCount: banksNotifier.bankAccounts.length,
+                  itemCount: _banksNotifier!.bankAccounts.length,
                   itemBuilder: (context, index) {
                     // final bank = widget.banks[index];
-                    final bank = banksNotifier.bankAccounts[index];
+                    final bank = _banksNotifier!.bankAccounts[index];
                     final isSelected = bank.isDefault;
                     return CustomListTile(
                       title:
@@ -103,7 +107,7 @@ class _BankTransferScreenState extends ConsumerState<BankTransferScreen> {
                       index: index,
                       onTap: () {
                         // updateDefaultAccount(index);
-                        banksNotifier.updateDefaultAccount(index);
+                        _banksNotifier!.updateDefaultAccount(index);
                         Navigator.of(context).pop();
                       },
                       leadingIcon: CircularBankIcon(bankIcon: bank.icon),
@@ -130,7 +134,12 @@ class _BankTransferScreenState extends ConsumerState<BankTransferScreen> {
 
   @override
   Widget build(BuildContext context) {
-    BanksNotifier banksNotifier = ref.watch(banksProvider);
+    _banksNotifier = ref.watch(banksProvider);
+    // log("building....");
+    if (_banksNotifier == null) {
+      return const CircularProgressIndicator();
+    }
+
     User selectedUser = ref.read(selectedUserProvider);
 
     return WillPopScope(
@@ -149,7 +158,7 @@ class _BankTransferScreenState extends ConsumerState<BankTransferScreen> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              if (banksNotifier.isFetchingDefaultAccount)
+              if (_banksNotifier!.isFetchingDefaultAccount)
                 const CircularProgressIndicator()
               else
                 BankTransferComponent(
@@ -158,15 +167,16 @@ class _BankTransferScreenState extends ConsumerState<BankTransferScreen> {
                   },
                   userName: selectedUser.name,
                   userAccountNumber: selectedUser.accountNumber,
-                  bankName: banksNotifier.defaultAccount.name,
-                  bankAccountNumber: banksNotifier.defaultAccount.accountNumber,
-                  bankIcon: banksNotifier.defaultAccount.icon,
+                  bankName: _banksNotifier!.defaultAccount.name,
+                  bankAccountNumber:
+                      _banksNotifier!.defaultAccount.accountNumber,
+                  bankIcon: _banksNotifier!.defaultAccount.icon,
                   trailingIconOnBankComponent: 'assets/icons/more.svg',
                   onTapUserComponent: () {
                     openUserList();
                   },
                 ),
-              if (banksNotifier.isFetchingDefaultAccount)
+              if (_banksNotifier!.isFetchingDefaultAccount)
                 const CircularProgressIndicator()
               else
                 CustomElevatedButton(
@@ -176,10 +186,10 @@ class _BankTransferScreenState extends ConsumerState<BankTransferScreen> {
                       extra: BankTransferComponent(
                         userName: selectedUser.name,
                         userAccountNumber: selectedUser.accountNumber,
-                        bankName: banksNotifier.defaultAccount.name,
+                        bankName: _banksNotifier!.defaultAccount.name,
                         bankAccountNumber:
-                            banksNotifier.defaultAccount.accountNumber,
-                        bankIcon: banksNotifier.defaultAccount.icon,
+                            _banksNotifier!.defaultAccount.accountNumber,
+                        bankIcon: _banksNotifier!.defaultAccount.icon,
                         // trailingIconOnUserComponent:
                         //     'assets/icons/downloads.svg',
                       ),

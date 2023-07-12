@@ -1,55 +1,65 @@
+import 'package:component_example/providers/options_provider.dart';
 import 'package:components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:utils/utils.dart';
-import 'package:component_example/model/option.dart';
+// import 'package:component_example/model/option.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AllOptions extends StatefulWidget {
+class AllOptions extends ConsumerStatefulWidget {
   const AllOptions({
     super.key,
-    required this.options,
-    required this.selectedIndex,
-    required this.onSelectListOption,
+    // required this.options,
+    // required this.selectedIndex,
+    // required this.onSelectListOption,
+    // required this.selectedIndexInListView,
     required this.showIcons,
-    required this.selectedIndexInListView,
   });
 
-  final List<Option> options;
-  final int selectedIndex;
-  final void Function(int?) onSelectListOption;
+  // final List<Option> options;
+  // final int selectedIndex;
+  // final void Function(int?) onSelectListOption;
+  // final int selectedIndexInListView;
   final bool showIcons;
-  final int selectedIndexInListView;
 
   @override
-  State<AllOptions> createState() => _AllOptionsState();
+  ConsumerState<AllOptions> createState() => _AllOptionsState();
 }
 
-class _AllOptionsState extends State<AllOptions> {
-  List<Option> searchOptions = [];
+class _AllOptionsState extends ConsumerState<AllOptions> {
+  // List<Option> searchOptions = [];
   bool clearIcon = false;
-  int? selectedIndex;
   final searchController = TextEditingController();
 
-  void searchCategory(String query) {
-    List<Option> results = [];
-    if (query.isEmpty) {
-      results = widget.options;
-    } else {
-      results = widget.options.where((element) {
-        final name = element.name.toLowerCase();
-        return name.contains(query.toLowerCase());
-      }).toList();
-    }
-    // refresh the UI
-    setState(() {
-      searchOptions = results;
-    });
-  }
+  // int? selectedIndex;
+
+  OptionsNotifier? _optionsNotifier;
+
+  // void searchCategory(String query) {
+  //   List<Option> results = [];
+  //   if (query.isEmpty) {
+  //     results = _optionsNotifier!.options;
+  //   } else {
+  //     results = _optionsNotifier!.options.where((element) {
+  //       final name = element.name.toLowerCase();
+  //       return name.contains(query.toLowerCase());
+  //     }).toList();
+  //   }
+  //   // refresh the UI
+  //   setState(() {
+  //     searchOptions = results;
+  //   });
+  // }
 
   @override
   void initState() {
-    searchOptions = widget.options;
-    selectedIndex = widget.selectedIndexInListView;
-    searchController.addListener(showClearIcon);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      _optionsNotifier = ref.watch(optionsProvider);
+
+      // selectedIndex = _optionsNotifier!.selectedIndexInListView;
+      searchController.addListener(showClearIcon);
+      _optionsNotifier!.getSearchOptions();
+    });
+
     super.initState();
   }
 
@@ -59,11 +69,11 @@ class _AllOptionsState extends State<AllOptions> {
     super.dispose();
   }
 
-  void getSelectedIndex(int index) {
-    setState(() {
-      selectedIndex = index;
-    });
-  }
+  // void getSelectedIndex(int index) {
+  //   setState(() {
+  //     selectedIndex = index;
+  //   });
+  // }
 
   void showClearIcon() {
     setState(() {
@@ -74,13 +84,19 @@ class _AllOptionsState extends State<AllOptions> {
   void clearSearchText() {
     setState(() {
       searchController.clear();
-      searchOptions = widget.options;
+      _optionsNotifier!.searchOptions = _optionsNotifier!.options;
       clearIcon = false;
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    ref.watch(optionsProvider);
+
+    if (_optionsNotifier == null) {
+      return const CircularProgressIndicator();
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -107,7 +123,7 @@ class _AllOptionsState extends State<AllOptions> {
             child: SizedBox(
               height: 40,
               child: TextField(
-                onChanged: searchCategory,
+                onChanged: _optionsNotifier!.searchCategory,
                 controller: searchController,
                 decoration: InputDecoration(
                   prefixIcon: const Icon(Icons.search),
@@ -136,19 +152,20 @@ class _AllOptionsState extends State<AllOptions> {
                   ),
                 );
               },
-              itemCount: searchOptions.length,
+              itemCount: _optionsNotifier!.searchOptions.length,
               itemBuilder: (context, index) {
-                final originalIndex =
-                    widget.options.indexOf(searchOptions[index]);
-                bool isSelected = selectedIndex == originalIndex;
-                final option = widget.options[originalIndex];
+                final originalIndex = _optionsNotifier!.options
+                    .indexOf(_optionsNotifier!.searchOptions[index]);
+                bool isSelected =
+                    _optionsNotifier!.selectedIndexInListView == originalIndex;
+                final option = _optionsNotifier!.options[originalIndex];
 
                 return CustomListTile(
                   title: option.name,
                   isSelected: isSelected,
                   index: originalIndex,
                   onTap: () {
-                    getSelectedIndex(originalIndex);
+                    _optionsNotifier!.getSelectedIndexInListView(originalIndex);
                   },
                   leadingIcon: CircularBankIcon.svg(
                     size: IconSize.low,
@@ -162,6 +179,7 @@ class _AllOptionsState extends State<AllOptions> {
                                 : gradientColorsForBankIcon[2],
                   ),
                   showTrailing: true,
+                  showLeading: widget.showIcons,
                   titleTextStyle:
                       const TextStyle(fontWeight: FontWeight.normal),
                   // contentPadding: EdgeInsets.all(16),
@@ -190,7 +208,8 @@ class _AllOptionsState extends State<AllOptions> {
             ),
           ),
           CustomElevatedButton(onPressed: () {
-            widget.onSelectListOption(selectedIndex);
+            _optionsNotifier!
+                .selectListOption(_optionsNotifier!.selectedIndexInListView);
             Navigator.pop(context);
           })
         ],

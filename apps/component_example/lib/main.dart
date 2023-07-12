@@ -4,6 +4,7 @@ import 'package:component_example/application_components/bank_user_component.dar
 import 'package:component_example/application_components/payment_categories.dart';
 import 'package:component_example/screens/all_payment_options.dart';
 import 'package:component_example/screens/bank_transfer_screen.dart';
+import 'package:component_example/screens/grid_view_home.dart';
 import 'package:component_example/screens/home_screen.dart';
 import 'package:component_example/screens/preview_screen.dart';
 import 'package:components/components.dart';
@@ -72,24 +73,32 @@ final goRouter = GoRouter(
             navigatorKey: _shellNavigatorBKey,
             routes: [
               GoRoute(
-                  name: 'payment catergories',
-                  path: '/payment-catergories',
+                  path: '/gridview-home',
+                  name: 'gridview home',
                   builder: (context, state) {
-                    return const PaymentCategories();
+                    return const GridViewHome();
                   },
                   routes: [
-                    // GoRoute(
-                    //   path: 'all-options',
-                    //   name: 'all options',
-                    //   builder: (context, state) {
-                    //     return AllOptions(
-                    //         options: 'options',
-                    //         selectedIndex: 'selectedIndex',
-                    //         onSelectListOption: 'onSelectListOption',
-                    //         showIcons: 'showIcons',
-                    //         selectedIndexInListView: 'selectedIndexInListView');
-                    //   },
-                    // )
+                    GoRoute(
+                        name: 'payment categories',
+                        path: 'payment-categories',
+                        builder: (context, state) {
+                          return const PaymentCategories();
+                        },
+                        routes: [
+                          // GoRoute(
+                          //   path: 'all-options',
+                          //   name: 'all options',
+                          //   builder: (context, state) {
+                          //     return AllOptions(
+                          //         options: 'options',
+                          //         selectedIndex: 'selectedIndex',
+                          //         onSelectListOption: 'onSelectListOption',
+                          //         showIcons: 'showIcons',
+                          //         selectedIndexInListView: 'selectedIndexInListView');
+                          //   },
+                          // )
+                        ])
                   ])
             ],
           ),

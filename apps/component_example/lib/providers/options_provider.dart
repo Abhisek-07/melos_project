@@ -66,6 +66,57 @@ class OptionsNotifier extends ChangeNotifier {
     }
     notifyListeners();
   }
+
+  /// for search feautre in all options page
+  List<Option> searchOptions = [];
+  // bool clearIcon = false;
+  // final searchController = TextEditingController();
+
+  void getSearchOptions() {
+    searchOptions = options;
+    notifyListeners();
+  }
+
+  void searchCategory(String query) {
+    List<Option> results = [];
+    if (query.isEmpty) {
+      results = options;
+    } else {
+      results = options.where((element) {
+        final name = element.name.toLowerCase();
+        return name.contains(query.toLowerCase());
+      }).toList();
+    }
+    // refresh the UI
+    searchOptions = results;
+    notifyListeners();
+  }
+
+  // void getSelectedIndex(int index) {
+  //   selectedIndex = index;
+  //   notifyListeners();
+  // }
+
+  // void showClearIcon() {
+  //   clearIcon = true;
+  //   notifyListeners();
+  // }
+
+  // void clearSearchText() {
+  //   searchController.clear();
+  //   searchOptions = options;
+  //   clearIcon = false;
+  //   notifyListeners();
+  // }
+
+  // void disposeSearchController() {
+  //   searchController.dispose();
+  // }
+
+  void getSelectedIndexInListView(int index) {
+    selectedIndexInListView = index;
+    notifyListeners();
+  }
 }
 
 final optionsProvider = ChangeNotifierProvider((ref) {

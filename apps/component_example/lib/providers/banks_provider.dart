@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:component_example/data/banks.dart';
 import 'package:component_example/model/bank_account.dart';
 
@@ -38,6 +40,7 @@ class BanksNotifier extends ChangeNotifier {
         banks[i].isDefault = false;
       }
     }
+    // log("Notifying...");
     notifyListeners();
   }
 

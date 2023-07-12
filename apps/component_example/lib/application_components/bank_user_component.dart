@@ -22,29 +22,34 @@ class BankUserComponent extends ConsumerStatefulWidget {
 class _BankUserComponentState extends ConsumerState<BankUserComponent> {
   // final List<User> userList = createUserList();
   // final List<BankAccount> banks = getBankAccounts();
-  late UserNotifier _userNotifier;
-  late BanksNotifier _banksNotifier;
+  UserNotifier? _userNotifier;
+  BanksNotifier? _banksNotifier;
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      _userNotifier = ref.read(usersProvider);
-      _banksNotifier = ref.read(banksProvider);
-      _banksNotifier.fetchBankAccounts();
-      _userNotifier.fetchUserList();
+      _userNotifier = ref.watch(usersProvider);
+      _banksNotifier = ref.watch(banksProvider);
+      _banksNotifier!.fetchBankAccounts();
+      _userNotifier!.fetchUserList();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    BanksNotifier banksNotifier = ref.watch(banksProvider);
-    UserNotifier userNotifier = ref.watch(usersProvider);
+    // BanksNotifier banksNotifier = ref.watch(banksProvider);
+    // UserNotifier userNotifier = ref.watch(usersProvider);
     // banksNotifier.fetchBankAccounts();
     // userNotifier.fetchUserList();
+
+    if (_banksNotifier == null || _userNotifier == null) {
+      return const CircularProgressIndicator();
+    }
+
     final selectedUser = ref.watch(selectedUserProvider);
 
-    if (banksNotifier.isFetchingBankList == true ||
-        userNotifier.isFetchingUserList == true) {
+    if (_banksNotifier!.isFetchingBankList == true ||
+        _userNotifier!.isFetchingUserList == true) {
       return const CircularProgressIndicator();
     } else {
       return WillPopScope(
