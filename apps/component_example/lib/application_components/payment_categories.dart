@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 // import 'package:flutter/services.dart';
 // import 'dart:convert';
 import 'package:components/components.dart';
-import 'package:component_example/screens/all_payment_options.dart';
+// import 'package:component_example/screens/all_payment_options.dart';
 // import 'package:component_example/model/option.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class PaymentCategories extends ConsumerStatefulWidget {
   const PaymentCategories({super.key});
@@ -95,15 +96,16 @@ class _PaymentCategoriesState extends ConsumerState<PaymentCategories> {
 
 // on selecting more
   void selectMore() {
-    Navigator.push(context, MaterialPageRoute(builder: (ctx) {
-      return AllOptions(
-        showIcons: showIconsInListView,
-        // options: options,
-        // selectedIndex: selectedIndex,
-        // onSelectListOption: selectListOption,
-        // selectedIndexInListView: selectedIndexInListView,
-      );
-    }));
+    context.pushNamed('all options', extra: showIconsInListView);
+    // Navigator.push(context, MaterialPageRoute(builder: (ctx) {
+    //   return AllOptions(
+    //     showIcons: showIconsInListView,
+    //     // options: options,
+    //     // selectedIndex: selectedIndex,
+    //     // onSelectListOption: selectListOption,
+    //     // selectedIndexInListView: selectedIndexInListView,
+    //   );
+    // }));
   }
 
   @override

@@ -17,6 +17,7 @@ class OptionsNotifier extends ChangeNotifier {
   int selectedIndexInListView = -1;
   // this variable is to track the original first option and to set the visibleOptions[0] to it when we select another option from the gridview to restore the original first option.
   int visibleIndexFlag = -1;
+  // bool showIconsInListView = false; //// HANDLED BY PASSING THROUGH EXTRA PARAM OF GO ROUTER
 
   bool isLoadingOptions = true;
 

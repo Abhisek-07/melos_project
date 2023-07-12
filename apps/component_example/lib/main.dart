@@ -2,6 +2,7 @@
 // import 'package:component_example/application_components/payment_categories.dart';
 import 'package:component_example/application_components/bank_user_component.dart';
 import 'package:component_example/application_components/payment_categories.dart';
+import 'package:component_example/screens/all_payment_options.dart';
 // import 'package:component_example/screens/all_payment_options.dart';
 import 'package:component_example/screens/bank_transfer_screen.dart';
 import 'package:component_example/screens/bank_user_home.dart';
@@ -97,18 +98,16 @@ final goRouter = GoRouter(
                           return const PaymentCategories();
                         },
                         routes: [
-                          // GoRoute(
-                          //   path: 'all-options',
-                          //   name: 'all options',
-                          //   builder: (context, state) {
-                          //     return AllOptions(
-                          //         options: 'options',
-                          //         selectedIndex: 'selectedIndex',
-                          //         onSelectListOption: 'onSelectListOption',
-                          //         showIcons: 'showIcons',
-                          //         selectedIndexInListView: 'selectedIndexInListView');
-                          //   },
-                          // )
+                          GoRoute(
+                            path: 'all-options',
+                            name: 'all options',
+                            builder: (context, state) {
+                              bool showIcons = state.extra as bool;
+                              return AllOptions(
+                                showIcons: showIcons,
+                              );
+                            },
+                          )
                         ])
                   ])
             ],
