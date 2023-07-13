@@ -9,47 +9,64 @@ import 'package:flutter/material.dart';
 
 // import 'package:component_example/data/users.dart';
 import 'package:component_example/screens/user_list.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class BankUserComponent extends ConsumerStatefulWidget {
+class BankUserComponent extends HookConsumerWidget {
   const BankUserComponent({super.key});
 
-  @override
-  ConsumerState<BankUserComponent> createState() => _BankUserComponentState();
-}
+//   @override
+//   ConsumerState<BankUserComponent> createState() => _BankUserComponentState();
+// }
 
-class _BankUserComponentState extends ConsumerState<BankUserComponent> {
+// class _BankUserComponentState extends ConsumerState<BankUserComponent> {
   // final List<User> userList = createUserList();
   // final List<BankAccount> banks = getBankAccounts();
-  UserNotifier? _userNotifier;
-  BanksNotifier? _banksNotifier;
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      _userNotifier = ref.watch(usersProvider);
-      _banksNotifier = ref.watch(banksProvider);
-      _banksNotifier!.fetchBankAccounts();
-      _userNotifier!.fetchUserList();
-    });
-  }
+  // UserNotifier? _userNotifier;
+  // BanksNotifier? _banksNotifier;
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+  //     _userNotifier = ref.watch(usersProvider);
+  //     _banksNotifier = ref.watch(banksProvider);
+  //     _banksNotifier!.fetchBankAccounts();
+  //     _userNotifier!.fetchUserList();
+  //   });
+  // }
 
   @override
-  Widget build(BuildContext context) {
-    // BanksNotifier banksNotifier = ref.watch(banksProvider);
-    // UserNotifier userNotifier = ref.watch(usersProvider);
+  Widget build(BuildContext context, WidgetRef ref) {
+    BanksNotifier banksNotifier = ref.watch(banksProvider);
+    UserNotifier userNotifier = ref.watch(usersProvider);
     // banksNotifier.fetchBankAccounts();
     // userNotifier.fetchUserList();
 
-    if (_banksNotifier == null || _userNotifier == null) {
-      return const CircularProgressIndicator();
-    }
+    // if (_banksNotifier == null || _userNotifier == null) {
+    //   return const CircularProgressIndicator();
+    // }
 
     final selectedUser = ref.watch(selectedUserProvider);
 
-    if (_banksNotifier!.isFetchingBankList == true ||
-        _userNotifier!.isFetchingUserList == true) {
+    useMemoized(() {
+      banksNotifier.fetchBankAccounts();
+      return null;
+    }, [banksNotifier.banks]);
+
+    useMemoized(() {
+      userNotifier.fetchUserList();
+      return null;
+    }, [userNotifier.userList]);
+
+    useMemoized(() {
+      banksNotifier.getDefaultBankAccount();
+      return null;
+    }, []);
+
+    if (banksNotifier.isFetchingBankList == true ||
+        userNotifier.isFetchingUserList == true) {
       return const CircularProgressIndicator();
     } else {
       return WillPopScope(

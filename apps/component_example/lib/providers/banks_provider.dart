@@ -22,13 +22,13 @@ class BanksNotifier extends ChangeNotifier {
     // notifyListeners();
     banks = getBankAccounts();
     isFetchingBankList = false;
-    notifyListeners();
+    // notifyListeners();
   }
 
   void getDefaultBankAccount() {
     defaultAccount = banks.firstWhere((bank) => bank.isDefault);
     isFetchingDefaultAccount = false;
-    notifyListeners();
+    // notifyListeners();
   }
 
   void updateDefaultAccount(int tappedIndex) {
@@ -70,6 +70,6 @@ class BanksNotifier extends ChangeNotifier {
   // }
 }
 
-final banksProvider = ChangeNotifierProvider((ref) {
+final banksProvider = ChangeNotifierProvider.autoDispose((ref) {
   return BanksNotifier(ref);
 });

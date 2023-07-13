@@ -1,101 +1,82 @@
 import 'package:component_example/providers/options_provider.dart';
 import 'package:components/components.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:utils/utils.dart';
 // import 'package:component_example/model/option.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+// import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AllOptions extends ConsumerStatefulWidget {
+class AllOptions extends HookConsumerWidget {
   const AllOptions({
     super.key,
-    // required this.options,
-    // required this.selectedIndex,
-    // required this.onSelectListOption,
-    // required this.selectedIndexInListView,
     required this.showIcons,
   });
 
-  // final List<Option> options;
-  // final int selectedIndex;
-  // final void Function(int?) onSelectListOption;
-  // final int selectedIndexInListView;
   final bool showIcons;
 
-  @override
-  ConsumerState<AllOptions> createState() => _AllOptionsState();
-}
+//   @override
+//   // ConsumerState<AllOptions> createState() => _AllOptionsState();
+// }
 
-class _AllOptionsState extends ConsumerState<AllOptions> {
-  // List<Option> searchOptions = [];
-  bool clearIcon = false;
-  final searchController = TextEditingController();
+// class _AllOptionsState extends ConsumerState<AllOptions> {
+  // bool clearIcon = false;
+  // final searchController = TextEditingController();
 
-  // int? selectedIndex;
+  // OptionsNotifier? _optionsNotifier;
 
-  OptionsNotifier? _optionsNotifier;
+  // @override
+  // void initState() {
+  //   WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+  //     _optionsNotifier = ref.watch(optionsProvider);
+  //     searchController.addListener(showClearIcon);
+  //     _optionsNotifier!.getSearchOptions();
+  //   });
 
-  // void searchCategory(String query) {
-  //   List<Option> results = [];
-  //   if (query.isEmpty) {
-  //     results = _optionsNotifier!.options;
-  //   } else {
-  //     results = _optionsNotifier!.options.where((element) {
-  //       final name = element.name.toLowerCase();
-  //       return name.contains(query.toLowerCase());
-  //     }).toList();
-  //   }
-  //   // refresh the UI
+  //   super.initState();
+  // }
+
+  // @override
+  // void dispose() {
+  //   searchController.dispose();
+  //   super.dispose();
+  // }
+
+  // void showClearIcon() {
   //   setState(() {
-  //     searchOptions = results;
+  //     clearIcon = true;
+  //   });
+  // }
+
+  // void clearSearchText() {
+  //   setState(() {
+  //     searchController.clear();
+  //     _optionsNotifier!.searchOptions = _optionsNotifier!.options;
+  //     clearIcon = false;
   //   });
   // }
 
   @override
-  void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      _optionsNotifier = ref.watch(optionsProvider);
+  Widget build(BuildContext context, WidgetRef ref) {
+    OptionsNotifier optionsNotifier = ref.watch(optionsProvider);
+    final searchController = useTextEditingController();
+    // bool clearIcon = false;
 
-      // selectedIndex = _optionsNotifier!.selectedIndexInListView;
-      searchController.addListener(showClearIcon);
-      _optionsNotifier!.getSearchOptions();
-    });
+    useMemoized(() {
+      searchController.addListener(optionsNotifier.showClearIcon);
+      optionsNotifier.getSearchOptions();
+      return null;
+    }, [optionsNotifier.searchOptions]);
 
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    searchController.dispose();
-    super.dispose();
-  }
-
-  // void getSelectedIndex(int index) {
-  //   setState(() {
-  //     selectedIndex = index;
-  //   });
-  // }
-
-  void showClearIcon() {
-    setState(() {
-      clearIcon = true;
-    });
-  }
-
-  void clearSearchText() {
-    setState(() {
+    void clearSearchText() {
       searchController.clear();
-      _optionsNotifier!.searchOptions = _optionsNotifier!.options;
-      clearIcon = false;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    ref.watch(optionsProvider);
-
-    if (_optionsNotifier == null) {
-      return const CircularProgressIndicator();
+      optionsNotifier.searchOptions = optionsNotifier.options;
+      optionsNotifier.removeClearIcon();
     }
+
+    // if (optionsNotifier == null) {
+    //   return const CircularProgressIndicator();
+    // }
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -123,12 +104,12 @@ class _AllOptionsState extends ConsumerState<AllOptions> {
             child: SizedBox(
               height: 40,
               child: TextField(
-                onChanged: _optionsNotifier!.searchCategory,
+                onChanged: optionsNotifier.searchCategory,
                 controller: searchController,
                 decoration: InputDecoration(
                   prefixIcon: const Icon(Icons.search),
                   hintText: 'Search',
-                  suffixIcon: clearIcon
+                  suffixIcon: optionsNotifier.clearIcon
                       ? GestureDetector(
                           onTap: clearSearchText,
                           child: const Icon(Icons.clear_rounded),
@@ -152,20 +133,20 @@ class _AllOptionsState extends ConsumerState<AllOptions> {
                   ),
                 );
               },
-              itemCount: _optionsNotifier!.searchOptions.length,
+              itemCount: optionsNotifier.searchOptions.length,
               itemBuilder: (context, index) {
-                final originalIndex = _optionsNotifier!.options
-                    .indexOf(_optionsNotifier!.searchOptions[index]);
+                final originalIndex = optionsNotifier.options
+                    .indexOf(optionsNotifier.searchOptions[index]);
                 bool isSelected =
-                    _optionsNotifier!.selectedIndexInListView == originalIndex;
-                final option = _optionsNotifier!.options[originalIndex];
+                    optionsNotifier.selectedIndexInListView == originalIndex;
+                final option = optionsNotifier.options[originalIndex];
 
                 return CustomListTile(
                   title: option.name,
                   isSelected: isSelected,
                   index: originalIndex,
                   onTap: () {
-                    _optionsNotifier!.getSelectedIndexInListView(originalIndex);
+                    optionsNotifier.getSelectedIndexInListView(originalIndex);
                   },
                   leadingIcon: CircularBankIcon.svg(
                     size: IconSize.low,
@@ -179,7 +160,7 @@ class _AllOptionsState extends ConsumerState<AllOptions> {
                                 : gradientColorsForBankIcon[2],
                   ),
                   showTrailing: true,
-                  showLeading: widget.showIcons,
+                  showLeading: showIcons,
                   titleTextStyle:
                       const TextStyle(fontWeight: FontWeight.normal),
                   // contentPadding: EdgeInsets.all(16),
@@ -208,8 +189,8 @@ class _AllOptionsState extends ConsumerState<AllOptions> {
             ),
           ),
           CustomElevatedButton(onPressed: () {
-            _optionsNotifier!
-                .selectListOption(_optionsNotifier!.selectedIndexInListView);
+            optionsNotifier
+                .selectListOption(optionsNotifier.selectedIndexInListView);
             Navigator.pop(context);
           })
         ],

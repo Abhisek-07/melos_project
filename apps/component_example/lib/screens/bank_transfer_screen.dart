@@ -11,11 +11,13 @@ import 'package:flutter/material.dart';
 // import 'package:component_example/model/bank_account.dart';
 import 'package:component_example/model/user.dart';
 import 'package:components/components.dart';
+// import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:utils/utils.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+// import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class BankTransferScreen extends ConsumerStatefulWidget {
+class BankTransferScreen extends HookConsumerWidget {
   const BankTransferScreen({
     super.key,
     // required this.selectedUser,
@@ -25,11 +27,11 @@ class BankTransferScreen extends ConsumerStatefulWidget {
   // final User selectedUser;
   // final List<BankAccount> banks;
 
-  @override
-  ConsumerState<BankTransferScreen> createState() => _BankTransferScreenState();
-}
+//   @override
+//   ConsumerState<BankTransferScreen> createState() => _BankTransferScreenState();
+// }
 
-class _BankTransferScreenState extends ConsumerState<BankTransferScreen> {
+// class _BankTransferScreenState extends ConsumerState<BankTransferScreen> {
   // late BankAccount defaultAccount = getDefaultBankAccount();
 
   // BankAccount getDefaultBankAccount() {
@@ -52,18 +54,18 @@ class _BankTransferScreenState extends ConsumerState<BankTransferScreen> {
   //   });
   // }
 
-  BanksNotifier? _banksNotifier;
+  // BanksNotifier? _banksNotifier;
 
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      _banksNotifier = ref.watch(banksProvider);
-      _banksNotifier!.getDefaultBankAccount();
-    });
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+  //     _banksNotifier = ref.watch(banksProvider);
+  //     _banksNotifier!.getDefaultBankAccount();
+  //   });
+  // }
 
-  void openBankListModal() {
+  void openBankListModal(BuildContext context, BanksNotifier banksNotifier) {
     showModalBottomSheet(
       constraints: BoxConstraints.loose(Size(
         MediaQuery.of(context).size.width,
@@ -72,9 +74,9 @@ class _BankTransferScreenState extends ConsumerState<BankTransferScreen> {
       isScrollControlled: true,
       context: context,
       builder: (context) {
-        if (_banksNotifier == null) {
-          return const CircularProgressIndicator();
-        }
+        // if (banksNotifier == null) {
+        //   return const CircularProgressIndicator();
+        // }
 
         return Padding(
           padding: const EdgeInsets.all(24),
@@ -94,10 +96,10 @@ class _BankTransferScreenState extends ConsumerState<BankTransferScreen> {
                 child: ListView.builder(
                   // shrinkWrap: true,
                   // itemCount: widget.banks.length,
-                  itemCount: _banksNotifier!.bankAccounts.length,
+                  itemCount: banksNotifier.bankAccounts.length,
                   itemBuilder: (context, index) {
                     // final bank = widget.banks[index];
-                    final bank = _banksNotifier!.bankAccounts[index];
+                    final bank = banksNotifier.bankAccounts[index];
                     final isSelected = bank.isDefault;
                     return CustomListTile(
                       title:
@@ -107,7 +109,7 @@ class _BankTransferScreenState extends ConsumerState<BankTransferScreen> {
                       index: index,
                       onTap: () {
                         // updateDefaultAccount(index);
-                        _banksNotifier!.updateDefaultAccount(index);
+                        banksNotifier.updateDefaultAccount(index);
                         Navigator.of(context).pop();
                       },
                       leadingIcon: CircularBankIcon(bankIcon: bank.icon),
@@ -128,17 +130,22 @@ class _BankTransferScreenState extends ConsumerState<BankTransferScreen> {
     );
   }
 
-  void openUserList() {
+  void openUserList(BuildContext context) {
     Navigator.pop(context);
   }
 
   @override
-  Widget build(BuildContext context) {
-    _banksNotifier = ref.watch(banksProvider);
+  Widget build(BuildContext context, WidgetRef ref) {
+    BanksNotifier banksNotifier = ref.watch(banksProvider);
     // log("building....");
-    if (_banksNotifier == null) {
-      return const CircularProgressIndicator();
-    }
+    // if (banksNotifier == null) {
+    //   return const CircularProgressIndicator();
+    // }
+
+    // useMemoized(() {
+    //   banksNotifier.getDefaultBankAccount();
+    //   return null;
+    // }, []);
 
     User selectedUser = ref.read(selectedUserProvider);
 
@@ -158,38 +165,37 @@ class _BankTransferScreenState extends ConsumerState<BankTransferScreen> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              if (_banksNotifier!.isFetchingDefaultAccount)
+              if (banksNotifier.isFetchingDefaultAccount)
                 const CircularProgressIndicator()
               else
                 BankTransferComponent(
                   onTapBankComponent: () {
-                    openBankListModal();
+                    openBankListModal(context, banksNotifier);
                   },
                   userName: selectedUser.name,
                   userAccountNumber: selectedUser.accountNumber,
-                  bankName: _banksNotifier!.defaultAccount.name,
-                  bankAccountNumber:
-                      _banksNotifier!.defaultAccount.accountNumber,
-                  bankIcon: _banksNotifier!.defaultAccount.icon,
+                  bankName: banksNotifier.defaultAccount.name,
+                  bankAccountNumber: banksNotifier.defaultAccount.accountNumber,
+                  bankIcon: banksNotifier.defaultAccount.icon,
                   trailingIconOnBankComponent: 'assets/icons/more.svg',
                   onTapUserComponent: () {
-                    openUserList();
+                    openUserList(context);
                   },
                 ),
-              if (_banksNotifier!.isFetchingDefaultAccount)
+              if (banksNotifier.isFetchingDefaultAccount)
                 const CircularProgressIndicator()
               else
                 CustomElevatedButton(
                   onPressed: () {
-                    context.push(
-                      '/bank-user/bank-transfer/preview-screen',
+                    context.pushNamed(
+                      'preview screen',
                       extra: BankTransferComponent(
                         userName: selectedUser.name,
                         userAccountNumber: selectedUser.accountNumber,
-                        bankName: _banksNotifier!.defaultAccount.name,
+                        bankName: banksNotifier.defaultAccount.name,
                         bankAccountNumber:
-                            _banksNotifier!.defaultAccount.accountNumber,
-                        bankIcon: _banksNotifier!.defaultAccount.icon,
+                            banksNotifier.defaultAccount.accountNumber,
+                        bankIcon: banksNotifier.defaultAccount.icon,
                         // trailingIconOnUserComponent:
                         //     'assets/icons/downloads.svg',
                       ),

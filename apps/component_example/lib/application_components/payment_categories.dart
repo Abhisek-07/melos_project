@@ -5,18 +5,18 @@ import 'package:flutter/material.dart';
 import 'package:components/components.dart';
 // import 'package:component_example/screens/all_payment_options.dart';
 // import 'package:component_example/model/option.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+// import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
-class PaymentCategories extends ConsumerStatefulWidget {
+class PaymentCategories extends HookConsumerWidget {
   const PaymentCategories({super.key});
 
-  @override
-  ConsumerState<PaymentCategories> createState() => _PaymentCategoriesState();
-}
+  // ConsumerState<PaymentCategories> createState() => _PaymentCategoriesState();
 
-class _PaymentCategoriesState extends ConsumerState<PaymentCategories> {
-  String title = 'What is this payment for ?';
+// class _PaymentCategoriesState extends ConsumerState<PaymentCategories> {
+  final String title = 'What is this payment for ?';
 
   // int selectedIndexInListView = -1;
   // List<Option> options = [];
@@ -26,7 +26,7 @@ class _PaymentCategoriesState extends ConsumerState<PaymentCategories> {
 
 //   // this variable is to track the original first option and to set the visibleOptions[0] to it when we select another option from the gridview to restore the original first option.
 //   int visibleIndexFlag = -1;
-  bool showIconsInListView = true;
+  final bool showIconsInListView = true;
 
 //   Future<void> loadOptions() async {
 //     final jsonData = await rootBundle.loadString('assets/options.json');
@@ -83,41 +83,47 @@ class _PaymentCategoriesState extends ConsumerState<PaymentCategories> {
 //     });
 //   }
 
-  OptionsNotifier? _optionNotifier;
+  // OptionsNotifier? _optionNotifier;
 
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      _optionNotifier = ref.watch(optionsProvider);
-      _optionNotifier!.loadOptions();
-    });
-  }
+  // void initState() {
+  //   super.initState();
+  //   WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+  //     _optionNotifier = ref.watch(optionsProvider);
+  //     _optionNotifier!.loadOptions();
+  //   });
+  // }
 
 // on selecting more
-  void selectMore() {
-    context.pushNamed('all options', extra: showIconsInListView);
-    // Navigator.push(context, MaterialPageRoute(builder: (ctx) {
-    //   return AllOptions(
-    //     showIcons: showIconsInListView,
-    //     // options: options,
-    //     // selectedIndex: selectedIndex,
-    //     // onSelectListOption: selectListOption,
-    //     // selectedIndexInListView: selectedIndexInListView,
-    //   );
-    // }));
-  }
+  // void selectMore() {
+  //   context.pushNamed('all options', extra: showIconsInListView);
+
+  //   // Navigator.push(context, MaterialPageRoute(builder: (ctx) {
+  //   //   return AllOptions(
+  //   //     showIcons: showIconsInListView,
+  //   //     // options: options,
+  //   //     // selectedIndex: selectedIndex,
+  //   //     // onSelectListOption: selectListOption,
+  //   //     // selectedIndexInListView: selectedIndexInListView,
+  //   //   );
+  //   // }));
+  // }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     // print(options);
 
     /// check if this ref.watch() is needed...
-    ref.watch(optionsProvider);
 
-    if (_optionNotifier == null) {
-      return const CircularProgressIndicator();
-    }
+    OptionsNotifier optionNotifier = ref.watch(optionsProvider);
+
+    useMemoized(() {
+      optionNotifier.loadOptions();
+      return null;
+    }, []);
+
+    // if (optionNotifier == null) {
+    //   return const CircularProgressIndicator();
+    // }
 
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
@@ -126,14 +132,16 @@ class _PaymentCategoriesState extends ConsumerState<PaymentCategories> {
       ),
       body: PaymentOptions(
         title: title,
-        options: _optionNotifier!.visibleOptions
+        options: optionNotifier.visibleOptions
             .map((visibleOption) =>
                 OptionItem(name: visibleOption.name, icon: visibleOption.icon))
             .toList(),
-        totalVisibleOptions: _optionNotifier!.totalVisibleOptions,
-        selectOption: _optionNotifier!.selectOption,
-        selectedIndex: _optionNotifier!.selectedIndex,
-        selectMore: selectMore,
+        totalVisibleOptions: optionNotifier.totalVisibleOptions,
+        selectOption: optionNotifier.selectOption,
+        selectedIndex: optionNotifier.selectedIndex,
+        selectMore: () {
+          context.pushNamed('all options', extra: showIconsInListView);
+        },
       ),
     );
   }

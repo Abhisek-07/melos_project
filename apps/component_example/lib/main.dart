@@ -67,6 +67,7 @@ final goRouter = GoRouter(
                               routes: [
                                 GoRoute(
                                   path: 'preview-screen',
+                                  name: 'preview screen',
                                   builder: (context, state) {
                                     BankTransferComponent
                                         bankTransferComponent =

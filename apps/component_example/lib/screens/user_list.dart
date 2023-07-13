@@ -13,10 +13,11 @@ import 'package:component_example/model/user.dart';
 // import 'package:component_example/screens/bank_transfer_screen.dart';
 import 'package:components/components.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:utils/utils.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+// import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class UserList extends ConsumerStatefulWidget {
+class UserList extends HookConsumerWidget {
   const UserList({
     super.key,
     // required this.userList,
@@ -26,33 +27,33 @@ class UserList extends ConsumerStatefulWidget {
   // final List<User> userList;
   // final List<BankAccount> banks;
 
+//   @override
+//   ConsumerState<UserList> createState() => _UserListState();
+// }
+
+// class _UserListState extends ConsumerState<UserList> {
+  final int selectedIndex = -1;
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  // }
+
+  // void selectedOption() {
+  //   context.pushNamed('bank transfer');
+
+  //   // Navigator.push(context, MaterialPageRoute(
+  //   //   builder: (context) {
+  //   //     return const BankTransferScreen(
+  //   //         // selectedUser: user,
+  //   //         // banks: widget.banks,
+  //   //         );
+  //   //   },
+  //   // ));
+  // }
+
   @override
-  ConsumerState<UserList> createState() => _UserListState();
-}
-
-class _UserListState extends ConsumerState<UserList> {
-  int selectedIndex = -1;
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  void selectedOption() {
-    context.pushNamed('bank transfer');
-
-    // Navigator.push(context, MaterialPageRoute(
-    //   builder: (context) {
-    //     return const BankTransferScreen(
-    //         // selectedUser: user,
-    //         // banks: widget.banks,
-    //         );
-    //   },
-    // ));
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     UserNotifier userNotifier = ref.watch(usersProvider);
     // User selectedUser = ref.watch(selectedUserProvider);
 
@@ -85,7 +86,8 @@ class _UserListState extends ConsumerState<UserList> {
                   ref
                       .read(selectedUserProvider.notifier)
                       .updateUser(userNotifier.users[index]);
-                  selectedOption();
+                  context.pushNamed('bank transfer');
+
                   // .updateUser(widget.userList[index]);
                   // selectedOption(ref.read(selectedUserProvider));
                 },

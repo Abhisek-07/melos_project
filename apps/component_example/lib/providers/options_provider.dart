@@ -75,7 +75,7 @@ class OptionsNotifier extends ChangeNotifier {
 
   void getSearchOptions() {
     searchOptions = options;
-    notifyListeners();
+    // notifyListeners();
   }
 
   void searchCategory(String query) {
@@ -90,6 +90,18 @@ class OptionsNotifier extends ChangeNotifier {
     }
     // refresh the UI
     searchOptions = results;
+    notifyListeners();
+  }
+
+  bool clearIcon = false;
+
+  void showClearIcon() {
+    clearIcon = true;
+    notifyListeners();
+  }
+
+  void removeClearIcon() {
+    clearIcon = false;
     notifyListeners();
   }
 
@@ -120,6 +132,6 @@ class OptionsNotifier extends ChangeNotifier {
   }
 }
 
-final optionsProvider = ChangeNotifierProvider((ref) {
+final optionsProvider = ChangeNotifierProvider.autoDispose((ref) {
   return OptionsNotifier(ref);
 });

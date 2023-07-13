@@ -12,12 +12,12 @@ class UserNotifier extends ChangeNotifier {
     // notifyListeners();
     userList = createUserList();
     isFetchingUserList = false;
-    notifyListeners();
+    // notifyListeners();
   }
 
   List<User> get users => userList;
 }
 
-final usersProvider = ChangeNotifierProvider((ref) {
+final usersProvider = ChangeNotifierProvider.autoDispose((ref) {
   return UserNotifier();
 });
