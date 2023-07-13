@@ -43,7 +43,6 @@ class OptionsNotifier extends ChangeNotifier {
       if (index < totalVisibleOptions) {
         visibleOptions[0] = options[0];
       }
-      // visibleOptions = options;
       if (selectedIndex >= totalVisibleOptions) {
         visibleOptions[0] = options[index];
         visibleOptions[index] = options[0];
@@ -74,12 +73,9 @@ class OptionsNotifier extends ChangeNotifier {
 
   /// for search feautre in all options page
   List<Option> searchOptions = [];
-  // bool clearIcon = false;
-  // final searchController = TextEditingController();
 
   void getSearchOptions() {
     searchOptions = options;
-    // notifyListeners();
   }
 
   void searchCategory(String query) {
@@ -108,27 +104,6 @@ class OptionsNotifier extends ChangeNotifier {
     clearIcon = false;
     notifyListeners();
   }
-
-  // void getSelectedIndex(int index) {
-  //   selectedIndex = index;
-  //   notifyListeners();
-  // }
-
-  // void showClearIcon() {
-  //   clearIcon = true;
-  //   notifyListeners();
-  // }
-
-  // void clearSearchText() {
-  //   searchController.clear();
-  //   searchOptions = options;
-  //   clearIcon = false;
-  //   notifyListeners();
-  // }
-
-  // void disposeSearchController() {
-  //   searchController.dispose();
-  // }
 
   void getSelectedIndexInListView(int index) {
     selectedIndexInListView = index;

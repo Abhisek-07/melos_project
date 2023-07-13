@@ -1,69 +1,16 @@
-// import 'package:bank_user_component/models/bank_account.dart';
-// import 'package:bank_user_component/models/user.dart';
-// import 'package:bank_user_component/widgets/bank_transfer_component.dart';
-// import 'package:component_example/application_components/bank_user_component.dart';
-// import 'dart:developer';
-
 import 'package:component_example/providers/banks_provider.dart';
 import 'package:component_example/providers/selected_user_provider.dart';
-// import 'package:component_example/screens/preview_screen.dart';
 import 'package:flutter/material.dart';
-// import 'package:component_example/model/bank_account.dart';
 import 'package:component_example/model/user.dart';
 import 'package:components/components.dart';
-// import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:utils/utils.dart';
-// import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class BankTransferScreen extends HookConsumerWidget {
   const BankTransferScreen({
     super.key,
-    // required this.selectedUser,
-    // required this.banks,
   });
-
-  // final User selectedUser;
-  // final List<BankAccount> banks;
-
-//   @override
-//   ConsumerState<BankTransferScreen> createState() => _BankTransferScreenState();
-// }
-
-// class _BankTransferScreenState extends ConsumerState<BankTransferScreen> {
-  // late BankAccount defaultAccount = getDefaultBankAccount();
-
-  // BankAccount getDefaultBankAccount() {
-
-  //   BankAccount defaultAccount =
-  //       widget.banks.firstWhere((account) => account.isDefault);
-  //   return defaultAccount;
-  // }
-
-  // void updateDefaultAccount(int tappedIndex) {
-  //   setState(() {
-  //     for (int i = 0; i < widget.banks.length; i++) {
-  //       if (i == tappedIndex) {
-  //         widget.banks[i].isDefault = true;
-  //         defaultAccount = widget.banks[i];
-  //       } else {
-  //         widget.banks[i].isDefault = false;
-  //       }
-  //     }
-  //   });
-  // }
-
-  // BanksNotifier? _banksNotifier;
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-  //     _banksNotifier = ref.watch(banksProvider);
-  //     _banksNotifier!.getDefaultBankAccount();
-  //   });
-  // }
 
   void openBankListModal(BuildContext context, BanksNotifier banksNotifier) {
     showModalBottomSheet(
@@ -74,10 +21,6 @@ class BankTransferScreen extends HookConsumerWidget {
       isScrollControlled: true,
       context: context,
       builder: (context) {
-        // if (banksNotifier == null) {
-        //   return const CircularProgressIndicator();
-        // }
-
         return Padding(
           padding: const EdgeInsets.all(24),
           child: Column(
@@ -95,10 +38,8 @@ class BankTransferScreen extends HookConsumerWidget {
               Expanded(
                 child: ListView.builder(
                   // shrinkWrap: true,
-                  // itemCount: widget.banks.length,
                   itemCount: banksNotifier.bankAccounts.length,
                   itemBuilder: (context, index) {
-                    // final bank = widget.banks[index];
                     final bank = banksNotifier.bankAccounts[index];
                     final isSelected = bank.isDefault;
                     return CustomListTile(
@@ -108,7 +49,6 @@ class BankTransferScreen extends HookConsumerWidget {
                       isSelected: isSelected,
                       index: index,
                       onTap: () {
-                        // updateDefaultAccount(index);
                         banksNotifier.updateDefaultAccount(index);
                         Navigator.of(context).pop();
                       },
@@ -137,15 +77,6 @@ class BankTransferScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     BanksNotifier banksNotifier = ref.watch(banksProvider);
-    // log("building....");
-    // if (banksNotifier == null) {
-    //   return const CircularProgressIndicator();
-    // }
-
-    // useMemoized(() {
-    //   banksNotifier.getDefaultBankAccount();
-    //   return null;
-    // }, []);
 
     User selectedUser = ref.read(selectedUserProvider);
 
@@ -196,27 +127,8 @@ class BankTransferScreen extends HookConsumerWidget {
                         bankAccountNumber:
                             banksNotifier.defaultAccount.accountNumber,
                         bankIcon: banksNotifier.defaultAccount.icon,
-                        // trailingIconOnUserComponent:
-                        //     'assets/icons/downloads.svg',
                       ),
                     );
-
-                    // Navigator.of(context).push(MaterialPageRoute(
-                    //   builder: (context) {
-                    //     return PreviewScreen(
-                    //       bankTransferComponent: BankTransferComponent(
-                    //         userName: selectedUser.name,
-                    //         userAccountNumber: selectedUser.accountNumber,
-                    //         bankName: banksNotifier.defaultAccount.name,
-                    //         bankAccountNumber:
-                    //             banksNotifier.defaultAccount.accountNumber,
-                    //         bankIcon: banksNotifier.defaultAccount.icon,
-                    //         // trailingIconOnUserComponent:
-                    //         //     'assets/icons/downloads.svg',
-                    //       ),
-                    //     );
-                    //   },
-                    // ));
                   },
                   title: 'Preview',
                 )

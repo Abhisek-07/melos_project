@@ -1,6 +1,3 @@
-// import 'dart:developer';
-
-// import 'package:component_example/data/banks.dart';
 import 'dart:convert';
 
 import 'package:component_example/model/bank_account.dart';
@@ -45,7 +42,6 @@ class BanksNotifier extends ChangeNotifier {
   void getDefaultBankAccount() {
     defaultAccount = banks.firstWhere((bank) => bank.isDefault);
     isFetchingDefaultAccount = false;
-    // notifyListeners();
   }
 
   void updateDefaultAccount(int tappedIndex) {
@@ -60,31 +56,6 @@ class BanksNotifier extends ChangeNotifier {
     // log("Notifying...");
     notifyListeners();
   }
-
-  // List<BankAccount> _banks = [];
-  // bool isFetchingBankList = false;
-
-  // getDefaultBankAccount() async {
-  //   // isFetchingBankList = true;
-  //   // notifyListeners();
-  //   final banks = ref.read(banksProvider);
-  //   final defaultBank = banks((bank) => bank.isDefault);
-  //   _banks = defaultBank;
-  //   // isFetchingBankList = false;
-  //   // notifyListeners();
-  // }
-
-  // final List<BankAccount> banks = getBankAccounts();
-  // BankAccount? _bankAccount;
-
-  // BanksNotifier(this._ref);
-
-  // BankAccount? get bankAccount => _bankAccount;
-
-  // void changeDefaultBankAccount(BankAccount? bankAccount) {
-  //   _bankAccount = bankAccount;
-  //   notifyListeners();
-  // }
 }
 
 final banksProvider = ChangeNotifierProvider.autoDispose((ref) {

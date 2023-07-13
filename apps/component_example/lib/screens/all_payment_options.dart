@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:utils/utils.dart';
-// import 'package:component_example/model/option.dart';
-// import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AllOptions extends HookConsumerWidget {
   const AllOptions({
@@ -14,47 +12,6 @@ class AllOptions extends HookConsumerWidget {
   });
 
   final bool showIcons;
-
-//   @override
-//   // ConsumerState<AllOptions> createState() => _AllOptionsState();
-// }
-
-// class _AllOptionsState extends ConsumerState<AllOptions> {
-  // bool clearIcon = false;
-  // final searchController = TextEditingController();
-
-  // OptionsNotifier? _optionsNotifier;
-
-  // @override
-  // void initState() {
-  //   WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-  //     _optionsNotifier = ref.watch(optionsProvider);
-  //     searchController.addListener(showClearIcon);
-  //     _optionsNotifier!.getSearchOptions();
-  //   });
-
-  //   super.initState();
-  // }
-
-  // @override
-  // void dispose() {
-  //   searchController.dispose();
-  //   super.dispose();
-  // }
-
-  // void showClearIcon() {
-  //   setState(() {
-  //     clearIcon = true;
-  //   });
-  // }
-
-  // void clearSearchText() {
-  //   setState(() {
-  //     searchController.clear();
-  //     _optionsNotifier!.searchOptions = _optionsNotifier!.options;
-  //     clearIcon = false;
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -73,10 +30,6 @@ class AllOptions extends HookConsumerWidget {
       optionsNotifier.searchOptions = optionsNotifier.options;
       optionsNotifier.removeClearIcon();
     }
-
-    // if (optionsNotifier == null) {
-    //   return const CircularProgressIndicator();
-    // }
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -151,7 +104,6 @@ class AllOptions extends HookConsumerWidget {
                   leadingIcon: CircularBankIcon.svg(
                     size: IconSize.low,
                     svgIcon: option.icon,
-                    // index: originalIndex,
                     linearGradientColors:
                         index % gradientColorsForBankIcon.length == 0
                             ? gradientColorsForBankIcon[0]
@@ -165,26 +117,6 @@ class AllOptions extends HookConsumerWidget {
                       const TextStyle(fontWeight: FontWeight.normal),
                   // contentPadding: EdgeInsets.all(16),
                 );
-
-                // return ListTile(
-                //   contentPadding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
-                //   onTap: () {
-                //     setState(() {
-                //       selectedIndex = originalIndex;
-                //     });
-                //   },
-                //   leading: widget.showIcons
-                //       ? Image.network(
-                //           widget.options[originalIndex].icon,
-                //           height: 24,
-                //           width: 24,
-                //         )
-                //       : null,
-                //   title: Text(widget.options[originalIndex].name),
-                //   trailing: CircularSelectButton(
-                //     isSelected: isSelected,
-                //   ),
-                // );
               },
             ),
           ),

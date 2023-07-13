@@ -4,23 +4,6 @@ import 'package:flutter/foundation.dart';
 part 'option.freezed.dart';
 part 'option.g.dart';
 
-// class Option {
-//   final String name;
-//   final String icon;
-
-//   Option({
-//     required this.name,
-//     required this.icon,
-//   });
-
-//   factory Option.fromJson(Map<String, dynamic> json) {
-//     return Option(
-//       name: json['name'],
-//       icon: json['icon'],
-//     );
-//   }
-// }
-
 @freezed
 class Option with _$Option {
   factory Option({

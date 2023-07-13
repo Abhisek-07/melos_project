@@ -14,11 +14,6 @@ class BankUserHome extends StatelessWidget {
         child: TextButton(
           onPressed: () {
             context.push('/bank-user-home/bank-user');
-            // Navigator.push(context, MaterialPageRoute(
-            //   builder: (context) {
-            //     return const PaymentCategories();
-            //   },
-            // ));
           },
           child: const Text('Bank User Component'),
         ),

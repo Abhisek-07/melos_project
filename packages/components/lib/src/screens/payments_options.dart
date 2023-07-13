@@ -71,12 +71,9 @@ class _PaymentOptionsState extends State<PaymentOptions> {
                     );
                   } else {
                     final option = widget.options[index];
-                    // final listItemIndex =
-                    //     index < widget.totalVisibleOptions ? index : index - 1;
+
                     return CardItem(
                       isSelected: index == widget.selectedIndex,
-                      // optionIndex: index,
-                      // selectedIndex: widget.selectedIndex,
                       selectOption: () {
                         widget.selectOption(index);
                       },
