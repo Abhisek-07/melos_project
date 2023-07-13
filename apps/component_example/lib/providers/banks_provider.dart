@@ -1,9 +1,12 @@
 // import 'dart:developer';
 
-import 'package:component_example/data/banks.dart';
+// import 'package:component_example/data/banks.dart';
+import 'dart:convert';
+
 import 'package:component_example/model/bank_account.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class BanksNotifier extends ChangeNotifier {
@@ -17,12 +20,26 @@ class BanksNotifier extends ChangeNotifier {
   List<BankAccount> get bankAccounts => banks;
   BankAccount get defaultBankAccount => defaultAccount;
 
-  void fetchBankAccounts() {
+  void fetchBankAccounts() async {
     // isFetchingBankList = true;
     // notifyListeners();
-    banks = getBankAccounts();
+    banks = await getBankAccounts();
+    print(banks);
+    getDefaultBankAccount();
+
     isFetchingBankList = false;
-    // notifyListeners();
+    notifyListeners();
+  }
+
+  Future<List<BankAccount>> getBankAccounts() async {
+    final jsonData = await rootBundle.loadString('assets/bank_user.json');
+    final jsonOptions = json.decode(jsonData);
+    List<dynamic> list = jsonOptions['banks'];
+    final bankAccounts =
+        list.map((bank) => BankAccount.fromJson(bank)).toList();
+    // await Future.delayed(const Duration(seconds: 2));
+
+    return bankAccounts;
   }
 
   void getDefaultBankAccount() {

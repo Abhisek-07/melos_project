@@ -1,0 +1,70 @@
+{
+    "banks" : [
+        {
+          "name": "Open Bank",
+          "money": "5000000",
+          "accountNumber": "1234567890",
+          "ifsc": "SBM000969",
+          "icon": "assets/open.png",
+          "isDefault": true
+        },
+        {
+          "name": "YES Bank",
+          "money": "6464532",
+          "accountNumber": "1234567890",
+          "ifsc": "YES000969",
+          "icon": "assets/yes.png",
+          "isDefault": false
+        },
+        {
+          "name": "ICICI Bank",
+          "money": "32322",
+          "accountNumber": "1234567890",
+          "ifsc": "ICI000969",
+          "icon": "assets/icici.jpeg",
+          "isDefault": false
+        },
+        {
+          "name": "HDFC Bank",
+          "money": "73269",
+          "accountNumber": "1234567890",
+          "ifsc": "HDF000969",
+          "icon": "assets/hdfc.png",
+          "isDefault": false
+        }
+      ]
+      ,
+
+    "users" : [
+        {
+            "id": "1",
+            "name": "John Doe",
+            "accountNumber": "1234567890",
+            "ifsc": "HDFC0006609"
+          },
+          {
+            "id": "2",
+            "name": "Jane Smith",
+            "accountNumber": "0987654321",
+            "ifsc": "HDFC0006609"
+          },
+          {
+            "id": "3",
+            "name": "Alice Johnson",
+            "accountNumber": "5432167890",
+            "ifsc": "HDFC0006609"
+          },
+          {
+            "id": "4",
+            "name": "Abhisek Dash",
+            "accountNumber": "1234567890",
+            "ifsc": "HDFC0006609"
+          },
+          {
+            "id": "5",
+            "name": "Cristiano",
+            "accountNumber": "4343534554",
+            "ifsc": "HDFC0006609"
+          }
+    ]
+}

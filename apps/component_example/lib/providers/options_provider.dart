@@ -22,11 +22,15 @@ class OptionsNotifier extends ChangeNotifier {
   bool isLoadingOptions = true;
 
   Future<void> loadOptions() async {
+    // isLoadingOptions = true;
+    // notifyListeners();
     final jsonData = await rootBundle.loadString('assets/options.json');
     final jsonOptions = json.decode(jsonData);
     List<dynamic> list = jsonOptions['data'];
     options = list.map((option) => Option.fromJson(option)).toList();
     visibleOptions = List.from(options);
+
+    // await Future.delayed(const Duration(seconds: 2));
     isLoadingOptions = false;
     notifyListeners();
   }

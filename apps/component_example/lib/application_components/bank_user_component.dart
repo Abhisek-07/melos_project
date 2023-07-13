@@ -53,21 +53,21 @@ class BankUserComponent extends HookConsumerWidget {
     useMemoized(() {
       banksNotifier.fetchBankAccounts();
       return null;
-    }, [banksNotifier.banks]);
+    }, [!banksNotifier.isFetchingBankList]);
 
     useMemoized(() {
       userNotifier.fetchUserList();
       return null;
-    }, [userNotifier.userList]);
+    }, [!userNotifier.isFetchingUserList]);
 
-    useMemoized(() {
-      banksNotifier.getDefaultBankAccount();
-      return null;
-    }, []);
+    // useMemoized(() {
+    //   banksNotifier.getDefaultBankAccount();
+    //   return null;
+    // }, [banksNotifier.fetchBankAccounts]);
 
     if (banksNotifier.isFetchingBankList == true ||
         userNotifier.isFetchingUserList == true) {
-      return const CircularProgressIndicator();
+      return const Center(child: CircularProgressIndicator());
     } else {
       return WillPopScope(
         onWillPop: () async {

@@ -66,7 +66,7 @@ class AllOptions extends HookConsumerWidget {
       searchController.addListener(optionsNotifier.showClearIcon);
       optionsNotifier.getSearchOptions();
       return null;
-    }, [optionsNotifier.searchOptions]);
+    }, [searchController]);
 
     void clearSearchText() {
       searchController.clear();
