@@ -119,7 +119,7 @@ class PaymentCategories extends HookConsumerWidget {
     useMemoized(() {
       optionNotifier.loadOptions();
       return null;
-    }, [!optionNotifier.isLoadingOptions]);
+    }, [optionNotifier.isLoadingOptions]);
 
     if (optionNotifier.isLoadingOptions) {
       return const Center(child: CircularProgressIndicator());

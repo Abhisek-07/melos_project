@@ -53,12 +53,12 @@ class BankUserComponent extends HookConsumerWidget {
     useMemoized(() {
       banksNotifier.fetchBankAccounts();
       return null;
-    }, [!banksNotifier.isFetchingBankList]);
+    }, [banksNotifier.isFetchingBankList]);
 
     useMemoized(() {
       userNotifier.fetchUserList();
       return null;
-    }, [!userNotifier.isFetchingUserList]);
+    }, [userNotifier.isFetchingUserList]);
 
     // useMemoized(() {
     //   banksNotifier.getDefaultBankAccount();
