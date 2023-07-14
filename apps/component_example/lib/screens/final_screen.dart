@@ -32,6 +32,7 @@ class FinalScreen extends HookConsumerWidget {
               CustomElevatedButton(
                   title: 'Okay',
                   onPressed: () {
+                    ref.read(selectedUserProvider.notifier).clearUser();
                     context.goNamed('home');
                   }),
             ],
