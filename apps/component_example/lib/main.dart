@@ -13,7 +13,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
-
+// final _navigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorAKey = GlobalKey<NavigatorState>(debugLabel: 'shellA');
 final _shellNavigatorHomeKey = GlobalKey<NavigatorState>(debugLabel: 'Home');
 // final _shellNavigatorBKey = GlobalKey<NavigatorState>(debugLabel: 'shellB');
@@ -50,6 +50,7 @@ final goRouter = GoRouter(
                   },
                   routes: [
                     GoRoute(
+                        parentNavigatorKey: _rootNavigatorKey,
                         name: 'bank transfer component',
                         path: 'bank-user',
                         builder: (context, state) {
@@ -57,6 +58,7 @@ final goRouter = GoRouter(
                         },
                         routes: [
                           GoRoute(
+                              parentNavigatorKey: _rootNavigatorKey,
                               path: 'bank-transfer',
                               name: 'bank transfer',
                               builder: (context, state) {
@@ -64,6 +66,7 @@ final goRouter = GoRouter(
                               },
                               routes: [
                                 GoRoute(
+                                    parentNavigatorKey: _rootNavigatorKey,
                                     path: 'preview-screen',
                                     name: 'preview screen',
                                     builder: (context, state) {
@@ -71,6 +74,7 @@ final goRouter = GoRouter(
                                     },
                                     routes: [
                                       GoRoute(
+                                          parentNavigatorKey: _rootNavigatorKey,
                                           name: 'payment categories',
                                           path: 'payment-categories',
                                           builder: (context, state) {
@@ -85,6 +89,8 @@ final goRouter = GoRouter(
                                             //   },
                                             // ),
                                             GoRoute(
+                                              parentNavigatorKey:
+                                                  _rootNavigatorKey,
                                               path: 'all-options',
                                               name: 'all options',
                                               builder: (context, state) {
@@ -100,15 +106,17 @@ final goRouter = GoRouter(
                               ])
                         ])
                   ]),
-              GoRoute(
-                path: '/final-screen',
-                name: 'final screen',
-                builder: (context, state) {
-                  return const FinalScreen();
-                },
-              ),
+              // GoRoute(
+              //   // parentNavigatorKey: _rootNavigatorKey,
+              //   path: '/final-screen',
+              //   name: 'final screen',
+              //   builder: (context, state) {
+              //     return const FinalScreen();
+              //   },
+              // ),
             ],
           ),
+
           // StatefulShellBranch(
           //   navigatorKey: _shellNavigatorBKey,
           //   routes: [
@@ -141,7 +149,15 @@ final goRouter = GoRouter(
           //   ],
           // ),
         ],
-      )
+      ),
+      GoRoute(
+        // parentNavigatorKey: _rootNavigatorKey,
+        path: '/final-screen',
+        name: 'final screen',
+        builder: (context, state) {
+          return const FinalScreen();
+        },
+      ),
     ]);
 
 class ScaffoldWithNestedNavigation extends StatelessWidget {
@@ -164,32 +180,31 @@ class ScaffoldWithNestedNavigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final location = GoRouter.of(context).routeInformationProvider.value;
-    GoRouter.of(context).routeInformationProvider.addListener(() {});
-
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text('Components'),
-      // ),
-      body: navigationShell,
-      bottomNavigationBar: location.location == '/home' ||
-              location.location == '/bank-user-home' ||
-              location.location == '/gridview-home'
-          ? NavigationBar(
-              selectedIndex: navigationShell.currentIndex,
-              destinations: const [
-                NavigationDestination(icon: Icon(Icons.balance), label: 'Home'),
-                NavigationDestination(
-                    icon: Icon(Icons.balance), label: 'Bank User'),
-                // NavigationDestination(
-                //     icon: Icon(Icons.payment), label: 'Payment Categories'),
-              ],
-              onDestinationSelected: (index) {
-                _goBranch(index);
-              },
-            )
-          : null,
-    );
+        // appBar: AppBar(
+        //   title: const Text('Components'),
+        // ),
+        body: navigationShell,
+        bottomNavigationBar:
+            // location.location == '/home' ||
+            //         location.location == '/bank-user-home' ||
+            //         location.location == '/gridview-home'
+            //     ?
+            NavigationBar(
+          selectedIndex: navigationShell.currentIndex,
+          destinations: const [
+            NavigationDestination(icon: Icon(Icons.balance), label: 'Home'),
+            NavigationDestination(
+                icon: Icon(Icons.balance), label: 'Bank User'),
+            // NavigationDestination(
+            //     icon: Icon(Icons.payment), label: 'Payment Categories'),
+          ],
+          onDestinationSelected: (index) {
+            _goBranch(index);
+          },
+        )
+        // : null,
+        );
   }
 }
 
