@@ -6,16 +6,22 @@ class BankUserHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Bank User Home'),
-      ),
-      body: Center(
-        child: TextButton(
-          onPressed: () {
-            context.push('/bank-user-home/bank-user');
-          },
-          child: const Text('Bank User Component'),
+    return WillPopScope(
+      onWillPop: () async {
+        context.go('/home');
+        return false;
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Bank User Home'),
+        ),
+        body: Center(
+          child: TextButton(
+            onPressed: () {
+              context.push('/bank-user-home/bank-user');
+            },
+            child: const Text('Bank User Component'),
+          ),
         ),
       ),
     );

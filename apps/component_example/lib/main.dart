@@ -3,7 +3,8 @@ import 'package:component_example/application_components/payment_categories.dart
 import 'package:component_example/screens/all_payment_options.dart';
 import 'package:component_example/screens/bank_transfer_screen.dart';
 import 'package:component_example/screens/bank_user_home.dart';
-import 'package:component_example/screens/grid_view_home.dart';
+import 'package:component_example/screens/final_screen.dart';
+// import 'package:component_example/screens/grid_view_home.dart';
 import 'package:component_example/screens/home_screen.dart';
 import 'package:component_example/screens/preview_screen.dart';
 // import 'package:components/components.dart';
@@ -15,7 +16,7 @@ final _rootNavigatorKey = GlobalKey<NavigatorState>();
 
 final _shellNavigatorAKey = GlobalKey<NavigatorState>(debugLabel: 'shellA');
 final _shellNavigatorHomeKey = GlobalKey<NavigatorState>(debugLabel: 'Home');
-final _shellNavigatorBKey = GlobalKey<NavigatorState>(debugLabel: 'shellB');
+// final _shellNavigatorBKey = GlobalKey<NavigatorState>(debugLabel: 'shellB');
 
 final goRouter = GoRouter(
     initialLocation: '/home',
@@ -63,54 +64,82 @@ final goRouter = GoRouter(
                               },
                               routes: [
                                 GoRoute(
-                                  path: 'preview-screen',
-                                  name: 'preview screen',
-                                  builder: (context, state) {
-                                    // BankTransferComponent
-                                    // bankTransferComponent =
-                                    // state.extra as BankTransferComponent;
-                                    return const PreviewScreen(
-                                        // bankTransferComponent:
-                                        //     bankTransferComponent
-                                        );
-                                  },
-                                )
+                                    path: 'preview-screen',
+                                    name: 'preview screen',
+                                    builder: (context, state) {
+                                      return const PreviewScreen();
+                                    },
+                                    routes: [
+                                      GoRoute(
+                                          name: 'payment categories',
+                                          path: 'payment-categories',
+                                          builder: (context, state) {
+                                            return const PaymentCategories();
+                                          },
+                                          routes: [
+                                            // GoRoute(
+                                            //   path: 'final-screen',
+                                            //   name: 'final screen',
+                                            //   builder: (context, state) {
+                                            //     return const FinalScreen();
+                                            //   },
+                                            // ),
+                                            GoRoute(
+                                              path: 'all-options',
+                                              name: 'all options',
+                                              builder: (context, state) {
+                                                bool showIcons =
+                                                    state.extra as bool;
+                                                return AllOptions(
+                                                  showIcons: showIcons,
+                                                );
+                                              },
+                                            )
+                                          ])
+                                    ])
                               ])
                         ])
-                  ])
-            ],
-          ),
-          StatefulShellBranch(
-            navigatorKey: _shellNavigatorBKey,
-            routes: [
+                  ]),
               GoRoute(
-                  path: '/gridview-home',
-                  name: 'gridview home',
-                  builder: (context, state) {
-                    return const GridViewHome();
-                  },
-                  routes: [
-                    GoRoute(
-                        name: 'payment categories',
-                        path: 'payment-categories',
-                        builder: (context, state) {
-                          return const PaymentCategories();
-                        },
-                        routes: [
-                          GoRoute(
-                            path: 'all-options',
-                            name: 'all options',
-                            builder: (context, state) {
-                              bool showIcons = state.extra as bool;
-                              return AllOptions(
-                                showIcons: showIcons,
-                              );
-                            },
-                          )
-                        ])
-                  ])
+                path: '/final-screen',
+                name: 'final screen',
+                builder: (context, state) {
+                  return const FinalScreen();
+                },
+              ),
             ],
           ),
+          // StatefulShellBranch(
+          //   navigatorKey: _shellNavigatorBKey,
+          //   routes: [
+          //     GoRoute(
+          //         path: '/gridview-home',
+          //         name: 'gridview home',
+          //         builder: (context, state) {
+          //           return const GridViewHome();
+          //         },
+          //         routes: [
+          //           // GoRoute(
+          //           //     name: 'payment categories',
+          //           //     path: 'payment-categories',
+          //           //     builder: (context, state) {
+          //           //       return const PaymentCategories();
+          //           //     },
+          //           //     routes: [
+          //           //       GoRoute(
+          //           //         path: 'all-options',
+          //           //         name: 'all options',
+          //           //         builder: (context, state) {
+          //           //           bool showIcons = state.extra as bool;
+          //           //           return AllOptions(
+          //           //             showIcons: showIcons,
+          //           //           );
+          //           //         },
+          //           //       )
+          //           //     ])
+          //         ])
+          //   ],
+          // ),
         ],
       )
     ]);
@@ -135,23 +164,31 @@ class ScaffoldWithNestedNavigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final location = GoRouter.of(context).routeInformationProvider.value;
+    GoRouter.of(context).routeInformationProvider.addListener(() {});
+
     return Scaffold(
       // appBar: AppBar(
       //   title: const Text('Components'),
       // ),
       body: navigationShell,
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: navigationShell.currentIndex,
-        destinations: const [
-          NavigationDestination(icon: Icon(Icons.balance), label: 'Home'),
-          NavigationDestination(icon: Icon(Icons.balance), label: 'Bank User'),
-          NavigationDestination(
-              icon: Icon(Icons.payment), label: 'Payment Categories'),
-        ],
-        onDestinationSelected: (index) {
-          _goBranch(index);
-        },
-      ),
+      bottomNavigationBar: location.location == '/home' ||
+              location.location == '/bank-user-home' ||
+              location.location == '/gridview-home'
+          ? NavigationBar(
+              selectedIndex: navigationShell.currentIndex,
+              destinations: const [
+                NavigationDestination(icon: Icon(Icons.balance), label: 'Home'),
+                NavigationDestination(
+                    icon: Icon(Icons.balance), label: 'Bank User'),
+                // NavigationDestination(
+                //     icon: Icon(Icons.payment), label: 'Payment Categories'),
+              ],
+              onDestinationSelected: (index) {
+                _goBranch(index);
+              },
+            )
+          : null,
     );
   }
 }
