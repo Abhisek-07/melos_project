@@ -55,7 +55,7 @@ class BankTransferComponent extends StatelessWidget {
           const SizedBox(width: 4),
           BankTransferContainerComponent(
             onTap: onTapUserComponent,
-            title: userName.truncateUserName(userName),
+            title: userName,
             subtitle: userAccountNumber.displayAccountNumber(userAccountNumber),
             icon: CircularNameIcon(
               name: userName,

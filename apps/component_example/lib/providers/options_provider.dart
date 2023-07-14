@@ -71,6 +71,11 @@ class OptionsNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
+  // void updateSelectedIndexInListViewOnWillPop() {
+  //   selectedIndexInListView = selectedIndex;
+  //   notifyListeners();
+  // }
+
   /// for search feautre in all options page
   List<Option> searchOptions = [];
 

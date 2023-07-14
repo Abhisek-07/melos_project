@@ -120,14 +120,14 @@ class BankTransferScreen extends HookConsumerWidget {
                   onPressed: () {
                     context.pushNamed(
                       'preview screen',
-                      extra: BankTransferComponent(
-                        userName: selectedUser.name,
-                        userAccountNumber: selectedUser.accountNumber,
-                        bankName: banksNotifier.defaultAccount.name,
-                        bankAccountNumber:
-                            banksNotifier.defaultAccount.accountNumber,
-                        bankIcon: banksNotifier.defaultAccount.icon,
-                      ),
+                      // extra: BankTransferComponent(
+                      //   userName: selectedUser.name,
+                      //   userAccountNumber: selectedUser.accountNumber,
+                      //   bankName: banksNotifier.defaultAccount.name,
+                      //   bankAccountNumber:
+                      //       banksNotifier.defaultAccount.accountNumber,
+                      //   bankIcon: banksNotifier.defaultAccount.icon,
+                      // ),
                     );
                   },
                   title: 'Preview',

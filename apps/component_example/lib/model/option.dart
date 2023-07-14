@@ -7,7 +7,9 @@ part 'option.g.dart';
 @freezed
 class Option with _$Option {
   factory Option({
+    // ignore: invalid_annotation_target
     @JsonKey(name: 'name') required String name,
+    // ignore: invalid_annotation_target
     @JsonKey(name: 'icon') required String icon,
   }) = _Option;
 

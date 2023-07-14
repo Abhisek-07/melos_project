@@ -1,19 +1,35 @@
+import 'package:component_example/model/user.dart';
+import 'package:component_example/providers/banks_provider.dart';
+import 'package:component_example/providers/selected_user_provider.dart';
 import 'package:components/components.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class PreviewScreen extends StatelessWidget {
-  const PreviewScreen({super.key, required this.bankTransferComponent});
+class PreviewScreen extends HookConsumerWidget {
+  const PreviewScreen({
+    super.key,
+    // required this.bankTransferComponent,
+  });
 
-  final BankTransferComponent bankTransferComponent;
+  // final BankTransferComponent bankTransferComponent;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    User selectedUser = ref.watch(selectedUserProvider);
+    BanksNotifier banksNotifier = ref.watch(banksProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Preview'),
       ),
       body: Center(
-        child: bankTransferComponent,
+        child: BankTransferComponent(
+          userName: selectedUser.name,
+          userAccountNumber: selectedUser.accountNumber,
+          bankName: banksNotifier.defaultAccount.name,
+          bankAccountNumber: banksNotifier.defaultAccount.accountNumber,
+          bankIcon: banksNotifier.defaultAccount.icon,
+        ),
       ),
     );
   }

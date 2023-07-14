@@ -6,7 +6,7 @@ import 'package:component_example/screens/bank_user_home.dart';
 import 'package:component_example/screens/grid_view_home.dart';
 import 'package:component_example/screens/home_screen.dart';
 import 'package:component_example/screens/preview_screen.dart';
-import 'package:components/components.dart';
+// import 'package:components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -66,12 +66,13 @@ final goRouter = GoRouter(
                                   path: 'preview-screen',
                                   name: 'preview screen',
                                   builder: (context, state) {
-                                    BankTransferComponent
-                                        bankTransferComponent =
-                                        state.extra as BankTransferComponent;
-                                    return PreviewScreen(
-                                        bankTransferComponent:
-                                            bankTransferComponent);
+                                    // BankTransferComponent
+                                    // bankTransferComponent =
+                                    // state.extra as BankTransferComponent;
+                                    return const PreviewScreen(
+                                        // bankTransferComponent:
+                                        //     bankTransferComponent
+                                        );
                                   },
                                 )
                               ])

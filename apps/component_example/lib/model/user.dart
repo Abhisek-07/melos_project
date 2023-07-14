@@ -7,9 +7,13 @@ part 'user.g.dart';
 @freezed
 class User with _$User {
   factory User({
+    // ignore: invalid_annotation_target
     @JsonKey(name: 'id') required String id,
+    // ignore: invalid_annotation_target
     @JsonKey(name: 'name') required String name,
+    // ignore: invalid_annotation_target
     @JsonKey(name: 'accountNumber') required String accountNumber,
+    // ignore: invalid_annotation_target
     @JsonKey(name: 'ifsc') required String ifsc,
   }) = _User;
 
