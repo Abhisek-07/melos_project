@@ -47,11 +47,66 @@ class AppStore extends HookConsumerWidget {
                 bool isComingSoon = option.isComingSoon;
                 bool isPinned = option.isPinned;
                 return Stack(
+                  clipBehavior: Clip.none,
                   alignment: Alignment.center,
                   fit: StackFit.expand,
                   children: [
                     Positioned(
-                        top: 4, bottom: 8, left: 4, right: 4, child: child),
+                        top: 4,
+                        bottom: 8,
+                        left: 4,
+                        right: 4,
+                        child: Opacity(
+                          opacity: isComingSoon ? 0.5 : 1,
+                          child: Material(
+                            borderRadius: BorderRadius.circular(8),
+                            color: Colors.white,
+                            child: InkWell(
+                              borderRadius: BorderRadius.circular(8),
+                              onLongPress: () {
+                                !isComingSoon
+                                    ? gridNotifier.showBottomSheet(
+                                        context, option)
+                                    : null;
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  // color: Colors.white,
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: isComingSoon
+                                      ? Border.all(color: Colors.grey)
+                                      : isPinned
+                                          ? Border.all(
+                                              color: const Color.fromARGB(
+                                                  255, 148, 94, 218))
+                                          : null,
+                                ),
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 12,
+                                  vertical: 16,
+                                ),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    SvgPicture.asset(
+                                      option.icon,
+                                    ),
+                                    const SizedBox(
+                                      height: 12,
+                                    ),
+                                    Expanded(
+                                      child: Text(
+                                        option.name,
+                                        style: const TextStyle(fontSize: 12),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        )),
                     if (isComingSoon)
                       Positioned(
                         bottom: 0,

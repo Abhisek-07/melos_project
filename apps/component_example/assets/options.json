@@ -67,7 +67,7 @@
             "l2_categories_id": 9,
             "l1_categories_id": 2,
             "name": "Team",
-            "icon": "assets/icons/icon.svg",
+            "icon": "assets/icons/icon2.svg",
             "isComingSoon": true,
             "isPinned": false
         },
@@ -93,7 +93,7 @@
             "l2_categories_id": 12,
             "l1_categories_id": 2,
             "name": "Expense",
-            "icon": "assets/icons/logo.svg",
+            "icon": "assets/icons/icon4.svg",
             "isComingSoon": false,
             "isPinned": false
         },
@@ -101,7 +101,7 @@
             "l2_categories_id": 13,
             "l1_categories_id": 2,
             "name": "Invoice",
-            "icon": "assets/icons/logo2.svg",
+            "icon": "assets/icons/icon5.svg",
             "isComingSoon": true,
             "isPinned": false
         },
@@ -109,7 +109,7 @@
             "l2_categories_id": 14,
             "l1_categories_id": 2,
             "name": "Payroll",
-            "icon": "assets/icons/icon.svg",
+            "icon": "assets/icons/icon2.svg",
             "isComingSoon": true,
             "isPinned": false
         },
@@ -132,8 +132,8 @@
         {
             "l2_categories_id": 17,
             "l1_categories_id": 2,
-            "name": "Marketing",
-            "icon": "assets/icons/logo.svg",
+            "name": "Marketing bfsdfkhsdjfhksdhfjshfjsd",
+            "icon": "assets/icons/icon4.svg",
             "isComingSoon": true,
             "isPinned": false
         },
@@ -141,7 +141,7 @@
             "l2_categories_id": 23,
             "l1_categories_id": 2,
             "name": "Marketing",
-            "icon": "assets/icons/logo2.svg",
+            "icon": "assets/icons/icon5.svg",
             "isComingSoon": false,
             "isPinned": false
         }
