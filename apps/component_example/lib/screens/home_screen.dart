@@ -13,7 +13,7 @@ class HomeScreen extends StatelessWidget {
       if (currentBackPressTime == null ||
           now.difference(currentBackPressTime!) > const Duration(seconds: 2)) {
         currentBackPressTime = now;
-        Fluttertoast.showToast(msg: 'Press again to exit app');
+        Fluttertoast.showToast(msg: 'Press back again to exit app');
         return Future.value(false);
       }
       return Future.value(true);
