@@ -20,12 +20,16 @@ User _$UserFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$User {
+// ignore: invalid_annotation_target
   @JsonKey(name: 'id')
-  String get id => throw _privateConstructorUsedError;
+  String get id =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'name')
-  String get name => throw _privateConstructorUsedError;
+  String get name =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'accountNumber')
-  String get accountNumber => throw _privateConstructorUsedError;
+  String get accountNumber =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'ifsc')
   String get ifsc => throw _privateConstructorUsedError;
 
@@ -144,15 +148,19 @@ class _$_User with DiagnosticableTreeMixin implements _User {
 
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
 
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'id')
   final String id;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'name')
   final String name;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'accountNumber')
   final String accountNumber;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'ifsc')
   final String ifsc;
@@ -212,16 +220,16 @@ abstract class _User implements User {
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: 'id')
   String get id;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: 'name')
   String get name;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: 'accountNumber')
   String get accountNumber;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: 'ifsc')
   String get ifsc;
   @override

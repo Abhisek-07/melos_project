@@ -18,9 +18,9 @@ class GridViewHome extends StatelessWidget {
         body: Center(
           child: TextButton(
             onPressed: () {
-              context.push('/gridview-home/payment-categories');
+              context.push('/gridview-home/app-store');
             },
-            child: const Text('Payment Categories Component'),
+            child: const Text('App Store Component'),
           ),
         ),
       ),

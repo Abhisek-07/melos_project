@@ -20,8 +20,10 @@ Option _$OptionFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Option {
+// ignore: invalid_annotation_target
   @JsonKey(name: 'name')
-  String get name => throw _privateConstructorUsedError;
+  String get name =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'icon')
   String get icon => throw _privateConstructorUsedError;
 
@@ -114,9 +116,11 @@ class _$_Option with DiagnosticableTreeMixin implements _Option {
   factory _$_Option.fromJson(Map<String, dynamic> json) =>
       _$$_OptionFromJson(json);
 
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'name')
   final String name;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'icon')
   final String icon;
@@ -169,10 +173,10 @@ abstract class _Option implements Option {
 
   factory _Option.fromJson(Map<String, dynamic> json) = _$_Option.fromJson;
 
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: 'name')
   String get name;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: 'icon')
   String get icon;
   @override

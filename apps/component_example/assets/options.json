@@ -61,5 +61,89 @@
             "icon" :  "assets/icons/consulting.svg"
         }
         
+    ],
+    "gridData": [
+        {
+            "l2_categories_id": 9,
+            "l1_categories_id": 2,
+            "name": "Team",
+            "icon": "assets/icons/icon.svg",
+            "isComingSoon": true,
+            "isPinned": false
+        },
+        {
+            "l2_categories_id": 10,
+            "l1_categories_id": 2,
+            "name": "Card",
+            "icon": "assets/icons/icon1.svg",
+            "isComingSoon": false,
+            "isPinned": false
+            
+        },
+        {
+            "l2_categories_id": 11,
+            "l1_categories_id": 2,
+            "name": "Insights",
+            "icon": "assets/icons/icon3.svg",
+            "isComingSoon": false,
+            "isPinned": false
+
+        },
+        {
+            "l2_categories_id": 12,
+            "l1_categories_id": 2,
+            "name": "Expense",
+            "icon": "assets/icons/logo.svg",
+            "isComingSoon": false,
+            "isPinned": false
+        },
+        {
+            "l2_categories_id": 13,
+            "l1_categories_id": 2,
+            "name": "Invoice",
+            "icon": "assets/icons/logo2.svg",
+            "isComingSoon": true,
+            "isPinned": false
+        },
+        {
+            "l2_categories_id": 14,
+            "l1_categories_id": 2,
+            "name": "Payroll",
+            "icon": "assets/icons/icon.svg",
+            "isComingSoon": true,
+            "isPinned": false
+        },
+        {
+            "l2_categories_id": 15,
+            "l1_categories_id": 2,
+            "name": "Consulting",
+            "icon": "assets/icons/icon1.svg",
+            "isComingSoon": false,
+            "isPinned": false
+        },
+        {
+            "l2_categories_id": 16,
+            "l1_categories_id": 2,
+            "name": "Refund",
+            "icon": "assets/icons/icon3.svg",
+            "isComingSoon": true,
+            "isPinned": false
+        },
+        {
+            "l2_categories_id": 17,
+            "l1_categories_id": 2,
+            "name": "Marketing",
+            "icon": "assets/icons/logo.svg",
+            "isComingSoon": true,
+            "isPinned": false
+        },
+        {
+            "l2_categories_id": 23,
+            "l1_categories_id": 2,
+            "name": "Marketing",
+            "icon": "assets/icons/logo2.svg",
+            "isComingSoon": false,
+            "isPinned": false
+        }
     ]
 }

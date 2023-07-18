@@ -20,18 +20,25 @@ BankAccount _$BankAccountFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$BankAccount {
+// ignore: invalid_annotation_target
   @JsonKey(name: 'money')
-  String get money => throw _privateConstructorUsedError;
+  String get money =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'name')
-  String get name => throw _privateConstructorUsedError;
+  String get name =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'accountNumber')
-  String get accountNumber => throw _privateConstructorUsedError;
+  String get accountNumber =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'ifsc')
-  String get ifsc => throw _privateConstructorUsedError;
+  String get ifsc =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'icon')
-  String get icon => throw _privateConstructorUsedError;
+  String get icon =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'isDefault')
-  bool get isDefault => throw _privateConstructorUsedError;
+  bool get isDefault =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'isDefault')
   set isDefault(bool value) => throw _privateConstructorUsedError;
 
@@ -183,21 +190,27 @@ class _$_BankAccount with DiagnosticableTreeMixin implements _BankAccount {
   factory _$_BankAccount.fromJson(Map<String, dynamic> json) =>
       _$$_BankAccountFromJson(json);
 
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'money')
   final String money;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'name')
   final String name;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'accountNumber')
   final String accountNumber;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'ifsc')
   final String ifsc;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'icon')
   final String icon;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'isDefault')
   bool isDefault;
@@ -246,24 +259,24 @@ abstract class _BankAccount implements BankAccount {
   factory _BankAccount.fromJson(Map<String, dynamic> json) =
       _$_BankAccount.fromJson;
 
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: 'money')
   String get money;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: 'name')
   String get name;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: 'accountNumber')
   String get accountNumber;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: 'ifsc')
   String get ifsc;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: 'icon')
   String get icon;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: 'isDefault')
-  bool get isDefault;
+  bool get isDefault; // ignore: invalid_annotation_target
   @JsonKey(name: 'isDefault')
   set isDefault(bool value);
   @override
