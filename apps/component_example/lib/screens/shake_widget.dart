@@ -1,3 +1,5 @@
+/// !!! TEST WIDGET FOR ANIMATIONS
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';

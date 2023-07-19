@@ -1,3 +1,5 @@
+/// !!! NOT USED AS ANIMATED CARD WIDGET IS USED INSTEAD.
+
 // import 'package:component_example/model/grid_option.dart';
 import 'dart:async';
 
