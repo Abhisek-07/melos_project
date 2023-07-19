@@ -4,28 +4,28 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'dart:math';
+// import 'dart:math';
 
 class RotatingShakeWidget extends HookWidget {
   const RotatingShakeWidget({super.key});
   @override
   Widget build(BuildContext context) {
     final animationController = useAnimationController(
-      duration: const Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 200),
     );
 
     final animation = useAnimation(
       TweenSequence([
         TweenSequenceItem(
-          tween: Tween<double>(begin: 0.0, end: 15.0),
+          tween: Tween<double>(begin: 0.0, end: 10.0),
           weight: 1,
         ),
         TweenSequenceItem(
-          tween: Tween<double>(begin: 15.0, end: -15.0),
+          tween: Tween<double>(begin: 10.0, end: -10.0),
           weight: 1,
         ),
         TweenSequenceItem(
-          tween: Tween<double>(begin: -15.0, end: 0.0),
+          tween: Tween<double>(begin: -10.0, end: 0.0),
           weight: 1,
         ),
       ]).animate(animationController),

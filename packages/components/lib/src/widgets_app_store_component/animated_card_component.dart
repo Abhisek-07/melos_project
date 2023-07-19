@@ -11,6 +11,9 @@ class AnimatedCard extends StatefulWidget {
     required this.isComingSoon,
     required this.isPinned,
     required this.onLongPress,
+    this.shakeAnimationTime = 600,
+    this.isAnimationEnabled = true,
+    this.showAlert,
   }) : super(key: key);
 
   final String name;
@@ -18,6 +21,9 @@ class AnimatedCard extends StatefulWidget {
   final bool isComingSoon;
   final bool isPinned;
   final void Function() onLongPress;
+  final int shakeAnimationTime;
+  final bool isAnimationEnabled;
+  final void Function()? showAlert;
 
   @override
   _AnimatedCardState createState() => _AnimatedCardState();
@@ -38,15 +44,15 @@ class _AnimatedCardState extends State<AnimatedCard>
     );
     _animation = TweenSequence([
       TweenSequenceItem(
-        tween: Tween<double>(begin: 0.0, end: 15.0),
+        tween: Tween<double>(begin: 0.0, end: 10.0),
         weight: 1,
       ),
       TweenSequenceItem(
-        tween: Tween<double>(begin: 15.0, end: -15.0),
+        tween: Tween<double>(begin: 10.0, end: -10.0),
         weight: 1,
       ),
       TweenSequenceItem(
-        tween: Tween<double>(begin: -15.0, end: 0.0),
+        tween: Tween<double>(begin: -10.0, end: 0.0),
         weight: 1,
       ),
     ]).animate(_animationController);
@@ -61,7 +67,8 @@ class _AnimatedCardState extends State<AnimatedCard>
 
   void startAnimation() {
     _animationController.repeat();
-    _animationTimer = Timer(const Duration(milliseconds: 900), () {
+    _animationTimer =
+        Timer(Duration(milliseconds: widget.shakeAnimationTime), () {
       _animationController.reset();
       _animationTimer!.cancel();
     });
@@ -71,6 +78,7 @@ class _AnimatedCardState extends State<AnimatedCard>
     if (_animationController.status == AnimationStatus.completed ||
         _animationController.status == AnimationStatus.dismissed) {
       startAnimation();
+      widget.showAlert != null ? widget.showAlert!() : null;
     }
   }
 
@@ -105,7 +113,7 @@ class _AnimatedCardState extends State<AnimatedCard>
                     !widget.isComingSoon
                         ? widget.onLongPress()
                         // gridNotifier.showBottomSheet(context, option)
-                        : widget.isComingSoon
+                        : widget.isComingSoon && widget.isAnimationEnabled
                             ? runAnimation()
                             : null;
                   },
@@ -114,7 +122,7 @@ class _AnimatedCardState extends State<AnimatedCard>
                       borderRadius: BorderRadius.circular(8),
                       border: widget.isComingSoon
                           ? Border.all(
-                              color: const Color.fromARGB(81, 31, 31, 31))
+                              color: const Color.fromARGB(255, 209, 209, 209))
                           : widget.isPinned
                               ? Border.all(
                                   color:
