@@ -9,6 +9,7 @@ import 'package:component_example/screens/bank_transfer_screen.dart';
 import 'package:component_example/screens/bank_user_home.dart';
 import 'package:component_example/screens/final_screen.dart';
 import 'package:component_example/screens/grid_view_home.dart';
+import 'package:component_example/screens/shake_widget.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 
@@ -145,6 +146,14 @@ final goRouter = GoRouter(
                       //     },
                       //   )
                       // ]
+                    ),
+                    GoRoute(
+                      parentNavigatorKey: _rootNavigatorKey,
+                      name: 'shake',
+                      path: 'shake-widget',
+                      builder: (context, state) {
+                        return const RotatingShakeWidget();
+                      },
                     )
                   ])
             ],

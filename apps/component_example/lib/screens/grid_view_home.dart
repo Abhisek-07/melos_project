@@ -16,11 +16,21 @@ class GridViewHome extends StatelessWidget {
           title: const Text('GridView Home'),
         ),
         body: Center(
-          child: TextButton(
-            onPressed: () {
-              context.push('/gridview-home/app-store');
-            },
-            child: const Text('App Store Component'),
+          child: Column(
+            children: [
+              TextButton(
+                onPressed: () {
+                  context.push('/gridview-home/app-store');
+                },
+                child: const Text('App Store Component'),
+              ),
+              TextButton(
+                onPressed: () {
+                  context.pushNamed('shake');
+                },
+                child: const Text('Shake Widget'),
+              ),
+            ],
           ),
         ),
       ),
