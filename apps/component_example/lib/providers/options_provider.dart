@@ -110,9 +110,18 @@ class OptionsNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  void getSelectedIndexInListView(int index) {
+  void setSelectedIndexInListView(int index) {
     selectedIndexInListView = index;
     notifyListeners();
+  }
+
+  void resetSelectedIndexInListVewOnBackButtonPress() {
+    if (visibleIndexFlag == -1) {
+      selectedIndexInListView = selectedIndex;
+    } else {
+      selectedIndexInListView = visibleIndexFlag;
+    }
+    // no need to call notifyListeners() as we are popping from all options screen after this method's execution
   }
 }
 

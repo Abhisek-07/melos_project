@@ -39,6 +39,7 @@ class AllOptions extends HookConsumerWidget {
         leading: IconButton(
           // padding: const EdgeInsets.all(4),
           onPressed: () {
+            optionsNotifier.resetSelectedIndexInListVewOnBackButtonPress();
             Navigator.pop(context);
           },
           icon: Image.asset(
@@ -99,7 +100,7 @@ class AllOptions extends HookConsumerWidget {
                   isSelected: isSelected,
                   index: originalIndex,
                   onTap: () {
-                    optionsNotifier.getSelectedIndexInListView(originalIndex);
+                    optionsNotifier.setSelectedIndexInListView(originalIndex);
                   },
                   leadingIcon: CircularBankIcon.svg(
                     size: IconSize.low,

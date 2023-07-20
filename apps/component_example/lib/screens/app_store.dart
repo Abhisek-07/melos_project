@@ -55,6 +55,8 @@ class AppStore extends HookConsumerWidget {
     //   });
     // }
 
+    Flushbar? currentFlushBar;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('App Store'),
@@ -96,8 +98,13 @@ class AppStore extends HookConsumerWidget {
                         /// shakeAnimationTime in milliseconds
                         // shakeAnimationTime: 3000,
                         // isAnimationEnabled: false,
-                        showAlert: () {
-                          Flushbar(
+                        showAlert: () async {
+                          if (currentFlushBar != null &&
+                              currentFlushBar!.isShowing()) {
+                            currentFlushBar!.dismiss();
+                          }
+
+                          currentFlushBar = await Flushbar(
                             flushbarPosition: FlushbarPosition.TOP,
                             backgroundColor: Colors.red,
                             message: 'This app is coming soon',
