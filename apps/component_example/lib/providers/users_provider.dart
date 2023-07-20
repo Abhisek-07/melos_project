@@ -14,6 +14,8 @@ class UserNotifier extends ChangeNotifier {
     // notifyListeners();
     userList = await createUserList();
     print(userList);
+    // await Future.delayed(const Duration(seconds: 2));
+
     isFetchingUserList = false;
     notifyListeners();
   }
@@ -23,8 +25,6 @@ class UserNotifier extends ChangeNotifier {
     final jsonOptions = json.decode(jsonData);
     List<dynamic> list = jsonOptions['users'];
     final users = list.map((user) => User.fromJson(user)).toList();
-    // await Future.delayed(const Duration(seconds: 2));
-
     return users;
   }
 

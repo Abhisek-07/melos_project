@@ -21,50 +21,53 @@ class PaymentCategories extends HookConsumerWidget {
       return null;
     }, [optionNotifier.isLoadingOptions]);
 
-    if (optionNotifier.isLoadingOptions) {
-      return const Center(child: CircularProgressIndicator());
-    }
+    // if (optionNotifier.isLoadingOptions) {
+    //   return const Center(child: CircularProgressIndicator());
+    // }
 
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         title: const Text('Component'),
       ),
-      body: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Expanded(
-            child: PaymentOptions(
-              title: title,
-              options: optionNotifier.visibleOptions
-                  .map((visibleOption) => OptionItem(
-                      name: visibleOption.name, icon: visibleOption.icon))
-                  .toList(),
-              totalVisibleOptions: optionNotifier.totalVisibleOptions,
-              selectOption: optionNotifier.selectOption,
-              selectedIndex: optionNotifier.selectedIndex,
-              selectMore: () {
-                context.pushNamed('all options', extra: showIconsInListView);
-              },
+      body: optionNotifier.isLoadingOptions
+          ? const Center(child: CircularProgressIndicator())
+          : Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: PaymentOptions(
+                    title: title,
+                    options: optionNotifier.visibleOptions
+                        .map((visibleOption) => OptionItem(
+                            name: visibleOption.name, icon: visibleOption.icon))
+                        .toList(),
+                    totalVisibleOptions: optionNotifier.totalVisibleOptions,
+                    selectOption: optionNotifier.selectOption,
+                    selectedIndex: optionNotifier.selectedIndex,
+                    selectMore: () {
+                      context.pushNamed('all options',
+                          extra: showIconsInListView);
+                    },
+                  ),
+                ),
+                const SizedBox(
+                  height: 24,
+                ),
+                CustomElevatedButton(
+                    title: 'Send Receipt',
+                    onPressed: optionNotifier.selectedIndex != -1
+                        ? () {
+                            context.goNamed('final screen');
+                          }
+                        : () {}),
+                const SizedBox(
+                  height: 24,
+                )
+              ],
             ),
-          ),
-          const SizedBox(
-            height: 24,
-          ),
-          CustomElevatedButton(
-              title: 'Send Receipt',
-              onPressed: optionNotifier.selectedIndex != -1
-                  ? () {
-                      context.goNamed('final screen');
-                    }
-                  : () {}),
-          const SizedBox(
-            height: 24,
-          )
-        ],
-      ),
     );
   }
 }

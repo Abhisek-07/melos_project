@@ -1,5 +1,8 @@
 extension ExtendedString on String {
   String displayAccountNumber(String accountNumber) {
+    if (accountNumber.isEmpty) {
+      return "";
+    }
     return '*${accountNumber.substring(accountNumber.length - 4)}';
   }
 

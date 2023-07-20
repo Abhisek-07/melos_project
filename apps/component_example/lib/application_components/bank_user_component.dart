@@ -28,24 +28,27 @@ class BankUserComponent extends HookConsumerWidget {
       return null;
     }, [userNotifier.isFetchingUserList]);
 
-    if (banksNotifier.isFetchingBankList == true ||
-        userNotifier.isFetchingUserList == true) {
-      return const Center(child: CircularProgressIndicator());
-    } else {
-      return WillPopScope(
-        onWillPop: () async {
-          if (selectedUser.name.isEmpty) {
-            Navigator.pop(context);
-          } else {
-            context.pushNamed('bank transfer');
-          }
-          return false;
-        },
-        child: Scaffold(
-          appBar: AppBar(title: const Text('New component')),
-          body: const UserList(),
-        ),
-      );
-    }
+    // if (banksNotifier.isFetchingBankList == true ||
+    //     userNotifier.isFetchingUserList == true) {
+    //   return const Center(child: CircularProgressIndicator());
+    // } else {
+    return WillPopScope(
+      onWillPop: () async {
+        if (selectedUser.name.isEmpty) {
+          Navigator.pop(context);
+        } else {
+          context.pushNamed('bank transfer');
+        }
+        return false;
+      },
+      child: Scaffold(
+        appBar: AppBar(title: const Text('New component')),
+        body: (banksNotifier.isFetchingBankList == true ||
+                userNotifier.isFetchingUserList == true)
+            ? const Center(child: CircularProgressIndicator())
+            : const UserList(),
+      ),
+    );
+    // }
   }
 }

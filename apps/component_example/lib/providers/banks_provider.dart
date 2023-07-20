@@ -23,6 +23,7 @@ class BanksNotifier extends ChangeNotifier {
     banks = await getBankAccounts();
     print(banks);
     getDefaultBankAccount();
+    // await Future.delayed(const Duration(seconds: 2));
 
     isFetchingBankList = false;
     notifyListeners();
@@ -34,7 +35,6 @@ class BanksNotifier extends ChangeNotifier {
     List<dynamic> list = jsonOptions['banks'];
     final bankAccounts =
         list.map((bank) => BankAccount.fromJson(bank)).toList();
-    // await Future.delayed(const Duration(seconds: 2));
 
     return bankAccounts;
   }

@@ -37,6 +37,10 @@ final goRouter = GoRouter(
                 builder: (context, state) {
                   return const HomeScreen();
                 },
+                pageBuilder: (context, state) {
+                  return NoTransitionPage(
+                      key: state.pageKey, child: const HomeScreen());
+                },
               )
             ],
           ),
@@ -49,6 +53,10 @@ final goRouter = GoRouter(
                   builder: (context, state) {
                     return const BankUserHome();
                   },
+                  pageBuilder: (context, state) {
+                    return NoTransitionPage(
+                        key: state.pageKey, child: const BankUserHome());
+                  },
                   routes: [
                     GoRoute(
                         parentNavigatorKey: _rootNavigatorKey,
@@ -56,6 +64,11 @@ final goRouter = GoRouter(
                         path: 'bank-user',
                         builder: (context, state) {
                           return const BankUserComponent();
+                        },
+                        pageBuilder: (context, state) {
+                          return NoTransitionPage(
+                              key: state.pageKey,
+                              child: const BankUserComponent());
                         },
                         routes: [
                           GoRoute(
@@ -65,6 +78,11 @@ final goRouter = GoRouter(
                               builder: (context, state) {
                                 return const BankTransferScreen();
                               },
+                              pageBuilder: (context, state) {
+                                return NoTransitionPage(
+                                    key: state.pageKey,
+                                    child: const BankTransferScreen());
+                              },
                               routes: [
                                 GoRoute(
                                     parentNavigatorKey: _rootNavigatorKey,
@@ -73,6 +91,11 @@ final goRouter = GoRouter(
                                     builder: (context, state) {
                                       return const PreviewScreen();
                                     },
+                                    pageBuilder: (context, state) {
+                                      return NoTransitionPage(
+                                          key: state.pageKey,
+                                          child: const PreviewScreen());
+                                    },
                                     routes: [
                                       GoRoute(
                                           parentNavigatorKey: _rootNavigatorKey,
@@ -80,6 +103,12 @@ final goRouter = GoRouter(
                                           path: 'payment-categories',
                                           builder: (context, state) {
                                             return const PaymentCategories();
+                                          },
+                                          pageBuilder: (context, state) {
+                                            return NoTransitionPage(
+                                                key: state.pageKey,
+                                                child:
+                                                    const PaymentCategories());
                                           },
                                           routes: [
                                             // GoRoute(
@@ -100,6 +129,15 @@ final goRouter = GoRouter(
                                                 return AllOptions(
                                                   showIcons: showIcons,
                                                 );
+                                              },
+                                              pageBuilder: (context, state) {
+                                                bool showIcons =
+                                                    state.extra as bool;
+                                                return NoTransitionPage(
+                                                    key: state.pageKey,
+                                                    child: AllOptions(
+                                                      showIcons: showIcons,
+                                                    ));
                                               },
                                             )
                                           ])
@@ -126,6 +164,10 @@ final goRouter = GoRouter(
                   builder: (context, state) {
                     return const GridViewHome();
                   },
+                  pageBuilder: (context, state) {
+                    return NoTransitionPage(
+                        key: state.pageKey, child: const GridViewHome());
+                  },
                   routes: [
                     GoRoute(
                       parentNavigatorKey: _rootNavigatorKey,
@@ -133,6 +175,10 @@ final goRouter = GoRouter(
                       path: 'app-store',
                       builder: (context, state) {
                         return const AppStore();
+                      },
+                      pageBuilder: (context, state) {
+                        return NoTransitionPage(
+                            key: state.pageKey, child: const AppStore());
                       },
                       // routes: [
                       //   GoRoute(
@@ -154,6 +200,11 @@ final goRouter = GoRouter(
                       builder: (context, state) {
                         return const RotatingShakeWidget();
                       },
+                      pageBuilder: (context, state) {
+                        return NoTransitionPage(
+                            key: state.pageKey,
+                            child: const RotatingShakeWidget());
+                      },
                     )
                   ])
             ],
@@ -166,6 +217,10 @@ final goRouter = GoRouter(
         name: 'final screen',
         builder: (context, state) {
           return const FinalScreen();
+        },
+        pageBuilder: (context, state) {
+          return NoTransitionPage(
+              key: state.pageKey, child: const FinalScreen());
         },
       ),
     ]);

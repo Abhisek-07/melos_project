@@ -17,9 +17,9 @@ class AppStore extends HookConsumerWidget {
       return null;
     }, [gridNotifier.isLoadingGridOptions]);
 
-    if (gridNotifier.isLoadingGridOptions) {
-      return const CircularProgressIndicator();
-    }
+    // if (gridNotifier.isLoadingGridOptions) {
+    //   return const CircularProgressIndicator();
+    // }
 
     // showTopAlertDialog(BuildContext context) {
     //   final overlay = Overlay.of(context);
@@ -59,71 +59,72 @@ class AppStore extends HookConsumerWidget {
       appBar: AppBar(
         title: const Text('App Store'),
       ),
-      body: Column(
-        children: [
-          const Text(
-            'App Store Grid View',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          Expanded(
-              child: Container(
-            padding: const EdgeInsets.all(8),
-            child: GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3, mainAxisSpacing: 12, crossAxisSpacing: 4,
-                // , childAspectRatio:
-              ),
-              itemCount: gridNotifier.gridOptions.length,
-              itemBuilder: (context, index) {
-                final option = gridNotifier.gridOptions[index];
-                // bool isComingSoon = option.isComingSoon;
-                // bool isPinned = option.isPinned;
+      body: gridNotifier.isLoadingGridOptions
+          ? const CircularProgressIndicator()
+          : Column(
+              children: [
+                const Text(
+                  'App Store Grid View',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                Expanded(
+                    child: Container(
+                  padding: const EdgeInsets.all(8),
+                  child: GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3, mainAxisSpacing: 12,
+                      crossAxisSpacing: 4,
+                      // , childAspectRatio:
+                    ),
+                    itemCount: gridNotifier.gridOptions.length,
+                    itemBuilder: (context, index) {
+                      final option = gridNotifier.gridOptions[index];
 
-                return AnimatedCard(
-                  name: option.name,
-                  icon: option.icon,
-                  isComingSoon: option.isComingSoon,
-                  isPinned: option.isPinned,
-                  onLongPress: () {
-                    gridNotifier.showBottomSheet(context, option);
-                  },
+                      return AnimatedCard(
+                        name: option.name,
+                        icon: option.icon,
+                        isComingSoon: option.isComingSoon,
+                        isPinned: option.isPinned,
+                        onLongPress: () {
+                          gridNotifier.showBottomSheet(context, option);
+                        },
 
-                  /// shakeAnimationTime in milliseconds
-                  // shakeAnimationTime: 3000,
-                  // isAnimationEnabled: false,
-                  showAlert: () {
-                    Flushbar().dismiss();
-                    Flushbar(
-                      flushbarPosition: FlushbarPosition.TOP,
-                      backgroundColor: Colors.red,
-                      message: 'This app is coming soon',
-                      icon: const Icon(
-                        Icons.info_outline,
-                        size: 28.0,
-                        color: Colors.white,
-                      ),
-                      duration: const Duration(seconds: 2),
-                    ).show(context);
+                        /// shakeAnimationTime in milliseconds
+                        // shakeAnimationTime: 3000,
+                        // isAnimationEnabled: false,
+                        showAlert: () {
+                          Flushbar(
+                            flushbarPosition: FlushbarPosition.TOP,
+                            backgroundColor: Colors.red,
+                            message: 'This app is coming soon',
+                            icon: const Icon(
+                              Icons.info_outline,
+                              size: 28.0,
+                              color: Colors.white,
+                            ),
+                            duration: const Duration(seconds: 2),
+                          ).show(context);
 
-                    // ScaffoldMessenger.of(context).clearSnackBars();
-                    // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    //   content: Text('hi bro'),
-                    //   duration: Duration(seconds: 2),
-                    // ));
+                          // ScaffoldMessenger.of(context).clearSnackBars();
+                          // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          //   content: Text('hi bro'),
+                          //   duration: Duration(seconds: 2),
+                          // ));
 
-                    // showTopAlertDialog(context);
-                  },
-                );
+                          // showTopAlertDialog(context);
+                        },
+                      );
 
-                // return AppCard(index: index);
-              },
+                      // return AppCard(index: index);
+                    },
+                  ),
+                ))
+              ],
             ),
-          ))
-        ],
-      ),
     );
   }
 }
