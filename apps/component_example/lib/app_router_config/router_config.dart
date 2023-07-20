@@ -34,9 +34,6 @@ final goRouter = GoRouter(
               GoRoute(
                 name: 'home',
                 path: '/home',
-                builder: (context, state) {
-                  return const HomeScreen();
-                },
                 pageBuilder: (context, state) {
                   return NoTransitionPage(
                       key: state.pageKey, child: const HomeScreen());
@@ -50,9 +47,6 @@ final goRouter = GoRouter(
               GoRoute(
                   path: '/bank-user-home',
                   name: 'bank user home',
-                  builder: (context, state) {
-                    return const BankUserHome();
-                  },
                   pageBuilder: (context, state) {
                     return NoTransitionPage(
                         key: state.pageKey, child: const BankUserHome());
@@ -62,9 +56,6 @@ final goRouter = GoRouter(
                         parentNavigatorKey: _rootNavigatorKey,
                         name: 'bank transfer component',
                         path: 'bank-user',
-                        builder: (context, state) {
-                          return const BankUserComponent();
-                        },
                         pageBuilder: (context, state) {
                           return NoTransitionPage(
                               key: state.pageKey,
@@ -75,9 +66,6 @@ final goRouter = GoRouter(
                               parentNavigatorKey: _rootNavigatorKey,
                               path: 'bank-transfer',
                               name: 'bank transfer',
-                              builder: (context, state) {
-                                return const BankTransferScreen();
-                              },
                               pageBuilder: (context, state) {
                                 return NoTransitionPage(
                                     key: state.pageKey,
@@ -88,9 +76,6 @@ final goRouter = GoRouter(
                                     parentNavigatorKey: _rootNavigatorKey,
                                     path: 'preview-screen',
                                     name: 'preview screen',
-                                    builder: (context, state) {
-                                      return const PreviewScreen();
-                                    },
                                     pageBuilder: (context, state) {
                                       return NoTransitionPage(
                                           key: state.pageKey,
@@ -101,9 +86,6 @@ final goRouter = GoRouter(
                                           parentNavigatorKey: _rootNavigatorKey,
                                           name: 'payment categories',
                                           path: 'payment-categories',
-                                          builder: (context, state) {
-                                            return const PaymentCategories();
-                                          },
                                           pageBuilder: (context, state) {
                                             return NoTransitionPage(
                                                 key: state.pageKey,
@@ -123,13 +105,6 @@ final goRouter = GoRouter(
                                                   _rootNavigatorKey,
                                               path: 'all-options',
                                               name: 'all options',
-                                              builder: (context, state) {
-                                                bool showIcons =
-                                                    state.extra as bool;
-                                                return AllOptions(
-                                                  showIcons: showIcons,
-                                                );
-                                              },
                                               pageBuilder: (context, state) {
                                                 bool showIcons =
                                                     state.extra as bool;
@@ -161,9 +136,6 @@ final goRouter = GoRouter(
               GoRoute(
                   path: '/gridview-home',
                   name: 'gridview home',
-                  builder: (context, state) {
-                    return const GridViewHome();
-                  },
                   pageBuilder: (context, state) {
                     return NoTransitionPage(
                         key: state.pageKey, child: const GridViewHome());
@@ -173,12 +145,19 @@ final goRouter = GoRouter(
                       parentNavigatorKey: _rootNavigatorKey,
                       name: 'app store',
                       path: 'app-store',
-                      builder: (context, state) {
-                        return const AppStore();
-                      },
+
                       pageBuilder: (context, state) {
-                        return NoTransitionPage(
-                            key: state.pageKey, child: const AppStore());
+                        return CustomTransitionPage(
+                          key: state.pageKey,
+                          child: const AppStore(),
+                          transitionsBuilder:
+                              (context, animation, secondaryAnimation, child) {
+                            return FadeTransition(
+                              opacity: animation,
+                              child: child,
+                            );
+                          },
+                        );
                       },
                       // routes: [
                       //   GoRoute(
@@ -197,9 +176,6 @@ final goRouter = GoRouter(
                       parentNavigatorKey: _rootNavigatorKey,
                       name: 'shake',
                       path: 'shake-widget',
-                      builder: (context, state) {
-                        return const RotatingShakeWidget();
-                      },
                       pageBuilder: (context, state) {
                         return NoTransitionPage(
                             key: state.pageKey,
@@ -215,12 +191,18 @@ final goRouter = GoRouter(
         // parentNavigatorKey: _rootNavigatorKey,
         path: '/final-screen',
         name: 'final screen',
-        builder: (context, state) {
-          return const FinalScreen();
-        },
         pageBuilder: (context, state) {
-          return NoTransitionPage(
-              key: state.pageKey, child: const FinalScreen());
+          return CustomTransitionPage(
+            key: state.pageKey,
+            child: const FinalScreen(),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              return ScaleTransition(
+                scale: animation,
+                child: child,
+              );
+            },
+          );
         },
       ),
     ]);
