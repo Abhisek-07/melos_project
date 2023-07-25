@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 
 class CustomElevatedButton extends StatelessWidget {
-  const CustomElevatedButton({
-    super.key,
-    this.title = 'Finish',
-    required this.onPressed,
-  });
+  const CustomElevatedButton(
+      {super.key,
+      this.title = 'Finish',
+      required this.onPressed,
+      this.buttonBackgroundColor,
+      this.buttonTextColor});
 
   final String title;
   final void Function() onPressed;
+  final Color? buttonBackgroundColor;
+  final Color? buttonTextColor;
+  // final AppTheme appTheme;
 
   @override
   Widget build(BuildContext context) {

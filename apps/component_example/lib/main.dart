@@ -63,15 +63,15 @@ class MyApp extends ConsumerWidget {
     ThemeNotifier themeNotifier = ref.watch(themeProvider);
 
     return MaterialApp.router(
-        routerConfig: goRouter, theme: themeNotifier.theme.themedata
-        // ThemeData(
-        //   useMaterial3: true,
-        //   colorScheme: ColorScheme.fromSeed(
-        //     background: const Color.fromARGB(255, 253, 247, 253),
-        //     seedColor: const Color.fromARGB(255, 95, 21, 152),
-        //   ),
-        // ),
-        // home: const HomeScreen(),
-        );
+      routerConfig: goRouter, theme: themeNotifier.theme.themedata,
+      // ThemeData(
+      //   useMaterial3: true,
+      //   colorScheme: ColorScheme.fromSeed(
+      //     background: const Color.fromARGB(255, 253, 247, 253),
+      //     seedColor: const Color.fromARGB(255, 95, 21, 152),
+      //   ),
+      // ),
+      // home: const HomeScreen(),
+    );
   }
 }

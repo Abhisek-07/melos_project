@@ -1,7 +1,9 @@
 import 'package:component_example/providers/options_provider.dart';
+import 'package:component_example/providers/theme_provider.dart';
 import 'package:components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:utils/utils.dart';
 
@@ -18,6 +20,7 @@ class AllOptions extends HookConsumerWidget {
     OptionsNotifier optionsNotifier = ref.watch(optionsProvider);
     final searchController = useTextEditingController();
     // bool clearIcon = false;
+    ThemeNotifier themeNotifier = ref.watch(themeProvider);
 
     useMemoized(() {
       searchController.addListener(optionsNotifier.showClearIcon);
@@ -38,24 +41,44 @@ class AllOptions extends HookConsumerWidget {
         return false;
       },
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: themeNotifier.theme.appColors.grayScaleWhite,
         appBar: AppBar(
-          leadingWidth: 68,
-          titleSpacing: 0,
-          leading: IconButton(
-            // padding: const EdgeInsets.all(4),
-            onPressed: () {
-              optionsNotifier.resetSelectedIndexInListVewOnBackButtonPress();
-              Navigator.pop(context);
-            },
-            icon: Image.asset(
-              'assets/back.png',
-              width: 32,
-              height: 32,
-            ),
-          ),
-          title: const Text('Choose Category'),
-        ),
+            elevation: 0,
+            backgroundColor: themeNotifier.theme.appColors.grayScaleWhite,
+            automaticallyImplyLeading: false,
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Material(
+                  shape: const CircleBorder(),
+                  clipBehavior: Clip.antiAlias,
+                  color: Colors.transparent,
+                  child: InkWell(
+                    onTap: () {
+                      optionsNotifier
+                          .resetSelectedIndexInListVewOnBackButtonPress();
+                      Navigator.pop(context);
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(padding4),
+                      child: SvgPicture.asset(
+                        'assets/icons/back_icon.svg',
+                        height: 36,
+                        width: 36,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  width: 16,
+                ),
+                Text(
+                  'Choose Category',
+                  style: themeNotifier.theme.textStyles.headings.h5,
+                ),
+              ],
+            )),
         body: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
