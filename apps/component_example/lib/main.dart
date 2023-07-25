@@ -1,3 +1,4 @@
+import 'package:component_example/providers/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -44,28 +45,33 @@ class ScaffoldWithNestedNavigation extends StatelessWidget {
   }
 }
 
-void main() {
-  runApp(const ProviderScope(
-    child: MyApp(),
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final container = ProviderContainer();
+  await container.read(themeProvider).initAppTheme();
+  runApp(UncontrolledProviderScope(
+    container: container,
+    child: const MyApp(),
   ));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    ThemeNotifier themeNotifier = ref.watch(themeProvider);
+
     return MaterialApp.router(
-      routerConfig: goRouter,
-      theme: ThemeData(
-        // fontFamily: ,
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(
-          background: const Color.fromARGB(255, 253, 247, 253),
-          seedColor: const Color.fromARGB(255, 95, 21, 152),
-        ),
-      ),
-      // home: const HomeScreen(),
-    );
+        routerConfig: goRouter, theme: themeNotifier.theme.themedata
+        // ThemeData(
+        //   useMaterial3: true,
+        //   colorScheme: ColorScheme.fromSeed(
+        //     background: const Color.fromARGB(255, 253, 247, 253),
+        //     seedColor: const Color.fromARGB(255, 95, 21, 152),
+        //   ),
+        // ),
+        // home: const HomeScreen(),
+        );
   }
 }

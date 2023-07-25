@@ -69,8 +69,11 @@ class _AnimatedCardState extends State<AnimatedCard>
     _animationController.repeat();
     _animationTimer =
         Timer(Duration(milliseconds: widget.shakeAnimationTime), () {
-      _animationController.reset();
-      _animationTimer!.cancel();
+      if (_animationController.isAnimating) {
+        _animationController.reset();
+      }
+      // _animationController.reset();
+      // _animationTimer!.cancel();
     });
   }
 

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
+  AppColors();
+
   // brand colors
   final Color brandPrime = const Color.fromARGB(255, 148, 94, 218);
   final Color brandSecond = const Color.fromARGB(255, 220, 201, 198);

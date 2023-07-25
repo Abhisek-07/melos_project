@@ -41,9 +41,11 @@ class RotatingShakeWidget extends HookWidget {
       animationController.repeat();
       animationTimer = Timer(const Duration(seconds: 1), () {
         // animationController.stop();
-        animationController.reset();
-        animationTimer!.cancel();
-        // Stop the animation after 3 seconds
+        if (animationController.isAnimating) {
+          animationController.reset();
+        }
+        // animationTimer!.cancel();
+        // Stop the animation after 1 seconds
       });
     }
 
