@@ -17,6 +17,7 @@ class GridViewHome extends StatelessWidget {
         ),
         body: Center(
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               TextButton(
                 onPressed: () {
@@ -29,6 +30,12 @@ class GridViewHome extends StatelessWidget {
                   context.pushNamed('shake');
                 },
                 child: const Text('Shake Widget'),
+              ),
+              TextButton(
+                onPressed: () {
+                  context.pushNamed('file picker');
+                },
+                child: const Text('File Picker'),
               ),
             ],
           ),

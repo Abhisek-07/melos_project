@@ -1,4 +1,5 @@
 import 'package:component_example/main.dart';
+import 'package:component_example/screens/file_picker_example.dart';
 import 'package:component_example/screens/home_screen.dart';
 import 'package:component_example/screens/preview_screen.dart';
 import 'package:component_example/application_components/bank_user_component.dart';
@@ -180,6 +181,16 @@ final goRouter = GoRouter(
                         return NoTransitionPage(
                             key: state.pageKey,
                             child: const RotatingShakeWidget());
+                      },
+                    ),
+                    GoRoute(
+                      parentNavigatorKey: _rootNavigatorKey,
+                      name: 'file picker',
+                      path: 'file-picker',
+                      pageBuilder: (context, state) {
+                        return NoTransitionPage(
+                            key: state.pageKey,
+                            child: const FilePickerExample());
                       },
                     )
                   ])

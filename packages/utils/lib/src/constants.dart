@@ -1,13 +1,24 @@
 import 'dart:ui';
 
 const double padding4 = 4;
-const double padding8 = 4;
-const double padding12 = 4;
-const double padding16 = 4;
-const double padding18 = 4;
-const double padding20 = 4;
-const double padding422 = 4;
+const double padding8 = 8;
+const double padding12 = 12;
+const double padding16 = 16;
+const double padding18 = 18;
+const double padding20 = 20;
+const double padding22 = 22;
 const double defaultPadding = 24;
+const double margin4 = 4;
+const double margin8 = 8;
+const double margin12 = 12;
+const double margin16 = 16;
+const double margin18 = 18;
+const double margin20 = 20;
+const double margin22 = 22;
+const double margin24 = 24;
+const double borderRadiusSmall = 8;
+const double borderRadiusMedium = 16;
+const double borderRadiusLarge = 24;
 
 final List<List<Color>> gradientColorsForBankIcon = [
   [
