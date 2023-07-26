@@ -3,7 +3,7 @@ import 'package:component_example/providers/theme_provider.dart';
 import 'package:components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_svg/svg.dart';
+// import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:utils/utils.dart';
 
@@ -42,43 +42,51 @@ class AllOptions extends HookConsumerWidget {
       },
       child: Scaffold(
         backgroundColor: themeNotifier.theme.appColors.grayScaleWhite,
-        appBar: AppBar(
-            elevation: 0,
-            backgroundColor: themeNotifier.theme.appColors.grayScaleWhite,
-            automaticallyImplyLeading: false,
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Material(
-                  shape: const CircleBorder(),
-                  clipBehavior: Clip.antiAlias,
-                  color: Colors.transparent,
-                  child: InkWell(
-                    onTap: () {
-                      optionsNotifier
-                          .resetSelectedIndexInListVewOnBackButtonPress();
-                      Navigator.pop(context);
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.all(padding4),
-                      child: SvgPicture.asset(
-                        'assets/icons/back_icon.svg',
-                        height: 36,
-                        width: 36,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  width: 16,
-                ),
-                Text(
-                  'Choose Category',
-                  style: themeNotifier.theme.textStyles.headings.h5,
-                ),
-              ],
-            )),
+        appBar: CustomAppBar(
+          title: 'Choose Category',
+          onBackButtonPress: () {
+            optionsNotifier.resetSelectedIndexInListVewOnBackButtonPress();
+            Navigator.pop(context);
+          },
+          // showBackIcon: false,
+        ),
+        // AppBar(
+        //     elevation: 0,
+        //     backgroundColor: themeNotifier.theme.appColors.grayScaleWhite,
+        //     automaticallyImplyLeading: false,
+        //     title: Row(
+        //       mainAxisAlignment: MainAxisAlignment.start,
+        //       crossAxisAlignment: CrossAxisAlignment.center,
+        //       children: [
+        //         Material(
+        //           shape: const CircleBorder(),
+        //           clipBehavior: Clip.antiAlias,
+        //           color: Colors.transparent,
+        //           child: InkWell(
+        //             onTap: () {
+        //               optionsNotifier
+        //                   .resetSelectedIndexInListVewOnBackButtonPress();
+        //               Navigator.pop(context);
+        //             },
+        //             child: Padding(
+        //               padding: const EdgeInsets.all(padding4),
+        //               child: SvgPicture.asset(
+        //                 'assets/icons/back_icon.svg',
+        //                 height: 36,
+        //                 width: 36,
+        //               ),
+        //             ),
+        //           ),
+        //         ),
+        //         const SizedBox(
+        //           width: 16,
+        //         ),
+        //         Text(
+        //           'Choose Category',
+        //           style: themeNotifier.theme.textStyles.headings.h5,
+        //         ),
+        //       ],
+        //     )),
         body: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
