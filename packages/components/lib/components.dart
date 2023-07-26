@@ -26,4 +26,3 @@ export 'package:components/src/app_theme_config/textStyle_classes/body_link.dart
 export 'package:components/src/app_theme_config/textStyle_classes/body_medium.dart';
 export 'package:components/src/app_theme_config/textStyle_classes/button.dart';
 export 'package:components/src/app_theme_config/textStyle_classes/headings.dart';
-export 'package:components/src/providers/theme_provider.dart';

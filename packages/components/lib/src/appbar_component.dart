@@ -1,3 +1,4 @@
+import 'package:components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:utils/utils.dart';
@@ -8,6 +9,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     required this.title,
     this.svgBackIconAsset,
     this.onBackButtonPress,
+    this.titleStyle,
+    required this.appTheme,
     this.showBackIcon = true,
   });
 
@@ -15,6 +18,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String? svgBackIconAsset;
   final void Function()? onBackButtonPress;
   final bool showBackIcon;
+  final AppTheme appTheme;
+  final TextStyle? titleStyle;
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -23,7 +28,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       elevation: 0,
-      // backgroundColor: themeNotifier.theme.appColors.grayScaleWhite,
+      backgroundColor: appTheme.appColors.grayScaleWhite,
       automaticallyImplyLeading: false,
       title: Row(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -57,7 +62,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           Text(
             title,
             // 'Choose Category',
-            // style: themeNotifier.theme.textStyles.headings.h5,
+            style: titleStyle ?? appTheme.textStyles.headings.h5,
           ),
         ],
       ),

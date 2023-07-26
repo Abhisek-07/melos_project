@@ -43,6 +43,7 @@ class AllOptions extends HookConsumerWidget {
       child: Scaffold(
         backgroundColor: themeNotifier.theme.appColors.grayScaleWhite,
         appBar: CustomAppBar(
+          appTheme: themeNotifier.theme,
           title: 'Choose Category',
           onBackButtonPress: () {
             optionsNotifier.resetSelectedIndexInListVewOnBackButtonPress();

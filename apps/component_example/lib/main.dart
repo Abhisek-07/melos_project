@@ -1,3 +1,4 @@
+import 'package:component_example/app_theme_data_initializer/theme_service.dart';
 import 'package:component_example/providers/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -47,8 +48,12 @@ class ScaffoldWithNestedNavigation extends StatelessWidget {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await ThemeService.initAppStyles();
   final container = ProviderContainer();
-  await container.read(themeProvider).initAppTheme();
+  await container.read(themeProvider).initAppTheme(
+      textStyles: ThemeService.textStyles,
+      appColors: ThemeService.appColors,
+      themeData: ThemeService.themeData);
   runApp(UncontrolledProviderScope(
     container: container,
     child: const MyApp(),

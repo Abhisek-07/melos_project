@@ -1,5 +1,5 @@
-import 'package:component_example/app_theme_config/app_colors.dart';
-import 'package:component_example/app_theme_config/textstyles.dart';
+import 'package:components/src/app_theme_config/app_colors.dart';
+import 'package:components/src/app_theme_config/textstyles.dart';
 import 'package:flutter/material.dart';
 // import 'package:freezed_annotation/freezed_annotation.dart';
 

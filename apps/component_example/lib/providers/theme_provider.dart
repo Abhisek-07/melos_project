@@ -1,14 +1,12 @@
-import 'package:components/src/app_theme_config/app_colors.dart';
-import 'package:components/src/app_theme_config/app_theme.dart';
 // import 'package:components/src/app_theme_config/textStyle_classes/body.dart';
 // import 'package:components/src/app_theme_config/textStyle_classes/body_bold.dart';
 // import 'package:components/src/app_theme_config/textStyle_classes/body_medium.dart';
 // import 'package:components/src/app_theme_config/textStyle_classes/button.dart';
 // import 'package:components/src/app_theme_config/textStyle_classes/headings.dart';
 // import 'package:components/src/app_theme_config/textStyle_classes/body_link.dart';
-import 'package:components/src/app_theme_config/textstyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:components/components.dart';
 
 class ThemeNotifier extends ChangeNotifier {
   late AppTheme appTheme;
@@ -16,7 +14,9 @@ class ThemeNotifier extends ChangeNotifier {
   AppTheme get theme => appTheme;
 
   Future<void> initAppTheme(
-      TextStyles textStyles, AppColors appColors, ThemeData themeData) async {
+      {required TextStyles textStyles,
+      required AppColors appColors,
+      required ThemeData themeData}) async {
     // TextStyles textStyles =
     // TextStyles(
     //     headings: Headings(),
