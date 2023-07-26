@@ -25,24 +25,24 @@ _$_AppColors _$$_AppColorsFromJson(Map<String, dynamic> json) => _$_AppColors(
           const ColorConverter().fromJson(json['primeScale4'] as String),
       primeScale5:
           const ColorConverter().fromJson(json['primeScale5'] as String),
-      gradientPrime1: const _ColorConverter()
-          .fromJson(json['gradientPrime1'] as List<String>),
-      gradientPrime2: const _ColorConverter()
-          .fromJson(json['gradientPrime2'] as List<String>),
-      gradientPrime3: const _ColorConverter()
-          .fromJson(json['gradientPrime3'] as List<String>),
-      gradientSecond: const _ColorConverter()
-          .fromJson(json['gradientSecond'] as List<String>),
-      gradientThird: const _ColorConverter()
-          .fromJson(json['gradientThird'] as List<String>),
-      gradientFourth: const _ColorConverter()
-          .fromJson(json['gradientFourth'] as List<String>),
-      gradientError: const _ColorConverter()
-          .fromJson(json['gradientError'] as List<String>),
-      gradientAlert: const _ColorConverter()
-          .fromJson(json['gradientAlert'] as List<String>),
-      gradientSuccess: const _ColorConverter()
-          .fromJson(json['gradientSuccess'] as List<String>),
+      gradientPrime1:
+          const _ColorConverter().fromJson(json['gradientPrime1'] as List),
+      gradientPrime2:
+          const _ColorConverter().fromJson(json['gradientPrime2'] as List),
+      gradientPrime3:
+          const _ColorConverter().fromJson(json['gradientPrime3'] as List),
+      gradientSecond:
+          const _ColorConverter().fromJson(json['gradientSecond'] as List),
+      gradientThird:
+          const _ColorConverter().fromJson(json['gradientThird'] as List),
+      gradientFourth:
+          const _ColorConverter().fromJson(json['gradientFourth'] as List),
+      gradientError:
+          const _ColorConverter().fromJson(json['gradientError'] as List),
+      gradientAlert:
+          const _ColorConverter().fromJson(json['gradientAlert'] as List),
+      gradientSuccess:
+          const _ColorConverter().fromJson(json['gradientSuccess'] as List),
       grayScaleBlack:
           const ColorConverter().fromJson(json['grayScaleBlack'] as String),
       grayScale90:

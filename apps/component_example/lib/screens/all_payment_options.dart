@@ -148,6 +148,8 @@ class AllOptions extends HookConsumerWidget {
                               ? gradientColorsForBankIcon[0]
                               : index % gradientColorsForBankIcon.length == 1
                                   ? gradientColorsForBankIcon[1]
+                                  // themeNotifier.theme.appColors.gradientError
+
                                   : gradientColorsForBankIcon[2],
                     ),
                     showTrailing: true,

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:component_example/app_theme_data_initializer/theme_service.dart';
 import 'package:component_example/providers/theme_provider.dart';
 import 'package:flutter/material.dart';
@@ -54,6 +56,7 @@ void main() async {
       textStyles: ThemeService.textStyles,
       appColors: ThemeService.appColors,
       themeData: ThemeService.themeData);
+  log(container.read(themeProvider).appTheme.appColors.toJson().toString());
   runApp(UncontrolledProviderScope(
     container: container,
     child: const MyApp(),

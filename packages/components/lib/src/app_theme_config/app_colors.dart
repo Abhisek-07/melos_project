@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:utils/utils.dart';
 
 part 'app_colors.freezed.dart';
 part 'app_colors.g.dart';
@@ -58,32 +59,40 @@ class ColorConverter implements JsonConverter<Color, String> {
 
   @override
   Color fromJson(String json) {
-    final int intValue = int.parse(json.replaceAll("#", ""), radix: 16);
-    return Color(intValue);
+    // final int intValue = int.parse(json.replaceAll("#", ""), radix: 16);
+    // return Color(intValue);
+    return HexColor.fromHex(json);
   }
 
   @override
   String toJson(Color object) {
-    return '#${object.value.toRadixString(16).padLeft(8, '0')}';
+    // return '#${object.value.toRadixString(16).padLeft(8, '0')}';
+    return object.toHex();
   }
 }
 
-class _ColorConverter implements JsonConverter<List<Color>, List<String>> {
+class _ColorConverter implements JsonConverter<List<Color>, List<dynamic>> {
   const _ColorConverter();
 
   @override
-  List<Color> fromJson(List<String> json) {
-    return json.map((colorString) {
-      final int intValue =
-          int.parse(colorString.replaceAll("#", ""), radix: 16);
-      return Color(intValue);
+  List<Color> fromJson(List<dynamic> json) {
+    return json.map((dynamic colorString) {
+      if (colorString is String) {
+        // final int intValue =
+        //     int.parse(colorString.replaceAll("#", ""), radix: 16);
+        // return Color(intValue);
+        return HexColor.fromHex(colorString);
+      } else {
+        return Colors.black;
+      }
     }).toList();
   }
 
   @override
   List<String> toJson(List<Color> object) {
     return object.map((color) {
-      return '#${color.value.toRadixString(16).padLeft(8, '0')}';
+      // return '#${color.value.toRadixString(16).padLeft(8, '0')}';
+      return color.toHex();
     }).toList();
   }
 }
