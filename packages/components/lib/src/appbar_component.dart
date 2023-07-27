@@ -34,7 +34,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: backgroundColor ?? appTheme.appDefaults.grayScaleWhite,
       automaticallyImplyLeading: false,
       title: Padding(
-        padding: const EdgeInsets.all(padding8),
+        padding: const EdgeInsets.all(padding16),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -51,7 +51,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                         Navigator.pop(context);
                       },
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: padding8),
+                    // padding: const EdgeInsets.symmetric(horizontal: padding8),
                     child: Center(
                       child: SvgPicture.asset(
                         svgBackIconAsset ?? 'assets/icons/back_icon.svg',
@@ -64,7 +64,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               ),
             if (showBackIcon)
               const SizedBox(
-                width: spacing8,
+                width: spacing16,
               ),
             Text(
               title,

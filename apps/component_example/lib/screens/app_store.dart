@@ -60,8 +60,9 @@ class AppStore extends HookConsumerWidget {
     Flushbar? currentFlushBar;
 
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 254, 250, 255),
+      backgroundColor: const Color.fromARGB(255, 254, 250, 255),
       appBar: CustomAppBar(
+        // svgBackIconAsset: 'assets/icons/more.svg',
         title: 'App Store',
         appTheme: themeNotifier.theme,
       ),
