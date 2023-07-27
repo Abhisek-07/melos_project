@@ -33,7 +33,10 @@
     "systemTextLink": "#ff5e169c",
     "systemTextSuccess": "#ff00a871",
     "systemTextAlert": "#fff87904",
-    "systemTextError": "#fff13a20"
+    "systemTextError": "#fff13a20",
+    "borderRadiusSmall": 8,
+    "borderRadiusMedium": 16,
+    "borderRadiusLarge": 24
   }
 }
   

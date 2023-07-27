@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'app_colors.dart';
+part of 'app_defaults.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-AppColors _$AppColorsFromJson(Map<String, dynamic> json) {
-  return _AppColors.fromJson(json);
+AppDefaults _$AppDefaultsFromJson(Map<String, dynamic> json) {
+  return _AppDefaults.fromJson(json);
 }
 
 /// @nodoc
-mixin _$AppColors {
+mixin _$AppDefaults {
 // brand colors
   @ColorConverter()
   Color get brandPrime => throw _privateConstructorUsedError;
@@ -92,17 +92,24 @@ mixin _$AppColors {
   Color get systemTextAlert => throw _privateConstructorUsedError;
   @ColorConverter()
   Color get systemTextError => throw _privateConstructorUsedError;
+  @JsonKey(name: 'borderRadiusSmall')
+  double get borderRadiusSmall => throw _privateConstructorUsedError;
+  @JsonKey(name: 'borderRadiusMedium')
+  double get borderRadiusMedium => throw _privateConstructorUsedError;
+  @JsonKey(name: 'borderRadiusLarge')
+  double get borderRadiusLarge => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $AppColorsCopyWith<AppColors> get copyWith =>
+  $AppDefaultsCopyWith<AppDefaults> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AppColorsCopyWith<$Res> {
-  factory $AppColorsCopyWith(AppColors value, $Res Function(AppColors) then) =
-      _$AppColorsCopyWithImpl<$Res, AppColors>;
+abstract class $AppDefaultsCopyWith<$Res> {
+  factory $AppDefaultsCopyWith(
+          AppDefaults value, $Res Function(AppDefaults) then) =
+      _$AppDefaultsCopyWithImpl<$Res, AppDefaults>;
   @useResult
   $Res call(
       {@ColorConverter() Color brandPrime,
@@ -138,13 +145,16 @@ abstract class $AppColorsCopyWith<$Res> {
       @ColorConverter() Color systemTextLink,
       @ColorConverter() Color systemTextSuccess,
       @ColorConverter() Color systemTextAlert,
-      @ColorConverter() Color systemTextError});
+      @ColorConverter() Color systemTextError,
+      @JsonKey(name: 'borderRadiusSmall') double borderRadiusSmall,
+      @JsonKey(name: 'borderRadiusMedium') double borderRadiusMedium,
+      @JsonKey(name: 'borderRadiusLarge') double borderRadiusLarge});
 }
 
 /// @nodoc
-class _$AppColorsCopyWithImpl<$Res, $Val extends AppColors>
-    implements $AppColorsCopyWith<$Res> {
-  _$AppColorsCopyWithImpl(this._value, this._then);
+class _$AppDefaultsCopyWithImpl<$Res, $Val extends AppDefaults>
+    implements $AppDefaultsCopyWith<$Res> {
+  _$AppDefaultsCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -188,6 +198,9 @@ class _$AppColorsCopyWithImpl<$Res, $Val extends AppColors>
     Object? systemTextSuccess = null,
     Object? systemTextAlert = null,
     Object? systemTextError = null,
+    Object? borderRadiusSmall = null,
+    Object? borderRadiusMedium = null,
+    Object? borderRadiusLarge = null,
   }) {
     return _then(_value.copyWith(
       brandPrime: null == brandPrime
@@ -326,15 +339,28 @@ class _$AppColorsCopyWithImpl<$Res, $Val extends AppColors>
           ? _value.systemTextError
           : systemTextError // ignore: cast_nullable_to_non_nullable
               as Color,
+      borderRadiusSmall: null == borderRadiusSmall
+          ? _value.borderRadiusSmall
+          : borderRadiusSmall // ignore: cast_nullable_to_non_nullable
+              as double,
+      borderRadiusMedium: null == borderRadiusMedium
+          ? _value.borderRadiusMedium
+          : borderRadiusMedium // ignore: cast_nullable_to_non_nullable
+              as double,
+      borderRadiusLarge: null == borderRadiusLarge
+          ? _value.borderRadiusLarge
+          : borderRadiusLarge // ignore: cast_nullable_to_non_nullable
+              as double,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_AppColorsCopyWith<$Res> implements $AppColorsCopyWith<$Res> {
-  factory _$$_AppColorsCopyWith(
-          _$_AppColors value, $Res Function(_$_AppColors) then) =
-      __$$_AppColorsCopyWithImpl<$Res>;
+abstract class _$$_AppDefaultsCopyWith<$Res>
+    implements $AppDefaultsCopyWith<$Res> {
+  factory _$$_AppDefaultsCopyWith(
+          _$_AppDefaults value, $Res Function(_$_AppDefaults) then) =
+      __$$_AppDefaultsCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -371,15 +397,18 @@ abstract class _$$_AppColorsCopyWith<$Res> implements $AppColorsCopyWith<$Res> {
       @ColorConverter() Color systemTextLink,
       @ColorConverter() Color systemTextSuccess,
       @ColorConverter() Color systemTextAlert,
-      @ColorConverter() Color systemTextError});
+      @ColorConverter() Color systemTextError,
+      @JsonKey(name: 'borderRadiusSmall') double borderRadiusSmall,
+      @JsonKey(name: 'borderRadiusMedium') double borderRadiusMedium,
+      @JsonKey(name: 'borderRadiusLarge') double borderRadiusLarge});
 }
 
 /// @nodoc
-class __$$_AppColorsCopyWithImpl<$Res>
-    extends _$AppColorsCopyWithImpl<$Res, _$_AppColors>
-    implements _$$_AppColorsCopyWith<$Res> {
-  __$$_AppColorsCopyWithImpl(
-      _$_AppColors _value, $Res Function(_$_AppColors) _then)
+class __$$_AppDefaultsCopyWithImpl<$Res>
+    extends _$AppDefaultsCopyWithImpl<$Res, _$_AppDefaults>
+    implements _$$_AppDefaultsCopyWith<$Res> {
+  __$$_AppDefaultsCopyWithImpl(
+      _$_AppDefaults _value, $Res Function(_$_AppDefaults) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -419,8 +448,11 @@ class __$$_AppColorsCopyWithImpl<$Res>
     Object? systemTextSuccess = null,
     Object? systemTextAlert = null,
     Object? systemTextError = null,
+    Object? borderRadiusSmall = null,
+    Object? borderRadiusMedium = null,
+    Object? borderRadiusLarge = null,
   }) {
-    return _then(_$_AppColors(
+    return _then(_$_AppDefaults(
       brandPrime: null == brandPrime
           ? _value.brandPrime
           : brandPrime // ignore: cast_nullable_to_non_nullable
@@ -557,14 +589,26 @@ class __$$_AppColorsCopyWithImpl<$Res>
           ? _value.systemTextError
           : systemTextError // ignore: cast_nullable_to_non_nullable
               as Color,
+      borderRadiusSmall: null == borderRadiusSmall
+          ? _value.borderRadiusSmall
+          : borderRadiusSmall // ignore: cast_nullable_to_non_nullable
+              as double,
+      borderRadiusMedium: null == borderRadiusMedium
+          ? _value.borderRadiusMedium
+          : borderRadiusMedium // ignore: cast_nullable_to_non_nullable
+              as double,
+      borderRadiusLarge: null == borderRadiusLarge
+          ? _value.borderRadiusLarge
+          : borderRadiusLarge // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_AppColors implements _AppColors {
-  _$_AppColors(
+class _$_AppDefaults implements _AppDefaults {
+  _$_AppDefaults(
       {@ColorConverter() required this.brandPrime,
       @ColorConverter() required this.brandSecond,
       @ColorConverter() required this.brandThird,
@@ -598,7 +642,10 @@ class _$_AppColors implements _AppColors {
       @ColorConverter() required this.systemTextLink,
       @ColorConverter() required this.systemTextSuccess,
       @ColorConverter() required this.systemTextAlert,
-      @ColorConverter() required this.systemTextError})
+      @ColorConverter() required this.systemTextError,
+      @JsonKey(name: 'borderRadiusSmall') required this.borderRadiusSmall,
+      @JsonKey(name: 'borderRadiusMedium') required this.borderRadiusMedium,
+      @JsonKey(name: 'borderRadiusLarge') required this.borderRadiusLarge})
       : _gradientPrime1 = gradientPrime1,
         _gradientPrime2 = gradientPrime2,
         _gradientPrime3 = gradientPrime3,
@@ -609,8 +656,8 @@ class _$_AppColors implements _AppColors {
         _gradientAlert = gradientAlert,
         _gradientSuccess = gradientSuccess;
 
-  factory _$_AppColors.fromJson(Map<String, dynamic> json) =>
-      _$$_AppColorsFromJson(json);
+  factory _$_AppDefaults.fromJson(Map<String, dynamic> json) =>
+      _$$_AppDefaultsFromJson(json);
 
 // brand colors
   @override
@@ -773,17 +820,26 @@ class _$_AppColors implements _AppColors {
   @override
   @ColorConverter()
   final Color systemTextError;
+  @override
+  @JsonKey(name: 'borderRadiusSmall')
+  final double borderRadiusSmall;
+  @override
+  @JsonKey(name: 'borderRadiusMedium')
+  final double borderRadiusMedium;
+  @override
+  @JsonKey(name: 'borderRadiusLarge')
+  final double borderRadiusLarge;
 
   @override
   String toString() {
-    return 'AppColors(brandPrime: $brandPrime, brandSecond: $brandSecond, brandThird: $brandThird, brandFourth: $brandFourth, brandFifth: $brandFifth, brandCTA: $brandCTA, primeScale1: $primeScale1, primeScale2: $primeScale2, primeScale3: $primeScale3, primeScale4: $primeScale4, primeScale5: $primeScale5, gradientPrime1: $gradientPrime1, gradientPrime2: $gradientPrime2, gradientPrime3: $gradientPrime3, gradientSecond: $gradientSecond, gradientThird: $gradientThird, gradientFourth: $gradientFourth, gradientError: $gradientError, gradientAlert: $gradientAlert, gradientSuccess: $gradientSuccess, grayScaleBlack: $grayScaleBlack, grayScale90: $grayScale90, grayScale80: $grayScale80, grayScale70: $grayScale70, grayScale60: $grayScale60, grayScale50: $grayScale50, grayScale40: $grayScale40, grayScale30: $grayScale30, grayScale20: $grayScale20, grayScaleWhite: $grayScaleWhite, systemTextLink: $systemTextLink, systemTextSuccess: $systemTextSuccess, systemTextAlert: $systemTextAlert, systemTextError: $systemTextError)';
+    return 'AppDefaults(brandPrime: $brandPrime, brandSecond: $brandSecond, brandThird: $brandThird, brandFourth: $brandFourth, brandFifth: $brandFifth, brandCTA: $brandCTA, primeScale1: $primeScale1, primeScale2: $primeScale2, primeScale3: $primeScale3, primeScale4: $primeScale4, primeScale5: $primeScale5, gradientPrime1: $gradientPrime1, gradientPrime2: $gradientPrime2, gradientPrime3: $gradientPrime3, gradientSecond: $gradientSecond, gradientThird: $gradientThird, gradientFourth: $gradientFourth, gradientError: $gradientError, gradientAlert: $gradientAlert, gradientSuccess: $gradientSuccess, grayScaleBlack: $grayScaleBlack, grayScale90: $grayScale90, grayScale80: $grayScale80, grayScale70: $grayScale70, grayScale60: $grayScale60, grayScale50: $grayScale50, grayScale40: $grayScale40, grayScale30: $grayScale30, grayScale20: $grayScale20, grayScaleWhite: $grayScaleWhite, systemTextLink: $systemTextLink, systemTextSuccess: $systemTextSuccess, systemTextAlert: $systemTextAlert, systemTextError: $systemTextError, borderRadiusSmall: $borderRadiusSmall, borderRadiusMedium: $borderRadiusMedium, borderRadiusLarge: $borderRadiusLarge)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_AppColors &&
+            other is _$_AppDefaults &&
             (identical(other.brandPrime, brandPrime) ||
                 other.brandPrime == brandPrime) &&
             (identical(other.brandSecond, brandSecond) ||
@@ -851,7 +907,13 @@ class _$_AppColors implements _AppColors {
             (identical(other.systemTextAlert, systemTextAlert) ||
                 other.systemTextAlert == systemTextAlert) &&
             (identical(other.systemTextError, systemTextError) ||
-                other.systemTextError == systemTextError));
+                other.systemTextError == systemTextError) &&
+            (identical(other.borderRadiusSmall, borderRadiusSmall) ||
+                other.borderRadiusSmall == borderRadiusSmall) &&
+            (identical(other.borderRadiusMedium, borderRadiusMedium) ||
+                other.borderRadiusMedium == borderRadiusMedium) &&
+            (identical(other.borderRadiusLarge, borderRadiusLarge) ||
+                other.borderRadiusLarge == borderRadiusLarge));
   }
 
   @JsonKey(ignore: true)
@@ -891,25 +953,28 @@ class _$_AppColors implements _AppColors {
         systemTextLink,
         systemTextSuccess,
         systemTextAlert,
-        systemTextError
+        systemTextError,
+        borderRadiusSmall,
+        borderRadiusMedium,
+        borderRadiusLarge
       ]);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AppColorsCopyWith<_$_AppColors> get copyWith =>
-      __$$_AppColorsCopyWithImpl<_$_AppColors>(this, _$identity);
+  _$$_AppDefaultsCopyWith<_$_AppDefaults> get copyWith =>
+      __$$_AppDefaultsCopyWithImpl<_$_AppDefaults>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_AppColorsToJson(
+    return _$$_AppDefaultsToJson(
       this,
     );
   }
 }
 
-abstract class _AppColors implements AppColors {
-  factory _AppColors(
+abstract class _AppDefaults implements AppDefaults {
+  factory _AppDefaults(
       {@ColorConverter() required final Color brandPrime,
       @ColorConverter() required final Color brandSecond,
       @ColorConverter() required final Color brandThird,
@@ -943,10 +1008,16 @@ abstract class _AppColors implements AppColors {
       @ColorConverter() required final Color systemTextLink,
       @ColorConverter() required final Color systemTextSuccess,
       @ColorConverter() required final Color systemTextAlert,
-      @ColorConverter() required final Color systemTextError}) = _$_AppColors;
+      @ColorConverter() required final Color systemTextError,
+      @JsonKey(name: 'borderRadiusSmall')
+      required final double borderRadiusSmall,
+      @JsonKey(name: 'borderRadiusMedium')
+      required final double borderRadiusMedium,
+      @JsonKey(name: 'borderRadiusLarge')
+      required final double borderRadiusLarge}) = _$_AppDefaults;
 
-  factory _AppColors.fromJson(Map<String, dynamic> json) =
-      _$_AppColors.fromJson;
+  factory _AppDefaults.fromJson(Map<String, dynamic> json) =
+      _$_AppDefaults.fromJson;
 
   @override // brand colors
   @ColorConverter()
@@ -1051,7 +1122,16 @@ abstract class _AppColors implements AppColors {
   @ColorConverter()
   Color get systemTextError;
   @override
+  @JsonKey(name: 'borderRadiusSmall')
+  double get borderRadiusSmall;
+  @override
+  @JsonKey(name: 'borderRadiusMedium')
+  double get borderRadiusMedium;
+  @override
+  @JsonKey(name: 'borderRadiusLarge')
+  double get borderRadiusLarge;
+  @override
   @JsonKey(ignore: true)
-  _$$_AppColorsCopyWith<_$_AppColors> get copyWith =>
+  _$$_AppDefaultsCopyWith<_$_AppDefaults> get copyWith =>
       throw _privateConstructorUsedError;
 }

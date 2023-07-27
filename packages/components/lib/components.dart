@@ -18,7 +18,7 @@ export 'package:components/src/widgets_payments_component/more.dart';
 export 'package:components/src/widgets_app_store_component/animated_card_component.dart';
 export 'package:components/src/appbar_component.dart';
 export 'package:components/src/app_theme_config/app_theme.dart';
-export 'package:components/src/app_theme_config/app_colors.dart';
+export 'package:components/src/app_theme_config/app_defaults.dart';
 export 'package:components/src/app_theme_config/textstyles.dart';
 export 'package:components/src/app_theme_config/textStyle_classes/body.dart';
 export 'package:components/src/app_theme_config/textStyle_classes/body_bold.dart';

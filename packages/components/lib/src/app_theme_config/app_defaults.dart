@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:utils/utils.dart';
 
-part 'app_colors.freezed.dart';
-part 'app_colors.g.dart';
+part 'app_defaults.freezed.dart';
+part 'app_defaults.g.dart';
 
 @freezed
-class AppColors with _$AppColors {
-  factory AppColors({
+class AppDefaults with _$AppDefaults {
+  factory AppDefaults({
     // brand colors
     @ColorConverter() required Color brandPrime,
     @ColorConverter() required Color brandSecond,
@@ -48,10 +48,13 @@ class AppColors with _$AppColors {
     @ColorConverter() required Color systemTextSuccess,
     @ColorConverter() required Color systemTextAlert,
     @ColorConverter() required Color systemTextError,
-  }) = _AppColors;
+    @JsonKey(name: 'borderRadiusSmall') required double borderRadiusSmall,
+    @JsonKey(name: 'borderRadiusMedium') required double borderRadiusMedium,
+    @JsonKey(name: 'borderRadiusLarge') required double borderRadiusLarge,
+  }) = _AppDefaults;
 
-  factory AppColors.fromJson(Map<String, dynamic> json) =>
-      _$AppColorsFromJson(json);
+  factory AppDefaults.fromJson(Map<String, dynamic> json) =>
+      _$AppDefaultsFromJson(json);
 }
 
 class ColorConverter implements JsonConverter<Color, String> {
@@ -59,14 +62,11 @@ class ColorConverter implements JsonConverter<Color, String> {
 
   @override
   Color fromJson(String json) {
-    // final int intValue = int.parse(json.replaceAll("#", ""), radix: 16);
-    // return Color(intValue);
     return HexColor.fromHex(json);
   }
 
   @override
   String toJson(Color object) {
-    // return '#${object.value.toRadixString(16).padLeft(8, '0')}';
     return object.toHex();
   }
 }
@@ -78,9 +78,6 @@ class _ColorConverter implements JsonConverter<List<Color>, List<dynamic>> {
   List<Color> fromJson(List<dynamic> json) {
     return json.map((dynamic colorString) {
       if (colorString is String) {
-        // final int intValue =
-        //     int.parse(colorString.replaceAll("#", ""), radix: 16);
-        // return Color(intValue);
         return HexColor.fromHex(colorString);
       } else {
         return Colors.black;
@@ -91,7 +88,6 @@ class _ColorConverter implements JsonConverter<List<Color>, List<dynamic>> {
   @override
   List<String> toJson(List<Color> object) {
     return object.map((color) {
-      // return '#${color.value.toRadixString(16).padLeft(8, '0')}';
       return color.toHex();
     }).toList();
   }

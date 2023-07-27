@@ -6,8 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:component_example/app_router_config/router_config.dart';
+import 'package:utils/utils.dart';
 
-class ScaffoldWithNestedNavigation extends StatelessWidget {
+class ScaffoldWithNestedNavigation extends ConsumerWidget {
   const ScaffoldWithNestedNavigation({
     super.key,
     required this.navigationShell,
@@ -26,24 +27,68 @@ class ScaffoldWithNestedNavigation extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    ThemeNotifier themeNotifier = ref.watch(themeProvider);
+
     return Scaffold(
         // appBar: AppBar(
         //   title: const Text('Components'),
         // ),
         body: navigationShell,
-        bottomNavigationBar: NavigationBar(
-          selectedIndex: navigationShell.currentIndex,
-          destinations: const [
-            NavigationDestination(icon: Icon(Icons.balance), label: 'Home'),
-            NavigationDestination(
-                icon: Icon(Icons.balance), label: 'Bank User'),
-            NavigationDestination(
-                icon: Icon(Icons.grid_3x3), label: 'App Store'),
+        bottomNavigationBar: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
+              child: Divider(
+                height: 1,
+                color: themeNotifier.theme.appDefaults.grayScale60,
+              ),
+            ),
+            NavigationBar(
+              backgroundColor: themeNotifier.theme.appDefaults.grayScaleWhite,
+              indicatorColor: themeNotifier.theme.appDefaults.grayScaleWhite,
+              selectedIndex: navigationShell.currentIndex,
+              destinations: [
+                NavigationDestination(
+                  selectedIcon: Icon(
+                    Icons.balance,
+                    color: themeNotifier.theme.appDefaults.grayScaleBlack,
+                  ),
+                  icon: Icon(
+                    Icons.balance,
+                    color: themeNotifier.theme.appDefaults.grayScale70,
+                  ),
+                  label: 'Home',
+                ),
+                NavigationDestination(
+                  selectedIcon: Icon(
+                    Icons.balance,
+                    color: themeNotifier.theme.appDefaults.grayScaleBlack,
+                  ),
+                  icon: Icon(
+                    Icons.balance,
+                    color: themeNotifier.theme.appDefaults.grayScale70,
+                  ),
+                  label: 'Bank User',
+                ),
+                NavigationDestination(
+                  selectedIcon: Icon(
+                    Icons.grid_3x3,
+                    color: themeNotifier.theme.appDefaults.grayScaleBlack,
+                  ),
+                  icon: Icon(
+                    Icons.grid_3x3,
+                    color: themeNotifier.theme.appDefaults.grayScale70,
+                  ),
+                  label: 'App Store',
+                ),
+              ],
+              onDestinationSelected: (index) {
+                _goBranch(index);
+              },
+            ),
           ],
-          onDestinationSelected: (index) {
-            _goBranch(index);
-          },
         ));
   }
 }
@@ -54,9 +99,9 @@ void main() async {
   final container = ProviderContainer();
   await container.read(themeProvider).initAppTheme(
       textStyles: ThemeService.textStyles,
-      appColors: ThemeService.appColors,
+      appDefaults: ThemeService.appDefaults,
       themeData: ThemeService.themeData);
-  log(container.read(themeProvider).appTheme.appColors.toJson().toString());
+  log(container.read(themeProvider).appTheme.appDefaults.toJson().toString());
   runApp(UncontrolledProviderScope(
     container: container,
     child: const MyApp(),

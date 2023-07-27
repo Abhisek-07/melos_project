@@ -15,7 +15,7 @@ class ThemeNotifier extends ChangeNotifier {
 
   Future<void> initAppTheme(
       {required TextStyles textStyles,
-      required AppColors appColors,
+      required AppDefaults appDefaults,
       required ThemeData themeData}) async {
     // TextStyles textStyles =
     // TextStyles(
@@ -35,7 +35,7 @@ class ThemeNotifier extends ChangeNotifier {
 
     appTheme = AppTheme(
       textStyles: textStyles,
-      appColors: appColors,
+      appDefaults: appDefaults,
       themedata: themeData,
     );
   }

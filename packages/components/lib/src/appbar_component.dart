@@ -12,6 +12,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.titleStyle,
     required this.appTheme,
     this.showBackIcon = true,
+    this.backgroundColor,
   });
 
   final String title;
@@ -20,6 +21,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool showBackIcon;
   final AppTheme appTheme;
   final TextStyle? titleStyle;
+  final Color? backgroundColor;
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -28,7 +30,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       elevation: 0,
-      backgroundColor: appTheme.appColors.grayScaleWhite,
+      backgroundColor: backgroundColor ?? appTheme.appDefaults.grayScaleWhite,
       automaticallyImplyLeading: false,
       title: Row(
         mainAxisAlignment: MainAxisAlignment.start,

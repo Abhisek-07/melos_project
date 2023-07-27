@@ -41,7 +41,7 @@ class AllOptions extends HookConsumerWidget {
         return false;
       },
       child: Scaffold(
-        backgroundColor: themeNotifier.theme.appColors.grayScaleWhite,
+        backgroundColor: themeNotifier.theme.appDefaults.grayScaleWhite,
         appBar: CustomAppBar(
           appTheme: themeNotifier.theme,
           title: 'Choose Category',

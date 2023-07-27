@@ -1,4 +1,4 @@
-import 'package:components/src/app_theme_config/app_colors.dart';
+import 'package:components/src/app_theme_config/app_defaults.dart';
 import 'package:components/src/app_theme_config/textstyles.dart';
 import 'package:flutter/material.dart';
 // import 'package:freezed_annotation/freezed_annotation.dart';
@@ -34,11 +34,11 @@ import 'package:flutter/material.dart';
 class AppTheme {
   AppTheme({
     required this.textStyles,
-    required this.appColors,
+    required this.appDefaults,
     required this.themedata,
   });
 
   TextStyles textStyles;
-  AppColors appColors;
+  AppDefaults appDefaults;
   ThemeData themedata;
 }

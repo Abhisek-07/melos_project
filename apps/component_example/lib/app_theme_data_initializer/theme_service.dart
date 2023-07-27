@@ -6,14 +6,14 @@ import 'package:flutter/services.dart';
 
 class ThemeService {
   static late final TextStyles textStyles;
-  static late final AppColors appColors;
+  static late final AppDefaults appDefaults;
   static late final ThemeData themeData;
 
-  static Future<AppColors> loadAppDefaults() async {
+  static Future<AppDefaults> loadAppDefaults() async {
     final jsonData = await rootBundle.loadString('assets/app_defaults.json');
     final jsonInfo = json.decode(jsonData);
     final Map<String, dynamic> appDefaultsJson = jsonInfo['data'];
-    return AppColors.fromJson(appDefaultsJson);
+    return AppDefaults.fromJson(appDefaultsJson);
   }
 
   static Future<void> initAppStyles() async {
@@ -239,7 +239,7 @@ class ThemeService {
     );
 
     /// AppColors
-    appColors = await loadAppDefaults();
+    appDefaults = await loadAppDefaults();
 
     // appColors = AppColors(
     //   // brand colors
@@ -315,6 +315,8 @@ class ThemeService {
     // );
 
     /// themeData
-    themeData = ThemeData();
+    themeData = ThemeData(
+      scaffoldBackgroundColor: Colors.white,
+    );
   }
 }

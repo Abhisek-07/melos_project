@@ -1,12 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'app_colors.dart';
+part of 'app_defaults.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_AppColors _$$_AppColorsFromJson(Map<String, dynamic> json) => _$_AppColors(
+_$_AppDefaults _$$_AppDefaultsFromJson(Map<String, dynamic> json) =>
+    _$_AppDefaults(
       brandPrime: const ColorConverter().fromJson(json['brandPrime'] as String),
       brandSecond:
           const ColorConverter().fromJson(json['brandSecond'] as String),
@@ -71,9 +72,12 @@ _$_AppColors _$$_AppColorsFromJson(Map<String, dynamic> json) => _$_AppColors(
           const ColorConverter().fromJson(json['systemTextAlert'] as String),
       systemTextError:
           const ColorConverter().fromJson(json['systemTextError'] as String),
+      borderRadiusSmall: (json['borderRadiusSmall'] as num).toDouble(),
+      borderRadiusMedium: (json['borderRadiusMedium'] as num).toDouble(),
+      borderRadiusLarge: (json['borderRadiusLarge'] as num).toDouble(),
     );
 
-Map<String, dynamic> _$$_AppColorsToJson(_$_AppColors instance) =>
+Map<String, dynamic> _$$_AppDefaultsToJson(_$_AppDefaults instance) =>
     <String, dynamic>{
       'brandPrime': const ColorConverter().toJson(instance.brandPrime),
       'brandSecond': const ColorConverter().toJson(instance.brandSecond),
@@ -113,4 +117,7 @@ Map<String, dynamic> _$$_AppColorsToJson(_$_AppColors instance) =>
           const ColorConverter().toJson(instance.systemTextAlert),
       'systemTextError':
           const ColorConverter().toJson(instance.systemTextError),
+      'borderRadiusSmall': instance.borderRadiusSmall,
+      'borderRadiusMedium': instance.borderRadiusMedium,
+      'borderRadiusLarge': instance.borderRadiusLarge,
     };
