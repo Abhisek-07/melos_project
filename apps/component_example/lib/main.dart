@@ -45,48 +45,55 @@ class ScaffoldWithNestedNavigation extends ConsumerWidget {
                 color: themeNotifier.theme.appDefaults.grayScale60,
               ),
             ),
-            NavigationBar(
-              backgroundColor: themeNotifier.theme.appDefaults.grayScaleWhite,
-              indicatorColor: themeNotifier.theme.appDefaults.grayScaleWhite,
-              selectedIndex: navigationShell.currentIndex,
-              destinations: [
-                NavigationDestination(
-                  selectedIcon: Icon(
-                    Icons.balance,
-                    color: themeNotifier.theme.appDefaults.grayScaleBlack,
+            Theme(
+              data: Theme.of(context).copyWith(
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+              ),
+              child: NavigationBar(
+                backgroundColor: themeNotifier.theme.appDefaults.grayScaleWhite,
+                indicatorColor: themeNotifier.theme.appDefaults.grayScaleWhite,
+                selectedIndex: navigationShell.currentIndex,
+                destinations: [
+                  NavigationDestination(
+                    selectedIcon: Icon(
+                      Icons.balance,
+                      color: themeNotifier.theme.appDefaults.grayScaleBlack,
+                    ),
+                    icon: Icon(
+                      Icons.balance,
+                      color: themeNotifier.theme.appDefaults.grayScale70,
+                    ),
+                    label: 'Home',
                   ),
-                  icon: Icon(
-                    Icons.balance,
-                    color: themeNotifier.theme.appDefaults.grayScale70,
+                  NavigationDestination(
+                    selectedIcon: Icon(
+                      Icons.balance,
+                      color: themeNotifier.theme.appDefaults.grayScaleBlack,
+                    ),
+                    icon: Icon(
+                      Icons.balance,
+                      color: themeNotifier.theme.appDefaults.grayScale70,
+                    ),
+                    label: 'Bank User',
                   ),
-                  label: 'Home',
-                ),
-                NavigationDestination(
-                  selectedIcon: Icon(
-                    Icons.balance,
-                    color: themeNotifier.theme.appDefaults.grayScaleBlack,
+                  NavigationDestination(
+                    selectedIcon: Icon(
+                      Icons.grid_3x3,
+                      color: themeNotifier.theme.appDefaults.grayScaleBlack,
+                    ),
+                    icon: Icon(
+                      Icons.grid_3x3,
+                      color: themeNotifier.theme.appDefaults.grayScale70,
+                    ),
+                    label: 'App Store',
                   ),
-                  icon: Icon(
-                    Icons.balance,
-                    color: themeNotifier.theme.appDefaults.grayScale70,
-                  ),
-                  label: 'Bank User',
-                ),
-                NavigationDestination(
-                  selectedIcon: Icon(
-                    Icons.grid_3x3,
-                    color: themeNotifier.theme.appDefaults.grayScaleBlack,
-                  ),
-                  icon: Icon(
-                    Icons.grid_3x3,
-                    color: themeNotifier.theme.appDefaults.grayScale70,
-                  ),
-                  label: 'App Store',
-                ),
-              ],
-              onDestinationSelected: (index) {
-                _goBranch(index);
-              },
+                ],
+                onDestinationSelected: (index) {
+                  _goBranch(index);
+                },
+              ),
             ),
           ],
         ));

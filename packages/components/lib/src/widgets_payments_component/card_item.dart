@@ -1,3 +1,4 @@
+import 'package:components/components.dart';
 import 'package:utils/utils.dart';
 import 'package:components/src/widgets_bank_user_component/circular_bank_icon.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ class CardItem extends StatelessWidget {
     required this.selectedIconUrl,
     required this.iconGradientColors,
     required this.isSelected,
+    required this.appTheme,
   });
 
   // final int optionIndex;
@@ -25,6 +27,7 @@ class CardItem extends StatelessWidget {
   final String selectedIconUrl;
   final List<Color> iconGradientColors;
   final bool isSelected;
+  final AppTheme appTheme;
 
   @override
   Widget build(BuildContext context) {
@@ -36,10 +39,10 @@ class CardItem extends StatelessWidget {
         shadowColor: Colors.transparent,
         shape: isSelected
             ? RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(
+                    appTheme.appDefaults.borderRadiusSmall),
                 side: BorderSide(
-                    width: 2,
-                    color: Theme.of(context).colorScheme.inversePrimary))
+                    width: 1, color: appTheme.appDefaults.brandPrime))
             : null,
         margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 8),
         surfaceTintColor: Colors.transparent,

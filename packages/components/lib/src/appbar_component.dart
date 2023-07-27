@@ -29,44 +29,50 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      titleSpacing: 0,
       elevation: 0,
       backgroundColor: backgroundColor ?? appTheme.appDefaults.grayScaleWhite,
       automaticallyImplyLeading: false,
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          if (showBackIcon)
-            Material(
-              shape: const CircleBorder(),
-              clipBehavior: Clip.antiAlias,
-              color: Colors.transparent,
-              child: InkWell(
-                onTap: onBackButtonPress ??
-                    () {
-                      // optionsNotifier.resetSelectedIndexInListVewOnBackButtonPress();
-                      Navigator.pop(context);
-                    },
-                child: Padding(
-                  padding: const EdgeInsets.all(padding4),
-                  child: SvgPicture.asset(
-                    svgBackIconAsset ?? 'assets/icons/back_icon.svg',
-                    height: 36,
-                    width: 36,
+      title: Padding(
+        padding: const EdgeInsets.all(padding8),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            if (showBackIcon)
+              Material(
+                shape: const CircleBorder(),
+                clipBehavior: Clip.antiAlias,
+                color: Colors.transparent,
+                child: InkWell(
+                  onTap: onBackButtonPress ??
+                      () {
+                        // optionsNotifier.resetSelectedIndexInListVewOnBackButtonPress();
+                        Navigator.pop(context);
+                      },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: padding8),
+                    child: Center(
+                      child: SvgPicture.asset(
+                        svgBackIconAsset ?? 'assets/icons/back_icon.svg',
+                        height: spacing40,
+                        width: spacing40,
+                      ),
+                    ),
                   ),
                 ),
               ),
+            if (showBackIcon)
+              const SizedBox(
+                width: spacing8,
+              ),
+            Text(
+              title,
+              // 'Choose Category',
+              style: titleStyle ?? appTheme.textStyles.headings.h5,
             ),
-          if (showBackIcon)
-            const SizedBox(
-              width: 8,
-            ),
-          Text(
-            title,
-            // 'Choose Category',
-            style: titleStyle ?? appTheme.textStyles.headings.h5,
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

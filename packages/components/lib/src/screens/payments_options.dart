@@ -1,3 +1,4 @@
+import 'package:components/components.dart';
 import 'package:utils/utils.dart';
 import 'package:components/src/widgets_payments_component/card_item.dart';
 import 'package:components/src/widgets_payments_component/more.dart';
@@ -13,6 +14,7 @@ class PaymentOptions extends StatefulWidget {
     required this.selectedIndex,
     required this.selectMore,
     required this.title,
+    required this.appTheme,
   });
 
   final List<OptionItem> options;
@@ -21,6 +23,7 @@ class PaymentOptions extends StatefulWidget {
   final int selectedIndex;
   final void Function() selectMore;
   final String title;
+  final AppTheme appTheme;
 
   @override
   State<PaymentOptions> createState() => _PaymentOptionsState();
@@ -73,6 +76,7 @@ class _PaymentOptionsState extends State<PaymentOptions> {
                     final option = widget.options[index];
 
                     return CardItem(
+                      appTheme: widget.appTheme,
                       isSelected: index == widget.selectedIndex,
                       selectOption: () {
                         widget.selectOption(index);

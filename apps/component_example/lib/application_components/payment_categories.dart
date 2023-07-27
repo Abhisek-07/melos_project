@@ -46,6 +46,7 @@ class PaymentCategories extends HookConsumerWidget {
               children: [
                 Expanded(
                   child: PaymentOptions(
+                    appTheme: themeNotifier.theme,
                     title: title,
                     options: optionNotifier.visibleOptions
                         .map((visibleOption) => OptionItem(
