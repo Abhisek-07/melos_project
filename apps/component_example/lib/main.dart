@@ -102,6 +102,12 @@ void main() async {
       appDefaults: ThemeService.appDefaults,
       themeData: ThemeService.themeData);
   log(container.read(themeProvider).appTheme.appDefaults.toJson().toString());
+  log(container
+      .read(themeProvider)
+      .theme
+      .appDefaults
+      .borderRadiusSmall
+      .toString());
   runApp(UncontrolledProviderScope(
     container: container,
     child: const MyApp(),

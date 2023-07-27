@@ -1,6 +1,7 @@
 import 'package:component_example/model/user.dart';
 import 'package:component_example/providers/banks_provider.dart';
 import 'package:component_example/providers/selected_user_provider.dart';
+import 'package:component_example/providers/theme_provider.dart';
 import 'package:components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -18,11 +19,16 @@ class PreviewScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     User selectedUser = ref.watch(selectedUserProvider);
     BanksNotifier banksNotifier = ref.watch(banksProvider);
+    ThemeNotifier themeNotifier = ref.watch(themeProvider);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Preview'),
+      appBar: CustomAppBar(
+        title: 'Preview',
+        appTheme: themeNotifier.theme,
       ),
+      // AppBar(
+      //   title: const Text('Preview'),
+      // ),
       body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -40,6 +46,7 @@ class PreviewScreen extends HookConsumerWidget {
               height: 24,
             ),
             CustomElevatedButton(
+              appTheme: themeNotifier.theme,
               onPressed: () {
                 context.pushNamed('payment categories');
               },

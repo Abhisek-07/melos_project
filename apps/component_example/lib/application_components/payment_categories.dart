@@ -1,4 +1,5 @@
 import 'package:component_example/providers/options_provider.dart';
+import 'package:component_example/providers/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:components/components.dart';
 import 'package:go_router/go_router.dart';
@@ -14,6 +15,7 @@ class PaymentCategories extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ThemeNotifier themeNotifier = ref.watch(themeProvider);
     OptionsNotifier optionNotifier = ref.watch(optionsProvider);
 
     useMemoized(() {
@@ -26,10 +28,15 @@ class PaymentCategories extends HookConsumerWidget {
     // }
 
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
-      appBar: AppBar(
-        title: const Text('Component'),
+      backgroundColor: Color.fromARGB(255, 254, 250, 255),
+      // themeNotifier.theme.appDefaults.grayScaleWhite,
+      appBar: CustomAppBar(
+        title: 'Payment categories',
+        appTheme: themeNotifier.theme,
       ),
+      // AppBar(
+      //   title: const Text('Component'),
+      // ),
       body: optionNotifier.isLoadingOptions
           ? const Center(child: CircularProgressIndicator())
           : Column(
@@ -57,6 +64,7 @@ class PaymentCategories extends HookConsumerWidget {
                   height: 24,
                 ),
                 CustomElevatedButton(
+                    appTheme: themeNotifier.theme,
                     title: 'Send Receipt',
                     onPressed: optionNotifier.selectedIndex != -1
                         ? () {

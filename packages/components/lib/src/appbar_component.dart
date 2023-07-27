@@ -59,7 +59,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
           if (showBackIcon)
             const SizedBox(
-              width: 16,
+              width: 8,
             ),
           Text(
             title,

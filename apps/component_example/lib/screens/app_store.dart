@@ -1,4 +1,5 @@
 import 'package:component_example/providers/grid_data_provider.dart';
+import 'package:component_example/providers/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:components/components.dart';
@@ -10,6 +11,7 @@ class AppStore extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ThemeNotifier themeNotifier = ref.watch(themeProvider);
     GridNotifier gridNotifier = ref.watch(gridDataProvider);
 
     useMemoized(() {
@@ -58,9 +60,13 @@ class AppStore extends HookConsumerWidget {
     Flushbar? currentFlushBar;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('App Store'),
+      appBar: CustomAppBar(
+        title: 'App Store',
+        appTheme: themeNotifier.theme,
       ),
+      // AppBar(
+      //   title: const Text('App Store'),
+      // ),
       body: gridNotifier.isLoadingGridOptions
           ? const CircularProgressIndicator()
           : Column(

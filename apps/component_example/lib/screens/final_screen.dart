@@ -1,4 +1,5 @@
 import 'package:component_example/providers/selected_user_provider.dart';
+import 'package:component_example/providers/theme_provider.dart';
 import 'package:components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -9,6 +10,8 @@ class FinalScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ThemeNotifier themeNotifier = ref.watch(themeProvider);
+
     return WillPopScope(
       onWillPop: () async {
         ref.read(selectedUserProvider.notifier).clearUser();
@@ -30,6 +33,7 @@ class FinalScreen extends HookConsumerWidget {
                 height: 24,
               ),
               CustomElevatedButton(
+                  appTheme: themeNotifier.theme,
                   title: 'Okay',
                   onPressed: () {
                     ref.read(selectedUserProvider.notifier).clearUser();

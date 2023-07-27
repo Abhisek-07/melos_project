@@ -161,11 +161,14 @@ class AllOptions extends HookConsumerWidget {
                 },
               ),
             ),
-            CustomElevatedButton(onPressed: () {
-              optionsNotifier
-                  .selectListOption(optionsNotifier.selectedIndexInListView);
-              Navigator.pop(context);
-            })
+            CustomElevatedButton(
+                appTheme: themeNotifier.theme,
+                useFullScrrenWidth: true,
+                onPressed: () {
+                  optionsNotifier.selectListOption(
+                      optionsNotifier.selectedIndexInListView);
+                  Navigator.pop(context);
+                })
           ],
         ),
       ),

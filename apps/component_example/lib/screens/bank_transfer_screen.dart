@@ -1,5 +1,6 @@
 import 'package:component_example/providers/banks_provider.dart';
 import 'package:component_example/providers/selected_user_provider.dart';
+import 'package:component_example/providers/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:component_example/model/user.dart';
 import 'package:components/components.dart';
@@ -76,6 +77,7 @@ class BankTransferScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ThemeNotifier themeNotifier = ref.watch(themeProvider);
     BanksNotifier banksNotifier = ref.watch(banksProvider);
 
     User selectedUser = ref.read(selectedUserProvider);
@@ -87,9 +89,13 @@ class BankTransferScreen extends HookConsumerWidget {
         return false;
       },
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Bank Transfer'),
+        appBar: CustomAppBar(
+          title: 'Bank Transfer',
+          appTheme: themeNotifier.theme,
         ),
+        // AppBar(
+        //   title: const Text('Bank Transfer'),
+        // ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -117,6 +123,7 @@ class BankTransferScreen extends HookConsumerWidget {
                 const CircularProgressIndicator()
               else
                 CustomElevatedButton(
+                  appTheme: themeNotifier.theme,
                   onPressed: () {
                     context.pushNamed(
                       'preview screen',

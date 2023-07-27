@@ -1,6 +1,8 @@
 import 'package:component_example/providers/banks_provider.dart';
 import 'package:component_example/providers/selected_user_provider.dart';
+import 'package:component_example/providers/theme_provider.dart';
 import 'package:component_example/providers/users_provider.dart';
+import 'package:components/components.dart';
 import 'package:flutter/material.dart';
 
 import 'package:component_example/screens/user_list.dart';
@@ -13,6 +15,7 @@ class BankUserComponent extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ThemeNotifier themeNotifier = ref.watch(themeProvider);
     BanksNotifier banksNotifier = ref.watch(banksProvider);
     UserNotifier userNotifier = ref.watch(usersProvider);
 
@@ -42,7 +45,12 @@ class BankUserComponent extends HookConsumerWidget {
         return false;
       },
       child: Scaffold(
-        appBar: AppBar(title: const Text('New component')),
+        appBar: CustomAppBar(
+          title: 'Select Beneficiary',
+          appTheme: themeNotifier.theme,
+        ),
+
+        // AppBar(title: const Text('New component')),
         body: (banksNotifier.isFetchingBankList == true ||
                 userNotifier.isFetchingUserList == true)
             ? const Center(child: CircularProgressIndicator())

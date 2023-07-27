@@ -16,9 +16,15 @@ const double margin18 = 18;
 const double margin20 = 20;
 const double margin22 = 22;
 const double margin24 = 24;
-const double borderRadiusSmall = 8;
-const double borderRadiusMedium = 16;
-const double borderRadiusLarge = 24;
+// const double borderRadiusSmall = 8;
+// const double borderRadiusMedium = 16;
+// const double borderRadiusLarge = 24;
+const double spacing8 = 8;
+const double spacing16 = 16;
+const double spacing24 = 24;
+const double spacing32 = 32;
+const double spacing40 = 40;
+const double spacing48 = 48;
 
 final List<List<Color>> gradientColorsForBankIcon = [
   [

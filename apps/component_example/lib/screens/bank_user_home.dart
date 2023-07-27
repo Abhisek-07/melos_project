@@ -27,12 +27,19 @@ class BankUserHome extends ConsumerWidget {
         //   title: const Text('Bank User Home'),
         // ),
         body: Center(
-          child: TextButton(
+          child: CustomElevatedButton(
+            appTheme: themeNotifier.theme,
+            title: 'Bank User Component',
             onPressed: () {
               context.push('/bank-user-home/bank-user');
             },
-            child: const Text('Bank User Component'),
           ),
+          // TextButton(
+          //   onPressed: () {
+          //     context.push('/bank-user-home/bank-user');
+          //   },
+          //   child: const Text('Bank User Component'),
+          // ),
         ),
       ),
     );

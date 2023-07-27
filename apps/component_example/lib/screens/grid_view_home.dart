@@ -29,24 +29,45 @@ class GridViewHome extends ConsumerWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              TextButton(
+              CustomElevatedButton(
+                appTheme: themeNotifier.theme,
+                title: 'App Store Component',
                 onPressed: () {
                   context.push('/gridview-home/app-store');
                 },
-                child: const Text('App Store Component'),
               ),
-              TextButton(
+              // TextButton(
+              //   onPressed: () {
+              //     context.push('/gridview-home/app-store');
+              //   },
+              //   child: const Text('App Store Component'),
+              // ),
+              CustomElevatedButton(
+                appTheme: themeNotifier.theme,
+                title: 'Shake Widget',
                 onPressed: () {
                   context.pushNamed('shake');
                 },
-                child: const Text('Shake Widget'),
               ),
-              TextButton(
+              // TextButton(
+              //   onPressed: () {
+              //     context.pushNamed('shake');
+              //   },
+              //   child: const Text('Shake Widget'),
+              // ),
+              CustomElevatedButton(
+                appTheme: themeNotifier.theme,
+                title: 'File Picker',
                 onPressed: () {
                   context.pushNamed('file picker');
                 },
-                child: const Text('File Picker'),
-              ),
+              )
+              // TextButton(
+              //   onPressed: () {
+              //     context.pushNamed('file picker');
+              //   },
+              //   child: const Text('File Picker'),
+              // ),
             ],
           ),
         ),
