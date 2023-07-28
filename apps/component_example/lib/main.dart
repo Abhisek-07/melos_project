@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:component_example/app_theme_data_initializer/theme_service.dart';
 import 'package:component_example/l10n/l10n.dart';
+import 'package:component_example/providers/selected_locale_provider.dart';
 import 'package:component_example/providers/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,7 +11,7 @@ import 'package:go_router/go_router.dart';
 import 'package:component_example/app_router_config/router_config.dart';
 import 'package:utils/utils.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'l10n/l10n.dart';
+// import 'l10n/l10n.dart';
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
 
 class ScaffoldWithNestedNavigation extends ConsumerWidget {
@@ -70,7 +71,7 @@ class ScaffoldWithNestedNavigation extends ConsumerWidget {
                       Icons.balance,
                       color: themeNotifier.theme.appDefaults.grayScale70,
                     ),
-                    label: 'Home',
+                    label: AppLocalizations.of(context)?.home ?? 'Home',
                   ),
                   NavigationDestination(
                     selectedIcon: Icon(
@@ -81,7 +82,8 @@ class ScaffoldWithNestedNavigation extends ConsumerWidget {
                       Icons.balance,
                       color: themeNotifier.theme.appDefaults.grayScale70,
                     ),
-                    label: 'Bank User',
+                    label:
+                        AppLocalizations.of(context)?.bankUser ?? 'Bank User',
                   ),
                   NavigationDestination(
                     selectedIcon: Icon(
@@ -92,7 +94,8 @@ class ScaffoldWithNestedNavigation extends ConsumerWidget {
                       Icons.grid_3x3,
                       color: themeNotifier.theme.appDefaults.grayScale70,
                     ),
-                    label: 'App Store',
+                    label:
+                        AppLocalizations.of(context)?.appStore ?? 'App Store',
                   ),
                 ],
                 onDestinationSelected: (index) {
@@ -135,11 +138,12 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ThemeNotifier themeNotifier = ref.watch(themeProvider);
+    final selectedLanguage = ref.watch(selectedLocaleProvider);
 
     return MaterialApp.router(
       routerConfig: goRouter, theme: themeNotifier.theme.themedata,
       supportedLocales: L10n.all,
-      locale: const Locale('hi'),
+      locale: Locale(selectedLanguage),
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,

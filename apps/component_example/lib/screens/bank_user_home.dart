@@ -3,6 +3,7 @@ import 'package:components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import "package:flutter_gen/gen_l10n/app_localizations.dart";
 
 class BankUserHome extends ConsumerWidget {
   const BankUserHome({super.key});
@@ -19,7 +20,7 @@ class BankUserHome extends ConsumerWidget {
       child: Scaffold(
         appBar: CustomAppBar(
           // backgroundColor: Colors.green,
-          title: 'Bank User Home',
+          title: AppLocalizations.of(context)?.bankUserHome ?? 'Bank User Home',
           appTheme: themeNotifier.theme,
           showBackIcon: false,
         ),
@@ -29,7 +30,8 @@ class BankUserHome extends ConsumerWidget {
         body: Center(
           child: CustomElevatedButton(
             appTheme: themeNotifier.theme,
-            title: 'Bank User Component',
+            title: AppLocalizations.of(context)?.bankUserComponent ??
+                'Bank User Component',
             onPressed: () {
               context.push('/bank-user-home/bank-user');
             },

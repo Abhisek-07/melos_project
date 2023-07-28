@@ -8,5 +8,16 @@
         "description": "A programmer greeting"
     },
     "appTitle": "My Components",
-    "welcomeHome": "Welcome Home"
+    "welcomeHome": "Welcome Home",
+    "home": "Home",
+    "bankUser": "Bank User",
+    "appStore": "App Store",
+    "bankUserHome": "Bank User Home",
+    "bankUserComponent": "Bank User Component",
+    "appStoreComponent": "App Store Component",
+    "shakeWidget": "Shake Widget",
+    "filePicker": "File Picker",
+    "gridviewHome": "GridView Home",
+    "changeToEnglish" : "Change app language to English",
+    "changeToHindi" : "ऐप की भाषा को हिंदी में बदलें"
 }

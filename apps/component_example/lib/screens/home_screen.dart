@@ -1,9 +1,11 @@
+import 'package:component_example/providers/selected_locale_provider.dart';
 import 'package:component_example/providers/theme_provider.dart';
 import 'package:components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
+import 'package:utils/utils.dart';
 
 DateTime? currentBackPressTime;
 
@@ -29,7 +31,7 @@ class HomeScreen extends ConsumerWidget {
       onWillPop: onWillPop,
       child: Scaffold(
         appBar: CustomAppBar(
-          title: AppLocalizations.of(context)!.appTitle,
+          title: AppLocalizations.of(context)?.appTitle ?? 'My Components',
           appTheme: themeNotifier.theme,
           showBackIcon: false,
         ),
@@ -37,7 +39,38 @@ class HomeScreen extends ConsumerWidget {
         //   title: const Text('My components examples'),
         // ),
         body: Center(
-          child: Text(AppLocalizations.of(context)!.welcomeHome),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(AppLocalizations.of(context)?.welcomeHome ?? 'Welcome Home'),
+              const SizedBox(
+                height: spacing16,
+              ),
+              CustomElevatedButton(
+                  title: AppLocalizations.of(context)?.changeToEnglish ??
+                      'Change app language to english',
+                  onPressed: () {
+                    ref
+                        .read(selectedLocaleProvider.notifier)
+                        .changeAppLanguage('en');
+                  },
+                  appTheme: themeNotifier.theme),
+              const SizedBox(
+                height: spacing16,
+              ),
+              CustomElevatedButton(
+                  title: AppLocalizations.of(context)?.changeToHindi ??
+                      'Change app language to hindi',
+                  onPressed: () {
+                    ref
+                        .read(selectedLocaleProvider.notifier)
+                        .changeAppLanguage('hi');
+                  },
+                  appTheme: themeNotifier.theme),
+            ],
+          ),
         ),
       ),
     );

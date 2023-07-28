@@ -3,6 +3,7 @@ import 'package:components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import "package:flutter_gen/gen_l10n/app_localizations.dart";
 
 class GridViewHome extends ConsumerWidget {
   const GridViewHome({super.key});
@@ -18,7 +19,7 @@ class GridViewHome extends ConsumerWidget {
       },
       child: Scaffold(
         appBar: CustomAppBar(
-          title: 'GridView Home',
+          title: AppLocalizations.of(context)?.gridviewHome ?? 'GridView Home',
           appTheme: themeNotifier.theme,
           showBackIcon: false,
         ),
@@ -31,7 +32,8 @@ class GridViewHome extends ConsumerWidget {
             children: [
               CustomElevatedButton(
                 appTheme: themeNotifier.theme,
-                title: 'App Store Component',
+                title: AppLocalizations.of(context)?.appStoreComponent ??
+                    'App Store Component',
                 onPressed: () {
                   context.push('/gridview-home/app-store');
                 },
@@ -44,7 +46,8 @@ class GridViewHome extends ConsumerWidget {
               // ),
               CustomElevatedButton(
                 appTheme: themeNotifier.theme,
-                title: 'Shake Widget',
+                title:
+                    AppLocalizations.of(context)?.shakeWidget ?? 'Shake Widget',
                 onPressed: () {
                   context.pushNamed('shake');
                 },
@@ -57,7 +60,8 @@ class GridViewHome extends ConsumerWidget {
               // ),
               CustomElevatedButton(
                 appTheme: themeNotifier.theme,
-                title: 'File Picker',
+                title:
+                    AppLocalizations.of(context)?.filePicker ?? 'File Picker',
                 onPressed: () {
                   context.pushNamed('file picker');
                 },

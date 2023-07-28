@@ -90,6 +90,10 @@ class BankTransferScreen extends HookConsumerWidget {
       },
       child: Scaffold(
         appBar: CustomAppBar(
+          onBackButtonPress: () {
+            ref.read(selectedUserProvider.notifier).clearUser();
+            Navigator.pop(context);
+          },
           title: 'Bank Transfer',
           appTheme: themeNotifier.theme,
         ),

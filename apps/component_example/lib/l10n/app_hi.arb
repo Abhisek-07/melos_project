@@ -2,5 +2,16 @@
     "language": "हिंदी",
     "helloWorld": "हैलो वर्ल्ड!",
     "appTitle": "मेरे घटक",
-    "welcomeHome": "सुस्वागतम्"
+    "welcomeHome": "सुस्वागतम्",
+    "home": "घर",
+    "bankUser": "बैंक उपयोगकर्ता",
+    "appStore": "ऐप स्टोर",
+    "bankUserHome": "बैंक उपयोगकर्ता होम",
+    "bankUserComponent": "बैंक उपयोगकर्ता घटक",
+    "appStoreComponent": "ऐप स्टोर घटक",
+    "shakeWidget": "विजेट हिलाओ",
+    "filePicker": "फ़ाइल पिकर",
+    "gridviewHome": "ग्रिड व्यू होम",
+    "changeToEnglish" : "Change app language to English",
+    "changeToHindi" : "ऐप की भाषा को हिंदी में बदलें"
 }

@@ -46,6 +46,13 @@ class BankUserComponent extends HookConsumerWidget {
       },
       child: Scaffold(
         appBar: CustomAppBar(
+          onBackButtonPress: () {
+            if (selectedUser.name.isEmpty) {
+              Navigator.pop(context);
+            } else {
+              context.pushNamed('bank transfer');
+            }
+          },
           title: 'Select Beneficiary',
           appTheme: themeNotifier.theme,
         ),
