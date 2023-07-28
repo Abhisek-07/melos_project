@@ -1,12 +1,17 @@
 import 'dart:developer';
+// import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 import 'package:component_example/app_theme_data_initializer/theme_service.dart';
+import 'package:component_example/l10n/l10n.dart';
 import 'package:component_example/providers/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:component_example/app_router_config/router_config.dart';
 import 'package:utils/utils.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'l10n/l10n.dart';
+import "package:flutter_gen/gen_l10n/app_localizations.dart";
 
 class ScaffoldWithNestedNavigation extends ConsumerWidget {
   const ScaffoldWithNestedNavigation({
@@ -101,7 +106,9 @@ class ScaffoldWithNestedNavigation extends ConsumerWidget {
 }
 
 void main() async {
+  // WidgetsBinding widgetsBinding =
   WidgetsFlutterBinding.ensureInitialized();
+  // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await ThemeService.initAppStyles();
   final container = ProviderContainer();
   await container.read(themeProvider).initAppTheme(
@@ -115,6 +122,7 @@ void main() async {
       .appDefaults
       .borderRadiusSmall
       .toString());
+  // FlutterNativeSplash.remove();
   runApp(UncontrolledProviderScope(
     container: container,
     child: const MyApp(),
@@ -130,6 +138,14 @@ class MyApp extends ConsumerWidget {
 
     return MaterialApp.router(
       routerConfig: goRouter, theme: themeNotifier.theme.themedata,
+      supportedLocales: L10n.all,
+      locale: const Locale('hi'),
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
       // ThemeData(
       //   useMaterial3: true,
       //   colorScheme: ColorScheme.fromSeed(

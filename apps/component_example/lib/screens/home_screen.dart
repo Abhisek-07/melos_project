@@ -3,6 +3,7 @@ import 'package:components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import "package:flutter_gen/gen_l10n/app_localizations.dart";
 
 DateTime? currentBackPressTime;
 
@@ -28,15 +29,15 @@ class HomeScreen extends ConsumerWidget {
       onWillPop: onWillPop,
       child: Scaffold(
         appBar: CustomAppBar(
-          title: 'My components example',
+          title: AppLocalizations.of(context)!.appTitle,
           appTheme: themeNotifier.theme,
           showBackIcon: false,
         ),
         //     AppBar(
         //   title: const Text('My components examples'),
         // ),
-        body: const Center(
-          child: Text('Welcome Home'),
+        body: Center(
+          child: Text(AppLocalizations.of(context)!.welcomeHome),
         ),
       ),
     );

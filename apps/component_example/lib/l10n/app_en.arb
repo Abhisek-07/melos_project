@@ -1,0 +1,12 @@
+{
+    "language": "English",
+    "@language":{
+        "description": "The current language"
+    },
+    "helloWorld": "Hello World!",
+    "@helloWorld":{
+        "description": "A programmer greeting"
+    },
+    "appTitle": "My Components",
+    "welcomeHome": "Welcome Home"
+}

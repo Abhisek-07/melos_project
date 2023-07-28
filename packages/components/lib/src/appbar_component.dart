@@ -1,5 +1,6 @@
 import 'package:components/components.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:utils/utils.dart';
 
@@ -29,12 +30,18 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      systemOverlayStyle: SystemUiOverlayStyle(
+        statusBarColor: appTheme.appDefaults.grayScaleWhite,
+        statusBarIconBrightness: Brightness.dark,
+        statusBarBrightness: Brightness.light,
+      ),
       titleSpacing: 0,
       elevation: 0,
       backgroundColor: backgroundColor ?? appTheme.appDefaults.grayScaleWhite,
       automaticallyImplyLeading: false,
-      title: Padding(
-        padding: const EdgeInsets.all(padding16),
+      title: Container(
+        padding: EdgeInsets.symmetric(
+            horizontal: showBackIcon ? padding12 : padding16),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -44,14 +51,16 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 shape: const CircleBorder(),
                 clipBehavior: Clip.antiAlias,
                 color: Colors.transparent,
-                child: InkWell(
-                  onTap: onBackButtonPress ??
-                      () {
-                        // optionsNotifier.resetSelectedIndexInListVewOnBackButtonPress();
-                        Navigator.pop(context);
-                      },
-                  child: Container(
-                    // padding: const EdgeInsets.symmetric(horizontal: padding8),
+                child: SizedBox(
+                  width: spacing48,
+                  height: spacing48,
+                  // padding: const EdgeInsets.symmetric(horizontal: padding16),
+                  child: InkWell(
+                    onTap: onBackButtonPress ??
+                        () {
+                          // optionsNotifier.resetSelectedIndexInListVewOnBackButtonPress();
+                          Navigator.pop(context);
+                        },
                     child: Center(
                       child: SvgPicture.asset(
                         svgBackIconAsset ?? 'assets/icons/back_icon.svg',
