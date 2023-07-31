@@ -48,7 +48,8 @@ class ScaffoldWithNestedNavigation extends ConsumerWidget {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(
-                  horizontal: defaultPadding, vertical: padding4),
+                horizontal: defaultPadding,
+              ),
               child: Divider(
                 height: 1,
                 color: themeNotifier.theme.appDefaults.grayScale60,
