@@ -165,7 +165,7 @@ final goRouter = GoRouter(
                   },
                   routes: [
                     GoRoute(
-                      parentNavigatorKey: _rootNavigatorKey,
+                      // parentNavigatorKey: _rootNavigatorKey,
                       name: 'app store',
                       path: 'app-store',
 

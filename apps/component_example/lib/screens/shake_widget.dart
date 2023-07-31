@@ -66,36 +66,47 @@ class RotatingShakeWidget extends HookWidget {
     // }, []);
 
     return Scaffold(
-        body: Center(
-      child: GestureDetector(
-        onTap: () {
-          if (animationController.status == AnimationStatus.completed ||
-              animationController.status == AnimationStatus.dismissed) {
-            _startAnimation();
-          }
-        },
-        // animationController.isAnimating ? null : _handleTap,
-
-        child: AnimatedBuilder(
-          animation: animationController,
-          builder: (context, child) {
-            return Transform.rotate(
-              angle: animation * 3.1415926535 / 180.0,
-              child: child,
-            );
-          },
-          child: Container(
-            width: 100,
+        body: SafeArea(
+      child: Column(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(colors: [Colors.green, Colors.red])),
             height: 100,
-            color: Colors.blue,
-            child: const Center(
-              child: Text(
-                'Shaking Widget',
-                style: TextStyle(color: Colors.white),
+          ),
+          Center(
+            child: GestureDetector(
+              onTap: () {
+                if (animationController.status == AnimationStatus.completed ||
+                    animationController.status == AnimationStatus.dismissed) {
+                  _startAnimation();
+                }
+              },
+              // animationController.isAnimating ? null : _handleTap,
+
+              child: AnimatedBuilder(
+                animation: animationController,
+                builder: (context, child) {
+                  return Transform.rotate(
+                    angle: animation * 3.1415926535 / 180.0,
+                    child: child,
+                  );
+                },
+                child: Container(
+                  width: 100,
+                  height: 100,
+                  color: Colors.blue,
+                  child: const Center(
+                    child: Text(
+                      'Shaking Widget',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
               ),
             ),
           ),
-        ),
+        ],
       ),
     ));
   }

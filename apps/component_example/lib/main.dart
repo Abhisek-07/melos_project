@@ -6,6 +6,7 @@ import 'package:component_example/l10n/l10n.dart';
 import 'package:component_example/providers/selected_locale_provider.dart';
 import 'package:component_example/providers/theme_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:component_example/app_router_config/router_config.dart';
@@ -46,7 +47,8 @@ class ScaffoldWithNestedNavigation extends ConsumerWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
+              padding: const EdgeInsets.symmetric(
+                  horizontal: defaultPadding, vertical: padding4),
               child: Divider(
                 height: 1,
                 color: themeNotifier.theme.appDefaults.grayScale60,
@@ -58,56 +60,85 @@ class ScaffoldWithNestedNavigation extends ConsumerWidget {
                 highlightColor: Colors.transparent,
                 hoverColor: Colors.transparent,
               ),
-              child: NavigationBar(
+              child: BottomNavigationBar(
+                elevation: 0,
+                unselectedFontSize: 12,
+                selectedFontSize: 12,
+                selectedItemColor:
+                    themeNotifier.theme.appDefaults.grayScaleBlack,
+                unselectedItemColor:
+                    themeNotifier.theme.appDefaults.grayScale70,
                 backgroundColor: themeNotifier.theme.appDefaults.grayScaleWhite,
-                indicatorColor: themeNotifier.theme.appDefaults.grayScaleWhite,
-                selectedIndex: navigationShell.currentIndex,
-                destinations: [
-                  NavigationDestination(
-                    selectedIcon: SvgPicture.asset(
-                      'assets/icons/home.svg',
-                      colorFilter: ColorFilter.mode(
-                          themeNotifier.theme.appDefaults.grayScaleBlack,
-                          BlendMode.srcIn),
+                // indicatorColor: themeNotifier.theme.appDefaults.grayScaleWhite,
+                currentIndex: navigationShell.currentIndex,
+                items: [
+                  BottomNavigationBarItem(
+                    activeIcon: Padding(
+                      padding: const EdgeInsets.only(bottom: padding8),
+                      child: SvgPicture.asset(
+                        'assets/icons/home.svg',
+                        colorFilter: ColorFilter.mode(
+                            themeNotifier.theme.appDefaults.grayScaleBlack,
+                            BlendMode.srcIn),
+                      ),
                     ),
-                    icon: SvgPicture.asset(
-                      'assets/icons/home.svg',
-                      colorFilter: ColorFilter.mode(
-                          themeNotifier.theme.appDefaults.grayScale70,
-                          BlendMode.srcIn),
+                    icon: Padding(
+                      padding: const EdgeInsets.only(bottom: padding8),
+                      child: SvgPicture.asset(
+                        'assets/icons/home.svg',
+                        colorFilter: ColorFilter.mode(
+                            themeNotifier.theme.appDefaults.grayScale70,
+                            BlendMode.srcIn),
+                      ),
                     ),
                     label: AppLocalizations.of(context)?.home ?? 'Home',
                   ),
-                  NavigationDestination(
-                    selectedIcon: Icon(
-                      Icons.balance,
-                      color: themeNotifier.theme.appDefaults.grayScaleBlack,
+                  BottomNavigationBarItem(
+                    activeIcon: Padding(
+                      padding: const EdgeInsets.only(bottom: padding8),
+                      child: SvgPicture.asset(
+                        'assets/icons/capital.svg',
+                        colorFilter: ColorFilter.mode(
+                            themeNotifier.theme.appDefaults.grayScaleBlack,
+                            BlendMode.srcIn),
+                      ),
                     ),
-                    icon: Icon(
-                      Icons.balance,
-                      color: themeNotifier.theme.appDefaults.grayScale70,
+                    icon: Padding(
+                      padding: const EdgeInsets.only(bottom: padding8),
+                      child: SvgPicture.asset(
+                        'assets/icons/capital.svg',
+                        colorFilter: ColorFilter.mode(
+                            themeNotifier.theme.appDefaults.grayScale70,
+                            BlendMode.srcIn),
+                      ),
                     ),
                     label:
                         AppLocalizations.of(context)?.bankUser ?? 'Bank User',
                   ),
-                  NavigationDestination(
-                    selectedIcon: SvgPicture.asset(
-                      'assets/icons/app_store.svg',
-                      colorFilter: ColorFilter.mode(
-                          themeNotifier.theme.appDefaults.grayScaleBlack,
-                          BlendMode.srcIn),
+                  BottomNavigationBarItem(
+                    activeIcon: Padding(
+                      padding: const EdgeInsets.only(bottom: padding8),
+                      child: SvgPicture.asset(
+                        'assets/icons/app_store.svg',
+                        colorFilter: ColorFilter.mode(
+                            themeNotifier.theme.appDefaults.grayScaleBlack,
+                            BlendMode.srcIn),
+                      ),
                     ),
-                    icon: SvgPicture.asset(
-                      'assets/icons/app_store.svg',
-                      colorFilter: ColorFilter.mode(
-                          themeNotifier.theme.appDefaults.grayScale70,
-                          BlendMode.srcIn),
+                    icon: Padding(
+                      padding: const EdgeInsets.only(bottom: padding8),
+                      child: SvgPicture.asset(
+                        'assets/icons/app_store.svg',
+                        colorFilter: ColorFilter.mode(
+                            themeNotifier.theme.appDefaults.grayScale70,
+                            BlendMode.srcIn),
+                      ),
                     ),
                     label:
                         AppLocalizations.of(context)?.appStore ?? 'App Store',
                   ),
                 ],
-                onDestinationSelected: (index) {
+                onTap: (index) {
                   _goBranch(index);
                 },
               ),
@@ -118,6 +149,8 @@ class ScaffoldWithNestedNavigation extends ConsumerWidget {
 }
 
 void main() async {
+  SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
   // WidgetsBinding widgetsBinding =
   WidgetsFlutterBinding.ensureInitialized();
   // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);

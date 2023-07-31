@@ -30,6 +30,7 @@ class GridNotifier extends ChangeNotifier {
 
   void showBottomSheet(BuildContext context, GridOption option) {
     showModalBottomSheet(
+      useRootNavigator: true,
       context: context,
       builder: (context) {
         return Container(
