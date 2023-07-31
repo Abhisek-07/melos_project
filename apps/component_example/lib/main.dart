@@ -13,6 +13,7 @@ import 'package:utils/utils.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 // import 'l10n/l10n.dart';
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
+import 'package:flutter_svg/flutter_svg.dart';
 
 class ScaffoldWithNestedNavigation extends ConsumerWidget {
   const ScaffoldWithNestedNavigation({
@@ -63,13 +64,17 @@ class ScaffoldWithNestedNavigation extends ConsumerWidget {
                 selectedIndex: navigationShell.currentIndex,
                 destinations: [
                   NavigationDestination(
-                    selectedIcon: Icon(
-                      Icons.balance,
-                      color: themeNotifier.theme.appDefaults.grayScaleBlack,
+                    selectedIcon: SvgPicture.asset(
+                      'assets/icons/home.svg',
+                      colorFilter: ColorFilter.mode(
+                          themeNotifier.theme.appDefaults.grayScaleBlack,
+                          BlendMode.srcIn),
                     ),
-                    icon: Icon(
-                      Icons.balance,
-                      color: themeNotifier.theme.appDefaults.grayScale70,
+                    icon: SvgPicture.asset(
+                      'assets/icons/home.svg',
+                      colorFilter: ColorFilter.mode(
+                          themeNotifier.theme.appDefaults.grayScale70,
+                          BlendMode.srcIn),
                     ),
                     label: AppLocalizations.of(context)?.home ?? 'Home',
                   ),
@@ -86,13 +91,17 @@ class ScaffoldWithNestedNavigation extends ConsumerWidget {
                         AppLocalizations.of(context)?.bankUser ?? 'Bank User',
                   ),
                   NavigationDestination(
-                    selectedIcon: Icon(
-                      Icons.grid_3x3,
-                      color: themeNotifier.theme.appDefaults.grayScaleBlack,
+                    selectedIcon: SvgPicture.asset(
+                      'assets/icons/app_store.svg',
+                      colorFilter: ColorFilter.mode(
+                          themeNotifier.theme.appDefaults.grayScaleBlack,
+                          BlendMode.srcIn),
                     ),
-                    icon: Icon(
-                      Icons.grid_3x3,
-                      color: themeNotifier.theme.appDefaults.grayScale70,
+                    icon: SvgPicture.asset(
+                      'assets/icons/app_store.svg',
+                      colorFilter: ColorFilter.mode(
+                          themeNotifier.theme.appDefaults.grayScale70,
+                          BlendMode.srcIn),
                     ),
                     label:
                         AppLocalizations.of(context)?.appStore ?? 'App Store',

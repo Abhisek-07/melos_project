@@ -11,6 +11,7 @@ import 'package:component_example/screens/bank_user_home.dart';
 import 'package:component_example/screens/final_screen.dart';
 import 'package:component_example/screens/grid_view_home.dart';
 import 'package:component_example/screens/shake_widget.dart';
+import 'package:component_example/screens/splash_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 
@@ -21,9 +22,17 @@ final _shellNavigatorHomeKey = GlobalKey<NavigatorState>(debugLabel: 'Home');
 final _shellNavigatorBKey = GlobalKey<NavigatorState>(debugLabel: 'shellB');
 
 final goRouter = GoRouter(
-    initialLocation: '/home',
+    initialLocation: '/splash',
     navigatorKey: _rootNavigatorKey,
     routes: [
+      GoRoute(
+        path: '/splash',
+        name: 'splash',
+        pageBuilder: (context, state) {
+          return NoTransitionPage(
+              key: state.pageKey, child: const SplashScreen());
+        },
+      ),
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) {
           return ScaffoldWithNestedNavigation(navigationShell: navigationShell);
@@ -36,8 +45,21 @@ final goRouter = GoRouter(
                 name: 'home',
                 path: '/home',
                 pageBuilder: (context, state) {
-                  return NoTransitionPage(
-                      key: state.pageKey, child: const HomeScreen());
+                  return CustomTransitionPage(
+                    key: state.pageKey,
+                    child: const HomeScreen(),
+                    transitionDuration: const Duration(milliseconds: 300),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      return SlideTransition(
+                        position: Tween<Offset>(
+                                begin: const Offset(0, 1),
+                                end: const Offset(0, 0))
+                            .animate(animation),
+                        child: child,
+                      );
+                    },
+                  );
                 },
               )
             ],
