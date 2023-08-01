@@ -23,9 +23,6 @@ class GridViewHome extends ConsumerWidget {
           appTheme: themeNotifier.theme,
           showBackIcon: false,
         ),
-        // AppBar(
-        //   title: const Text('GridView Home'),
-        // ),
         body: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -38,12 +35,6 @@ class GridViewHome extends ConsumerWidget {
                   context.push('/gridview-home/app-store');
                 },
               ),
-              // TextButton(
-              //   onPressed: () {
-              //     context.push('/gridview-home/app-store');
-              //   },
-              //   child: const Text('App Store Component'),
-              // ),
               CustomElevatedButton(
                 appTheme: themeNotifier.theme,
                 title:
@@ -52,12 +43,6 @@ class GridViewHome extends ConsumerWidget {
                   context.pushNamed('shake');
                 },
               ),
-              // TextButton(
-              //   onPressed: () {
-              //     context.pushNamed('shake');
-              //   },
-              //   child: const Text('Shake Widget'),
-              // ),
               CustomElevatedButton(
                 appTheme: themeNotifier.theme,
                 title:
@@ -65,13 +50,15 @@ class GridViewHome extends ConsumerWidget {
                 onPressed: () {
                   context.pushNamed('file picker');
                 },
-              )
-              // TextButton(
-              //   onPressed: () {
-              //     context.pushNamed('file picker');
-              //   },
-              //   child: const Text('File Picker'),
-              // ),
+              ),
+              CustomElevatedButton(
+                appTheme: themeNotifier.theme,
+                title: AppLocalizations.of(context)?.filesAndFolders ??
+                    'Files & Folders',
+                onPressed: () {
+                  context.pushNamed('file folder');
+                },
+              ),
             ],
           ),
         ),

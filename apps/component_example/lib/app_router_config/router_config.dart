@@ -1,5 +1,6 @@
 import 'package:component_example/main.dart';
 import 'package:component_example/conditional_file_import_example/file_picker_example.dart';
+import 'package:component_example/screens/file_folder_example_screen.dart';
 import 'package:component_example/screens/home_screen.dart';
 import 'package:component_example/screens/preview_screen.dart';
 import 'package:component_example/application_components/bank_user_component.dart';
@@ -214,7 +215,28 @@ final goRouter = GoRouter(
                             key: state.pageKey,
                             child: const FilePickerExample());
                       },
-                    )
+                    ),
+                    GoRoute(
+                      parentNavigatorKey: _rootNavigatorKey,
+                      name: 'file folder',
+                      path: 'file-folder',
+                      pageBuilder: (context, state) {
+                        return CustomTransitionPage(
+                          key: state.pageKey,
+                          child: const FileFolderScreen(),
+                          transitionsBuilder:
+                              (context, animation, secondaryAnimation, child) {
+                            return SlideTransition(
+                              position: Tween(
+                                      begin: const Offset(1, 0),
+                                      end: const Offset(0, 0))
+                                  .animate(animation),
+                              child: child,
+                            );
+                          },
+                        );
+                      },
+                    ),
                   ])
             ],
           ),

@@ -23,7 +23,11 @@ class BankTransferScreen extends HookConsumerWidget {
       context: context,
       builder: (context) {
         return Padding(
-          padding: const EdgeInsets.all(24),
+          padding: EdgeInsets.fromLTRB(
+              defaultPadding,
+              defaultPadding,
+              defaultPadding,
+              MediaQuery.of(context).viewInsets.bottom + padding16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,

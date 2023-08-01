@@ -15,7 +15,6 @@ import 'package:utils/utils.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 // import 'l10n/l10n.dart';
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
-import 'package:flutter_svg/flutter_svg.dart';
 
 class ScaffoldWithNestedNavigation extends ConsumerWidget {
   const ScaffoldWithNestedNavigation({
@@ -99,71 +98,6 @@ class ScaffoldWithNestedNavigation extends ConsumerWidget {
                     label:
                         AppLocalizations.of(context)?.appStore ?? 'App Store',
                   ),
-                  // BottomNavigationBarItem(
-                  //   activeIcon: Padding(
-                  //     padding: const EdgeInsets.only(bottom: padding8),
-                  //     child: SvgPicture.asset(
-                  //       'assets/icons/home.svg',
-                  //       colorFilter: ColorFilter.mode(
-                  //           themeNotifier.theme.appDefaults.grayScaleBlack,
-                  //           BlendMode.srcIn),
-                  //     ),
-                  //   ),
-                  //   icon: Padding(
-                  //     padding: const EdgeInsets.only(bottom: padding8),
-                  //     child: SvgPicture.asset(
-                  //       'assets/icons/home.svg',
-                  //       colorFilter: ColorFilter.mode(
-                  //           themeNotifier.theme.appDefaults.grayScale70,
-                  //           BlendMode.srcIn),
-                  //     ),
-                  //   ),
-                  //   label: AppLocalizations.of(context)?.home ?? 'Home',
-                  // ),
-                  // BottomNavigationBarItem(
-                  //   activeIcon: Padding(
-                  //     padding: const EdgeInsets.only(bottom: padding8),
-                  //     child: SvgPicture.asset(
-                  //       'assets/icons/capital.svg',
-                  //       colorFilter: ColorFilter.mode(
-                  //           themeNotifier.theme.appDefaults.grayScaleBlack,
-                  //           BlendMode.srcIn),
-                  //     ),
-                  //   ),
-                  //   icon: Padding(
-                  //     padding: const EdgeInsets.only(bottom: padding8),
-                  //     child: SvgPicture.asset(
-                  //       'assets/icons/capital.svg',
-                  //       colorFilter: ColorFilter.mode(
-                  //           themeNotifier.theme.appDefaults.grayScale70,
-                  //           BlendMode.srcIn),
-                  //     ),
-                  //   ),
-                  //   label:
-                  //       AppLocalizations.of(context)?.bankUser ?? 'Bank User',
-                  // ),
-                  // BottomNavigationBarItem(
-                  //   activeIcon: Padding(
-                  //     padding: const EdgeInsets.only(bottom: padding8),
-                  //     child: SvgPicture.asset(
-                  //       'assets/icons/app_store.svg',
-                  //       colorFilter: ColorFilter.mode(
-                  //           themeNotifier.theme.appDefaults.grayScaleBlack,
-                  //           BlendMode.srcIn),
-                  //     ),
-                  //   ),
-                  //   icon: Padding(
-                  //     padding: const EdgeInsets.only(bottom: padding8),
-                  //     child: SvgPicture.asset(
-                  //       'assets/icons/app_store.svg',
-                  //       colorFilter: ColorFilter.mode(
-                  //           themeNotifier.theme.appDefaults.grayScale70,
-                  //           BlendMode.srcIn),
-                  //     ),
-                  //   ),
-                  //   label:
-                  //       AppLocalizations.of(context)?.appStore ?? 'App Store',
-                  // ),
                 ],
                 onTap: (index) {
                   _goBranch(index);

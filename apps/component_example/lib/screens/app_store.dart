@@ -71,7 +71,7 @@ class AppStore extends HookConsumerWidget {
       //           ),
       //         )),
       body: gridNotifier.isLoadingGridOptions
-          ? const CircularProgressIndicator()
+          ? const Center(child: CircularProgressIndicator())
           : NestedScrollView(
               physics: const ClampingScrollPhysics(),
               headerSliverBuilder: (context, innerBoxIsScrolled) {

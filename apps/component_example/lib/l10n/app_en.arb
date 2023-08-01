@@ -19,5 +19,6 @@
     "filePicker": "File Picker",
     "gridviewHome": "GridView Home",
     "changeToEnglish" : "Change app language to English",
-    "changeToHindi" : "ऐप की भाषा को हिंदी में बदलें"
+    "changeToHindi" : "ऐप की भाषा को हिंदी में बदलें",
+    "filesAndFolders": "Files & Folders"
 }
