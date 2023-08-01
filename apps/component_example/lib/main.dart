@@ -5,6 +5,7 @@ import 'package:component_example/app_theme_data_initializer/theme_service.dart'
 import 'package:component_example/l10n/l10n.dart';
 import 'package:component_example/providers/selected_locale_provider.dart';
 import 'package:component_example/providers/theme_provider.dart';
+import 'package:components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -39,16 +40,15 @@ class ScaffoldWithNestedNavigation extends ConsumerWidget {
     ThemeNotifier themeNotifier = ref.watch(themeProvider);
 
     return Scaffold(
-        // appBar: AppBar(
-        //   title: const Text('Components'),
-        // ),
         body: navigationShell,
         bottomNavigationBar: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: defaultPadding,
+              padding: const EdgeInsets.only(
+                left: defaultPadding,
+                right: defaultPadding,
+                bottom: padding4,
               ),
               child: Divider(
                 height: 1,
@@ -73,71 +73,97 @@ class ScaffoldWithNestedNavigation extends ConsumerWidget {
                 // indicatorColor: themeNotifier.theme.appDefaults.grayScaleWhite,
                 currentIndex: navigationShell.currentIndex,
                 items: [
-                  BottomNavigationBarItem(
-                    activeIcon: Padding(
-                      padding: const EdgeInsets.only(bottom: padding8),
-                      child: SvgPicture.asset(
-                        'assets/icons/home.svg',
-                        colorFilter: ColorFilter.mode(
-                            themeNotifier.theme.appDefaults.grayScaleBlack,
-                            BlendMode.srcIn),
-                      ),
-                    ),
-                    icon: Padding(
-                      padding: const EdgeInsets.only(bottom: padding8),
-                      child: SvgPicture.asset(
-                        'assets/icons/home.svg',
-                        colorFilter: ColorFilter.mode(
-                            themeNotifier.theme.appDefaults.grayScale70,
-                            BlendMode.srcIn),
-                      ),
-                    ),
+                  BottomNavBarItem(
+                    appTheme: themeNotifier.theme,
+                    activeColor: themeNotifier.theme.appDefaults.grayScaleBlack,
+                    activeIconPath: 'assets/icons/home.svg',
+                    iconPath: 'assets/icons/home.svg',
+                    inactiveColor: themeNotifier.theme.appDefaults.grayScale70,
                     label: AppLocalizations.of(context)?.home ?? 'Home',
                   ),
-                  BottomNavigationBarItem(
-                    activeIcon: Padding(
-                      padding: const EdgeInsets.only(bottom: padding8),
-                      child: SvgPicture.asset(
-                        'assets/icons/capital.svg',
-                        colorFilter: ColorFilter.mode(
-                            themeNotifier.theme.appDefaults.grayScaleBlack,
-                            BlendMode.srcIn),
-                      ),
-                    ),
-                    icon: Padding(
-                      padding: const EdgeInsets.only(bottom: padding8),
-                      child: SvgPicture.asset(
-                        'assets/icons/capital.svg',
-                        colorFilter: ColorFilter.mode(
-                            themeNotifier.theme.appDefaults.grayScale70,
-                            BlendMode.srcIn),
-                      ),
-                    ),
+                  BottomNavBarItem(
+                    appTheme: themeNotifier.theme,
+                    activeColor: themeNotifier.theme.appDefaults.grayScaleBlack,
+                    activeIconPath: 'assets/icons/capital.svg',
+                    iconPath: 'assets/icons/capital.svg',
+                    inactiveColor: themeNotifier.theme.appDefaults.grayScale70,
                     label:
                         AppLocalizations.of(context)?.bankUser ?? 'Bank User',
                   ),
-                  BottomNavigationBarItem(
-                    activeIcon: Padding(
-                      padding: const EdgeInsets.only(bottom: padding8),
-                      child: SvgPicture.asset(
-                        'assets/icons/app_store.svg',
-                        colorFilter: ColorFilter.mode(
-                            themeNotifier.theme.appDefaults.grayScaleBlack,
-                            BlendMode.srcIn),
-                      ),
-                    ),
-                    icon: Padding(
-                      padding: const EdgeInsets.only(bottom: padding8),
-                      child: SvgPicture.asset(
-                        'assets/icons/app_store.svg',
-                        colorFilter: ColorFilter.mode(
-                            themeNotifier.theme.appDefaults.grayScale70,
-                            BlendMode.srcIn),
-                      ),
-                    ),
+                  BottomNavBarItem(
+                    appTheme: themeNotifier.theme,
+                    activeColor: themeNotifier.theme.appDefaults.grayScaleBlack,
+                    activeIconPath: 'assets/icons/app_store.svg',
+                    iconPath: 'assets/icons/app_store.svg',
+                    inactiveColor: themeNotifier.theme.appDefaults.grayScale70,
                     label:
                         AppLocalizations.of(context)?.appStore ?? 'App Store',
                   ),
+                  // BottomNavigationBarItem(
+                  //   activeIcon: Padding(
+                  //     padding: const EdgeInsets.only(bottom: padding8),
+                  //     child: SvgPicture.asset(
+                  //       'assets/icons/home.svg',
+                  //       colorFilter: ColorFilter.mode(
+                  //           themeNotifier.theme.appDefaults.grayScaleBlack,
+                  //           BlendMode.srcIn),
+                  //     ),
+                  //   ),
+                  //   icon: Padding(
+                  //     padding: const EdgeInsets.only(bottom: padding8),
+                  //     child: SvgPicture.asset(
+                  //       'assets/icons/home.svg',
+                  //       colorFilter: ColorFilter.mode(
+                  //           themeNotifier.theme.appDefaults.grayScale70,
+                  //           BlendMode.srcIn),
+                  //     ),
+                  //   ),
+                  //   label: AppLocalizations.of(context)?.home ?? 'Home',
+                  // ),
+                  // BottomNavigationBarItem(
+                  //   activeIcon: Padding(
+                  //     padding: const EdgeInsets.only(bottom: padding8),
+                  //     child: SvgPicture.asset(
+                  //       'assets/icons/capital.svg',
+                  //       colorFilter: ColorFilter.mode(
+                  //           themeNotifier.theme.appDefaults.grayScaleBlack,
+                  //           BlendMode.srcIn),
+                  //     ),
+                  //   ),
+                  //   icon: Padding(
+                  //     padding: const EdgeInsets.only(bottom: padding8),
+                  //     child: SvgPicture.asset(
+                  //       'assets/icons/capital.svg',
+                  //       colorFilter: ColorFilter.mode(
+                  //           themeNotifier.theme.appDefaults.grayScale70,
+                  //           BlendMode.srcIn),
+                  //     ),
+                  //   ),
+                  //   label:
+                  //       AppLocalizations.of(context)?.bankUser ?? 'Bank User',
+                  // ),
+                  // BottomNavigationBarItem(
+                  //   activeIcon: Padding(
+                  //     padding: const EdgeInsets.only(bottom: padding8),
+                  //     child: SvgPicture.asset(
+                  //       'assets/icons/app_store.svg',
+                  //       colorFilter: ColorFilter.mode(
+                  //           themeNotifier.theme.appDefaults.grayScaleBlack,
+                  //           BlendMode.srcIn),
+                  //     ),
+                  //   ),
+                  //   icon: Padding(
+                  //     padding: const EdgeInsets.only(bottom: padding8),
+                  //     child: SvgPicture.asset(
+                  //       'assets/icons/app_store.svg',
+                  //       colorFilter: ColorFilter.mode(
+                  //           themeNotifier.theme.appDefaults.grayScale70,
+                  //           BlendMode.srcIn),
+                  //     ),
+                  //   ),
+                  //   label:
+                  //       AppLocalizations.of(context)?.appStore ?? 'App Store',
+                  // ),
                 ],
                 onTap: (index) {
                   _goBranch(index);
