@@ -14,3 +14,7 @@ scripts:
   clean:get:
     exec: flutter clean && flutter pub get
     description: Run ‘flutter clean && flutter pub get’ in all the packages
+
+  freezed:
+    exec: flutter pub run build_runner build --delete-conflicting-outputs
+    description: Run ‘flutter pub run build_runner build --delete-conflicting-outputs’ in all packages
