@@ -16,7 +16,7 @@ dependencies:
   freezed_annotation: ^2.4.1
   json_annotation: ^4.8.1
   utils:
-    path: /Users/abhisek.dash/Desktop/flutter_projects/melos_project/packages/utils
+    path: /Users/abhisek.dash/Desktop/poc_task_repo/melos_project/packages/utils
 
 dev_dependencies:
   flutter_test:

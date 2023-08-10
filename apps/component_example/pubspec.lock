@@ -172,8 +172,8 @@ packages:
   components:
     dependency: "direct main"
     description:
-      path: "/Users/abhisek.dash/Desktop/flutter_projects/melos_project/packages/components"
-      relative: false
+      path: "../../packages/components"
+      relative: true
     source: path
     version: "0.0.1"
   convert:
@@ -724,7 +724,7 @@ packages:
   utils:
     dependency: "direct main"
     description:
-      path: "/Users/abhisek.dash/Desktop/flutter_projects/melos_project/packages/utils"
+      path: "/Users/abhisek.dash/Desktop/poc_task_repo/melos_project/packages/utils"
       relative: false
     source: path
     version: "0.0.1"
