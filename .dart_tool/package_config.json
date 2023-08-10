@@ -69,7 +69,7 @@
     },
     {
       "name": "flutter",
-      "rootUri": "file:///Applications/tools/flutter/packages/flutter",
+      "rootUri": "file:///Users/abhisek.dash/Desktop/Development/flutter/packages/flutter",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -87,7 +87,7 @@
     },
     {
       "name": "flutter_web_plugins",
-      "rootUri": "file:///Applications/tools/flutter/packages/flutter_web_plugins",
+      "rootUri": "file:///Users/abhisek.dash/Desktop/Development/flutter/packages/flutter_web_plugins",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -249,7 +249,7 @@
     },
     {
       "name": "sky_engine",
-      "rootUri": "file:///Applications/tools/flutter/bin/cache/pkg/sky_engine",
+      "rootUri": "file:///Users/abhisek.dash/Desktop/Development/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -356,7 +356,7 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2023-07-28T09:35:39.127719Z",
+  "generated": "2023-08-10T10:47:34.709102Z",
   "generator": "pub",
   "generatorVersion": "3.0.6"
 }
