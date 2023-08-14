@@ -1,6 +1,6 @@
 import 'package:components/components.dart';
 import 'package:utils/utils.dart';
-import 'package:components/src/widgets_bank_user_component/circular_bank_icon.dart';
+// import 'package:components/src/circular_bank_icon.dart';
 import 'package:flutter/material.dart';
 // import 'package:utils/utils.dart';
 // import '../../../../../apps/component_example/lib/model/option.dart';

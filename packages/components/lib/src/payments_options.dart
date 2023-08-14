@@ -1,7 +1,7 @@
 import 'package:components/components.dart';
 import 'package:utils/utils.dart';
-import 'package:components/src/widgets_payments_component/card_item.dart';
-import 'package:components/src/widgets_payments_component/more.dart';
+// import 'package:components/src/widgets_payments_component/card_item.dart';
+// import 'package:components/src/widgets_payments_component/more.dart';
 import 'package:flutter/material.dart';
 // import '../../../../../apps/component_example/lib/model/option.dart';
 

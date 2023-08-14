@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 // import 'package:bank_user_component/widgets/circular_name_icon.dart';
 // import 'package:bank_user_component/widgets/circular_select_button.dart';
 // import 'package:components/src/widgets_bank_user_component/circular_name_icon.dart';
-import 'package:components/src/widgets_bank_user_component/circular_select_button.dart';
+import 'package:components/src/circular_select_button.dart';
 
 class CustomListTile extends StatelessWidget {
   const CustomListTile({
