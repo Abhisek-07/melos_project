@@ -48,6 +48,8 @@ dependencies:
   core:
     path: "../../../packages/core"
   shimmer: ^3.0.0
+  hooks_riverpod: ^2.3.7
+  flutter_hooks: ^0.20.0
 
 
 flutter_launcher_icons:

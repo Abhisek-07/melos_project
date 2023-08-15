@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:core/services/models/bus_routes/bus_routes.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+// import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // api_service to fetch json data and return list of Bus routes
 class ApiService {
@@ -36,8 +36,8 @@ class ApiService {
   }
 }
 
-final routesProvider = FutureProvider<List<BusRoute>>((ref) async {
-  ApiService apiService = ApiService();
-  final busRoutes = await apiService.getData();
-  return busRoutes;
-});
+// final routesProvider = FutureProvider<List<BusRoute>>((ref) async {
+//   ApiService apiService = ApiService();
+//   final busRoutes = await apiService.getData();
+//   return busRoutes;
+// });

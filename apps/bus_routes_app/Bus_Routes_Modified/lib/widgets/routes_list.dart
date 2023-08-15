@@ -1,6 +1,7 @@
 import 'dart:async';
 
 // import 'package:bus_routes_app/models/bus_routes.dart';
+import 'package:bus_routes_app/providers/routes_provider.dart';
 import 'package:core/core.dart';
 import 'package:bus_routes_app/utils/notification_service.dart';
 import 'package:bus_routes_app/widgets/routes_card.dart';
@@ -10,6 +11,7 @@ import 'package:workmanager/workmanager.dart';
 
 import 'package:bus_routes_app/utils/utils.dart';
 import 'package:bus_routes_app/utils/shared_preferences_helper.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // made global variable to use in workmanager and by this screen, the busRoutes list is available
 List<BusRoute> sortedRoutes = [];
@@ -42,7 +44,7 @@ void callbackDispatcher() {
   });
 }
 
-class RoutesList extends StatefulWidget {
+class RoutesList extends StatefulHookConsumerWidget {
   const RoutesList(
       {super.key, required this.busRoutes, required this.scrollerController});
 
@@ -50,10 +52,10 @@ class RoutesList extends StatefulWidget {
   final List<BusRoute> busRoutes;
 
   @override
-  State<RoutesList> createState() => _RoutesListState();
+  ConsumerState<RoutesList> createState() => _RoutesListState();
 }
 
-class _RoutesListState extends State<RoutesList> {
+class _RoutesListState extends ConsumerState<RoutesList> {
   Timer? timer;
 
   NotificationService notificationService = NotificationService();
@@ -67,10 +69,10 @@ class _RoutesListState extends State<RoutesList> {
   @override
   void initState() {
     super.initState();
-    updateData();
-    startTimer();
-    initializeNotifications();
-    configureWorkManager();
+    // updateData();
+    // startTimer();
+    // initializeNotifications();
+    // configureWorkManager();
   }
 
   void initializeNotifications() async {
@@ -142,7 +144,9 @@ class _RoutesListState extends State<RoutesList> {
 
   @override
   Widget build(BuildContext context) {
-    if (isLoading) {
+    RoutesNotifier routesNotifier = ref.watch(routesProvider);
+
+    if (routesNotifier.isRefreshing) {
       return Center(
         child: TweenAnimationBuilder<double>(
           tween: Tween<double>(begin: 0.0, end: 1),
@@ -155,21 +159,23 @@ class _RoutesListState extends State<RoutesList> {
     }
 
     return RefreshIndicator(
-      key: _refreshIndicatorKey,
-      onRefresh: _refreshList,
+      key: routesNotifier.refreshIndicatorKey,
+      // _refreshIndicatorKey,
+      onRefresh: routesNotifier.refreshList,
+      // _refreshList,
       child: ListView.builder(
           controller: widget.scrollerController,
-          itemCount: sortedRoutes.length,
+          itemCount: routesNotifier.sortedBusRoutes.length,
           itemBuilder: (context, index) {
-            final route = sortedRoutes[index];
+            final route = routesNotifier.sortedBusRoutes[index];
 
             int? remainingTime;
             String? tripEndTime;
 
             if (route.shortestTripStartTime != null) {
-              remainingTime =
-                  getRemainingTimeInMinutes(route.shortestTripStartTime!);
-              tripEndTime = getTripEndTime(
+              remainingTime = routesNotifier
+                  .getRemainingTimeInMinutes(route.shortestTripStartTime!);
+              tripEndTime = routesNotifier.getTripEndTime(
                   route.shortestTripStartTime!, route.tripDuration);
 
               // removed check if remainingTime <= 0, as it is handled in sortRoutesByTime by setting route.shortestTripStartTime to null for every route at first(maybe changed later in same method) on every call to sortRoutesByTime
