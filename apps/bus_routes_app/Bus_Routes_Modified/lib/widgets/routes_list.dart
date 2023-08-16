@@ -45,25 +45,28 @@ void callbackDispatcher() {
 }
 
 class RoutesList extends StatefulHookConsumerWidget {
-  const RoutesList(
-      {super.key, required this.busRoutes, required this.scrollerController});
+  const RoutesList({
+    super.key,
+    // required this.busRoutes,
+    required this.scrollerController,
+  });
 
   final ScrollController scrollerController;
-  final List<BusRoute> busRoutes;
+  // final List<BusRoute> busRoutes;
 
   @override
   ConsumerState<RoutesList> createState() => _RoutesListState();
 }
 
 class _RoutesListState extends ConsumerState<RoutesList> {
-  Timer? timer;
+  // Timer? timer;
 
-  NotificationService notificationService = NotificationService();
+  // NotificationService notificationService = NotificationService();
 
-  bool isLoading = false;
+  // bool isLoading = false;
 
-  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
-      GlobalKey<RefreshIndicatorState>();
+  // final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
+  //     GlobalKey<RefreshIndicatorState>();
 
   // timer is initialised inside initstate and first call to updateData to sort the routes, notifications and work manager are also initialized
   @override
@@ -72,12 +75,12 @@ class _RoutesListState extends ConsumerState<RoutesList> {
     // updateData();
     // startTimer();
     // initializeNotifications();
-    // configureWorkManager();
+    configureWorkManager();
   }
 
-  void initializeNotifications() async {
-    await notificationService.init();
-  }
+  // void initializeNotifications() async {
+  //   await notificationService.init();
+  // }
 
   // for configuring the work manager
   void configureWorkManager() async {
@@ -96,51 +99,51 @@ class _RoutesListState extends ConsumerState<RoutesList> {
   // dispose method
   @override
   void dispose() {
-    timer?.cancel();
+    // timer?.cancel();
     super.dispose();
   }
 
-  // updates sorted list of bus routes
-  void updateData() async {
-    setState(() {
-      sortedRoutes = sortRoutesByTime(widget.busRoutes);
-    });
+  // // updates sorted list of bus routes
+  // void updateData() async {
+  //   setState(() {
+  //     sortedRoutes = sortRoutesByTime(widget.busRoutes);
+  //   });
 
-    // saving sorted routes to shared preferences
-    await SharedPreferencesHelper.saveSortedRoutesToSharedPreferences(
-        sortedRoutes);
+  //   // saving sorted routes to shared preferences
+  //   await SharedPreferencesHelper.saveSortedRoutesToSharedPreferences(
+  //       sortedRoutes);
 
-    // logic for showing notifications when 5 minutes till next bus
-    if (sortedRoutes.isNotEmpty &&
-        sortedRoutes[0].shortestTripStartTime != null) {
-      final remainingTime =
-          getRemainingTimeInMinutes(sortedRoutes[0].shortestTripStartTime!);
+  //   // logic for showing notifications when 5 minutes till next bus
+  //   if (sortedRoutes.isNotEmpty &&
+  //       sortedRoutes[0].shortestTripStartTime != null) {
+  //     final remainingTime =
+  //         getRemainingTimeInMinutes(sortedRoutes[0].shortestTripStartTime!);
 
-      if (remainingTime == 5) {
-        notificationService.showNotification(
-            sortedRoutes[0].name, remainingTime);
-      }
-    }
-  }
+  //     if (remainingTime == 5) {
+  //       notificationService.showNotification(
+  //           sortedRoutes[0].name, remainingTime);
+  //     }
+  //   }
+  // }
 
-  // starts timer for periodic update of bus routes every minute
-  void startTimer() {
-    timer = Timer.periodic(const Duration(minutes: 1), (Timer timer) {
-      updateData();
-    });
-  }
+  // // starts timer for periodic update of bus routes every minute
+  // void startTimer() {
+  //   timer = Timer.periodic(const Duration(minutes: 1), (Timer timer) {
+  //     updateData();
+  //   });
+  // }
 
-  // function to be executed on pull to refresh
-  Future<void> _refreshList() async {
-    setState(() {
-      isLoading = true;
-    });
+  // // function to be executed on pull to refresh
+  // Future<void> _refreshList() async {
+  //   setState(() {
+  //     isLoading = true;
+  //   });
 
-    await Future.delayed(const Duration(milliseconds: 1500));
+  //   await Future.delayed(const Duration(milliseconds: 1500));
 
-    isLoading = false;
-    updateData();
-  }
+  //   isLoading = false;
+  //   updateData();
+  // }
 
   @override
   Widget build(BuildContext context) {

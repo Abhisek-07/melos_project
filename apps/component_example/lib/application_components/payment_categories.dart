@@ -21,14 +21,16 @@ class PaymentCategories extends HookConsumerWidget {
     useMemoized(() {
       optionNotifier.loadOptions();
       return null;
-    }, [optionNotifier.isLoadingOptions]);
+    }, [
+      // optionNotifier.isLoadingOptions
+    ]);
 
     // if (optionNotifier.isLoadingOptions) {
     //   return const Center(child: CircularProgressIndicator());
     // }
 
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 254, 250, 255),
+      backgroundColor: const Color.fromARGB(255, 254, 250, 255),
       // themeNotifier.theme.appDefaults.grayScaleWhite,
       appBar: CustomAppBar(
         title: 'Payment categories',

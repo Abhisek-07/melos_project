@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:component_example/model/grid_option.dart';
-import 'package:flutter/foundation.dart';
+// import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -20,6 +20,7 @@ class GridNotifier extends ChangeNotifier {
     List<dynamic> list = data["gridData"];
     gridOptionsList = list.map((item) => GridOption.fromJson(item)).toList();
     isLoadingGridOptions = false;
+    print(gridOptions);
     notifyListeners();
   }
 

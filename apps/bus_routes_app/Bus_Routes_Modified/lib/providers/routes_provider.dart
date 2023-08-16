@@ -89,10 +89,9 @@ class RoutesNotifier extends ChangeNotifier {
       final remainingTime =
           getRemainingTimeInMinutes(sortedRoutes[0].shortestTripStartTime!);
 
-      if (remainingTime == 5) {
-        notificationService.showNotification(
-            sortedRoutes[0].name, remainingTime);
-      }
+      // if (remainingTime == 5) {
+      notificationService.showNotification(sortedRoutes[0].name, remainingTime);
+      // }
     }
   }
 

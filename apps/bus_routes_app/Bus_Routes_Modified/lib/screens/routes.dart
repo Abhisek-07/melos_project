@@ -69,7 +69,7 @@ class _RoutesScreenState extends ConsumerState<RoutesScreen> {
     useMemoized(() {
       routesNotifier.init();
       return null;
-    }, [routesNotifier.isFetchingBusData]);
+    }, []);
 
     if (routesNotifier.isFetchingBusData) {
       return const ShimmerLoadingScreen();
@@ -100,7 +100,7 @@ class _RoutesScreenState extends ConsumerState<RoutesScreen> {
             Padding(
               padding: const EdgeInsets.fromLTRB(30, 80, 30, 30),
               child: RoutesList(
-                  busRoutes: routesNotifier.routes,
+                  // busRoutes: routesNotifier.routes,
                   scrollerController: _scrollController),
               // FutureBuilder(
               //   future: ref.watch(routesProvider.future),

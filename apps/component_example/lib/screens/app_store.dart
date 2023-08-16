@@ -19,7 +19,9 @@ class AppStore extends HookConsumerWidget {
     useMemoized(() {
       gridNotifier.getGridOptions();
       return null;
-    }, [gridNotifier.isLoadingGridOptions]);
+    }, [
+      // gridNotifier.isLoadingGridOptions
+    ]);
 
     Flushbar? currentFlushBar;
 

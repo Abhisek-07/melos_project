@@ -24,12 +24,16 @@ class BankUserComponent extends HookConsumerWidget {
     useMemoized(() {
       banksNotifier.fetchBankAccounts();
       return null;
-    }, [banksNotifier.isFetchingBankList]);
+    }, [
+      // banksNotifier.isFetchingBankList
+    ]);
 
     useMemoized(() {
       userNotifier.fetchUserList();
       return null;
-    }, [userNotifier.isFetchingUserList]);
+    }, [
+      // userNotifier.isFetchingUserList
+    ]);
 
     // if (banksNotifier.isFetchingBankList == true ||
     //     userNotifier.isFetchingUserList == true) {
@@ -58,8 +62,8 @@ class BankUserComponent extends HookConsumerWidget {
         ),
 
         // AppBar(title: const Text('New component')),
-        body: (banksNotifier.isFetchingBankList == true ||
-                userNotifier.isFetchingUserList == true)
+        body: (banksNotifier.isFetchingBankList ||
+                userNotifier.isFetchingUserList)
             ? const Center(child: CircularProgressIndicator())
             : const UserList(),
       ),
