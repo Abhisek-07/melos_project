@@ -8,6 +8,37 @@ import 'package:bus_routes_app/utils/notification_service.dart';
 
 // import 'package:bus_routes_app/utils/utils.dart';
 import 'package:bus_routes_app/utils/shared_preferences_helper.dart';
+import 'package:workmanager/workmanager.dart';
+
+Workmanager workmanager = Workmanager();
+
+// method executed by workmanager
+void callbackDispatcher() {
+  workmanager.executeTask((task, inputData) async {
+    if (task == "sortRoutesTask") {
+      final container = ProviderContainer().read(routesProvider);
+      container.sortedRoutes =
+          await SharedPreferencesHelper.getSortedRoutesFromSharedPreferences();
+      container.sortedRoutes = container.sortRoutesByTime(container.routes);
+
+      if (container.sortedRoutes.isNotEmpty &&
+          container.sortedRoutes[0].shortestTripStartTime != null) {
+        final remainingTime = container.getRemainingTimeInMinutes(
+            container.sortedRoutes[0].shortestTripStartTime!);
+        // NotificationService notificationService = NotificationService();
+        // await notificationService.init();
+        // await NotificationService.init();
+        NotificationService.showNotification(
+            container.sortedRoutes[0].name, remainingTime);
+      }
+
+      await SharedPreferencesHelper.saveSortedRoutesToSharedPreferences(
+          container.sortedRoutes);
+    }
+
+    return Future.value(true);
+  });
+}
 
 final timeFormat = DateFormat('HH:mm');
 
@@ -15,7 +46,7 @@ class RoutesNotifier extends ChangeNotifier {
   RoutesNotifier(this.ref) : super();
 
   final Ref ref;
-  NotificationService notificationService = NotificationService();
+  // NotificationService notificationService = NotificationService();
   List<BusRoute> busRoutes = [];
 
   List<BusRoute> get routes => busRoutes;
@@ -32,11 +63,12 @@ class RoutesNotifier extends ChangeNotifier {
 
   void init() async {
     await getBusRoutesData();
-    await initializeNotifications();
+    // await initializeNotifications();
     await updateDataFirstTime();
     await startTimer();
     isFetchingBusData = false;
     notifyListeners();
+    configureWorkManager();
   }
 
   Future<void> getBusRoutesData() async {
@@ -52,9 +84,9 @@ class RoutesNotifier extends ChangeNotifier {
     });
   }
 
-  Future<void> initializeNotifications() async {
-    await notificationService.init();
-  }
+  // Future<void> initializeNotifications() async {
+  //   await notificationService.init();
+  // }
 
   // updates sorted list of bus routes
   void updateData() async {
@@ -71,7 +103,7 @@ class RoutesNotifier extends ChangeNotifier {
           getRemainingTimeInMinutes(sortedRoutes[0].shortestTripStartTime!);
 
       if (remainingTime == 5) {
-        notificationService.showNotification(
+        NotificationService.showNotification(
             sortedRoutes[0].name, remainingTime);
       }
     }
@@ -90,7 +122,7 @@ class RoutesNotifier extends ChangeNotifier {
           getRemainingTimeInMinutes(sortedRoutes[0].shortestTripStartTime!);
 
       // if (remainingTime == 5) {
-      notificationService.showNotification(sortedRoutes[0].name, remainingTime);
+      NotificationService.showNotification(sortedRoutes[0].name, remainingTime);
       // }
     }
   }
@@ -103,6 +135,20 @@ class RoutesNotifier extends ChangeNotifier {
     await Future.delayed(const Duration(milliseconds: 1500));
     isRefreshing = false;
     updateData();
+  }
+
+  // for configuring the work manager
+  void configureWorkManager() async {
+    await workmanager.initialize(
+      callbackDispatcher,
+      isInDebugMode: true,
+    );
+    workmanager.registerPeriodicTask(
+      "sortRoutesTask",
+      "sortRoutesTask",
+      frequency: const Duration(minutes: 1),
+      initialDelay: const Duration(seconds: 10),
+    );
   }
 
 // sorts the trips of each route (only upcoming trips, i.e, trips after current time) and then sorts

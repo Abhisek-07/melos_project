@@ -1,48 +1,49 @@
-import 'dart:async';
+// import 'dart:async';
 
 // import 'package:bus_routes_app/models/bus_routes.dart';
 import 'package:bus_routes_app/providers/routes_provider.dart';
 import 'package:core/core.dart';
-import 'package:bus_routes_app/utils/notification_service.dart';
+// import 'package:bus_routes_app/utils/notification_service.dart';
 import 'package:bus_routes_app/widgets/routes_card.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:workmanager/workmanager.dart';
+// import 'package:workmanager/workmanager.dart';
 
-import 'package:bus_routes_app/utils/utils.dart';
-import 'package:bus_routes_app/utils/shared_preferences_helper.dart';
+// import 'package:bus_routes_app/utils/utils.dart';
+// import 'package:bus_routes_app/utils/shared_preferences_helper.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // made global variable to use in workmanager and by this screen, the busRoutes list is available
-List<BusRoute> sortedRoutes = [];
-Workmanager workmanager = Workmanager();
+// List<BusRoute> sortedRoutes = [];
+// Workmanager workmanager = Workmanager();
 final timeFormat = DateFormat('HH:mm');
 
-// method executed by workmanager
-void callbackDispatcher() {
-  workmanager.executeTask((task, inputData) async {
-    if (task == "sortRoutesTask") {
-      sortedRoutes =
-          await SharedPreferencesHelper.getSortedRoutesFromSharedPreferences();
-      sortedRoutes = sortRoutesByTime(sortedRoutes);
+// // method executed by workmanager
+// void callbackDispatcher() {
+//   workmanager.executeTask((task, inputData) async {
+//     if (task == "sortRoutesTask") {
+//       sortedRoutes =
+//           await SharedPreferencesHelper.getSortedRoutesFromSharedPreferences();
+//       sortedRoutes = sortRoutesByTime(sortedRoutes);
 
-      if (sortedRoutes.isNotEmpty &&
-          sortedRoutes[0].shortestTripStartTime != null) {
-        final remainingTime =
-            getRemainingTimeInMinutes(sortedRoutes[0].shortestTripStartTime!);
-        NotificationService notificationService = NotificationService();
-        await notificationService.init();
-        notificationService.showNotification(
-            sortedRoutes[0].name, remainingTime);
-      }
+//       if (sortedRoutes.isNotEmpty &&
+//           sortedRoutes[0].shortestTripStartTime != null) {
+//         final remainingTime =
+//             getRemainingTimeInMinutes(sortedRoutes[0].shortestTripStartTime!);
+//         // NotificationService notificationService = NotificationService();
+//         // await notificationService.init();
+//         await NotificationService.init();
+//         NotificationService.showNotification(
+//             sortedRoutes[0].name, remainingTime);
+//       }
 
-      await SharedPreferencesHelper.saveSortedRoutesToSharedPreferences(
-          sortedRoutes);
-    }
+//       await SharedPreferencesHelper.saveSortedRoutesToSharedPreferences(
+//           sortedRoutes);
+//     }
 
-    return Future.value(true);
-  });
-}
+//     return Future.value(true);
+//   });
+// }
 
 class RoutesList extends StatefulHookConsumerWidget {
   const RoutesList({
@@ -75,26 +76,26 @@ class _RoutesListState extends ConsumerState<RoutesList> {
     // updateData();
     // startTimer();
     // initializeNotifications();
-    configureWorkManager();
+    // configureWorkManager();
   }
 
   // void initializeNotifications() async {
   //   await notificationService.init();
   // }
 
-  // for configuring the work manager
-  void configureWorkManager() async {
-    await workmanager.initialize(
-      callbackDispatcher,
-      isInDebugMode: true,
-    );
-    workmanager.registerPeriodicTask(
-      "sortRoutesTask",
-      "sortRoutesTask",
-      frequency: const Duration(minutes: 1),
-      initialDelay: const Duration(seconds: 2),
-    );
-  }
+  // // for configuring the work manager
+  // void configureWorkManager() async {
+  //   await workmanager.initialize(
+  //     callbackDispatcher,
+  //     isInDebugMode: true,
+  //   );
+  //   workmanager.registerPeriodicTask(
+  //     "sortRoutesTask",
+  //     "sortRoutesTask",
+  //     frequency: const Duration(minutes: 1),
+  //     initialDelay: const Duration(seconds: 2),
+  //   );
+  // }
 
   // dispose method
   @override
@@ -170,7 +171,7 @@ class _RoutesListState extends ConsumerState<RoutesList> {
           controller: widget.scrollerController,
           itemCount: routesNotifier.sortedBusRoutes.length,
           itemBuilder: (context, index) {
-            final route = routesNotifier.sortedBusRoutes[index];
+            final BusRoute route = routesNotifier.sortedBusRoutes[index];
 
             int? remainingTime;
             String? tripEndTime;
