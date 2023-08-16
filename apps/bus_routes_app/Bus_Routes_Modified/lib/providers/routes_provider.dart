@@ -17,23 +17,23 @@ void callbackDispatcher() {
   workmanager.executeTask((task, inputData) async {
     if (task == "sortRoutesTask") {
       final container = ProviderContainer().read(routesProvider);
-      container.sortedRoutes =
+      List<BusRoute> sortedRoutes =
           await SharedPreferencesHelper.getSortedRoutesFromSharedPreferences();
-      container.sortedRoutes = container.sortRoutesByTime(container.routes);
+      sortedRoutes = container.sortRoutesByTime(sortedRoutes);
 
-      if (container.sortedRoutes.isNotEmpty &&
-          container.sortedRoutes[0].shortestTripStartTime != null) {
-        final remainingTime = container.getRemainingTimeInMinutes(
-            container.sortedRoutes[0].shortestTripStartTime!);
+      if (sortedRoutes.isNotEmpty &&
+          sortedRoutes[0].shortestTripStartTime != null) {
+        final remainingTime = container
+            .getRemainingTimeInMinutes(sortedRoutes[0].shortestTripStartTime!);
         // NotificationService notificationService = NotificationService();
         // await notificationService.init();
-        // await NotificationService.init();
+        await NotificationService.init();
         NotificationService.showNotification(
-            container.sortedRoutes[0].name, remainingTime);
+            sortedRoutes[0].name, remainingTime);
       }
 
       await SharedPreferencesHelper.saveSortedRoutesToSharedPreferences(
-          container.sortedRoutes);
+          sortedRoutes);
     }
 
     return Future.value(true);
