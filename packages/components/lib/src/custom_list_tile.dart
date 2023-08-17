@@ -24,6 +24,7 @@ class CustomListTile extends StatelessWidget {
     this.borderRadius = 8,
     this.titleTextStyle,
     this.subtitleTextStyle,
+    this.paddingAroundListTile,
   });
 
   final String title;
@@ -43,49 +44,53 @@ class CustomListTile extends StatelessWidget {
   final double borderRadius;
   final TextStyle? titleTextStyle;
   final TextStyle? subtitleTextStyle;
+  final EdgeInsetsGeometry? paddingAroundListTile;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: showBorder
-          ? BoxDecoration(
-              border: Border.all(
-                color: borderColor,
-                width: borderWidth,
-              ),
-              borderRadius: BorderRadius.circular(borderRadius),
-            )
-          : null,
-      child: ListTile(
-        contentPadding: contentPadding,
-
-        // tileColor:
-        //     isSelected ? Theme.of(context).colorScheme.secondaryContainer : null,
-        onTap: onTap,
-        // Icon Component
-        leading: showLeading ? leadingIcon : null,
-        // Text Component
-        title: Padding(
-          padding: EdgeInsets.only(bottom: subtitle != null ? 4 : 0),
-          child: Text(
-            title,
-            style:
-                titleTextStyle ?? const TextStyle(fontWeight: FontWeight.bold),
-          ),
-        ),
-        // subtitle component
-        subtitle: subtitle != null
-            ? Text(
-                subtitle!,
-                style: subtitleTextStyle ??
-                    const TextStyle(color: Color.fromARGB(101, 0, 0, 0)),
+    return Padding(
+      padding: paddingAroundListTile ?? const EdgeInsets.all(0),
+      child: Container(
+        decoration: showBorder
+            ? BoxDecoration(
+                border: Border.all(
+                  color: borderColor,
+                  width: borderWidth,
+                ),
+                borderRadius: BorderRadius.circular(borderRadius),
               )
             : null,
-        // Radio button component
-        trailing: showTrailing
-            ? trailingWidget ??
-                CircularSelectButton(isSelected: isSelected ?? false)
-            : null,
+        child: ListTile(
+          contentPadding: contentPadding,
+
+          // tileColor:
+          //     isSelected ? Theme.of(context).colorScheme.secondaryContainer : null,
+          onTap: onTap,
+          // Icon Component
+          leading: showLeading ? leadingIcon : null,
+          // Text Component
+          title: Padding(
+            padding: EdgeInsets.only(bottom: subtitle != null ? 4 : 0),
+            child: Text(
+              title,
+              style: titleTextStyle ??
+                  const TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
+          // subtitle component
+          subtitle: subtitle != null
+              ? Text(
+                  subtitle!,
+                  style: subtitleTextStyle ??
+                      const TextStyle(color: Color.fromARGB(101, 0, 0, 0)),
+                )
+              : null,
+          // Radio button component
+          trailing: showTrailing
+              ? trailingWidget ??
+                  CircularSelectButton(isSelected: isSelected ?? false)
+              : null,
+        ),
       ),
     );
   }

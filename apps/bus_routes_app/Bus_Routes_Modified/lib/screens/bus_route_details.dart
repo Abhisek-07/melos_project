@@ -85,36 +85,52 @@ class BusRouteDetails extends ConsumerWidget {
             for (var trip in route.trips)
               timeFormat.parse(trip.tripStartTime).isAfter(
                       timeFormat.parse(timeFormat.format(DateTime.now())))
-                  ? CustomListTile(
-                      title: 'Arriving',
-                      titleTextStyle: theme.textStyles.body.medium
-                          .copyWith(color: Colors.green),
-                      leadingIcon: Image.asset(
-                        "assets/images/bus.png",
-                      ),
-                      subtitle:
-                          'in : ${routesNotifier.getRemainingTimeInMinutes(trip.tripStartTime)} minutes',
-                      showTrailing: true,
-                      trailingWidget: SizedBox(
-                        width: 100,
-                        height: 40,
-                        child: Text(
-                            '${trip.tripStartTime} : ${routesNotifier.getTripEndTime(trip.tripStartTime, route.tripDuration)}'),
+                  ? Opacity(
+                      opacity: 1,
+                      child: CustomListTile(
+                        title: 'Arriving',
+                        titleTextStyle: theme.textStyles.body.medium
+                            .copyWith(color: Colors.green),
+                        leadingIcon: Image.asset(
+                          "assets/images/bus.png",
+                        ),
+                        subtitle:
+                            'in : ${routesNotifier.getRemainingTimeInMinutes(trip.tripStartTime)} minutes',
+                        showTrailing: true,
+                        trailingWidget: Text(
+                          '${trip.tripStartTime} : ${routesNotifier.getTripEndTime(trip.tripStartTime, route.tripDuration)}',
+                          style: theme.textStyles.body.small
+                              .copyWith(color: theme.appDefaults.grayScale80),
+                        ),
+                        subtitleTextStyle: theme.textStyles.body.small
+                            .copyWith(color: theme.appDefaults.grayScale80),
+                        showBorder: true,
+                        borderRadius: 16,
+                        paddingAroundListTile: const EdgeInsets.all(8),
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 8, horizontal: 16),
                       ),
                     )
-                  : CustomListTile(
-                      title: 'Departed',
-                      titleTextStyle: theme.textStyles.body.medium
-                          .copyWith(color: Colors.red),
-                      leadingIcon: Image.asset(
-                        "assets/images/bus.png",
-                      ),
-                      showTrailing: true,
-                      trailingWidget: SizedBox(
-                        width: 40,
-                        height: 40,
-                        child: Text(
-                            '${trip.tripStartTime} : ${routesNotifier.getTripEndTime(trip.tripStartTime, route.tripDuration)}'),
+                  : Opacity(
+                      opacity: 0.6,
+                      child: CustomListTile(
+                        title: 'Departed',
+                        titleTextStyle: theme.textStyles.body.medium
+                            .copyWith(color: Colors.red),
+                        leadingIcon: Image.asset(
+                          "assets/images/bus.png",
+                        ),
+                        showTrailing: true,
+                        trailingWidget: Text(
+                          '${trip.tripStartTime} : ${routesNotifier.getTripEndTime(trip.tripStartTime, route.tripDuration)}',
+                          style: theme.textStyles.body.small
+                              .copyWith(color: theme.appDefaults.grayScale80),
+                        ),
+                        showBorder: true,
+                        borderRadius: 16,
+                        paddingAroundListTile: const EdgeInsets.all(8),
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 8, horizontal: 16),
                       ),
                     ),
         ],
