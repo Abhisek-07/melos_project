@@ -10,12 +10,13 @@ class CustomListTile extends StatelessWidget {
     super.key,
     required this.title,
     this.subtitle,
-    required this.isSelected,
-    required this.index,
-    required this.onTap,
+    this.isSelected,
+    this.index,
+    this.onTap,
     this.showTrailing = false,
     this.showLeading = true,
-    required this.leadingIcon,
+    this.leadingIcon,
+    this.trailingWidget,
     this.contentPadding = const EdgeInsets.fromLTRB(24, 8, 24, 8),
     this.showBorder = false,
     this.borderColor = Colors.grey,
@@ -28,12 +29,13 @@ class CustomListTile extends StatelessWidget {
   final String title;
 
   final String? subtitle;
-  final bool isSelected;
-  final int index;
-  final void Function() onTap;
+  final bool? isSelected;
+  final int? index;
+  final void Function()? onTap;
   final bool showTrailing;
   final bool showLeading;
-  final Widget leadingIcon;
+  final Widget? leadingIcon;
+  final Widget? trailingWidget;
   final EdgeInsetsGeometry contentPadding;
   final bool showBorder;
   final Color borderColor;
@@ -80,8 +82,10 @@ class CustomListTile extends StatelessWidget {
               )
             : null,
         // Radio button component
-        trailing:
-            showTrailing ? CircularSelectButton(isSelected: isSelected) : null,
+        trailing: showTrailing
+            ? trailingWidget ??
+                CircularSelectButton(isSelected: isSelected ?? false)
+            : null,
       ),
     );
   }

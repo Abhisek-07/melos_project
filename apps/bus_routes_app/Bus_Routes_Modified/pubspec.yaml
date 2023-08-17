@@ -47,6 +47,8 @@ dependencies:
   shared_preferences: ^2.1.2
   core:
     path: "../../../packages/core"
+  components:
+    path: "../../../packages/components"
   shimmer: ^3.0.0
   hooks_riverpod: ^2.3.7
   flutter_hooks: ^0.20.0
@@ -81,7 +83,9 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/images/bus.png
+    - assets/icons/
+    - assets/app_defaults.json
+    - assets/images/
     # - android/app/src/main/res/drawable/app_icon.png
   #   - images/a_dot_ham.jpeg
 

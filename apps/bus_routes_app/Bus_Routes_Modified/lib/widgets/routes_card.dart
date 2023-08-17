@@ -1,26 +1,32 @@
 // import 'package:bus_routes_app/models/bus_routes.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:bus_routes_app/widgets/route_alert_dialog.dart';
+// import 'package:bus_routes_app/widgets/route_alert_dialog.dart';
 
 class RouteCard extends StatelessWidget {
   const RouteCard(
-      {super.key, required this.route, this.remainingTime, this.tripEndTime});
+      {super.key,
+      required this.route,
+      this.remainingTime,
+      this.tripEndTime,
+      this.onTap});
 
   final BusRoute route;
   final int? remainingTime;
   final String? tripEndTime;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        showDialog(
-            context: context,
-            builder: (context) {
-              return RouteAlertDialog(route: route);
-            });
-      },
+      onTap: onTap,
+      // () {
+      //   showDialog(
+      //       context: context,
+      //       builder: (context) {
+      //         return RouteAlertDialog(route: route);
+      //       });
+      // },
       child: Center(
         child: Card(
           margin: const EdgeInsets.only(bottom: 30),

@@ -1,9 +1,11 @@
 import 'package:bus_routes_app/providers/routes_provider.dart';
+import 'package:bus_routes_app/screens/bus_route_details.dart';
 import 'package:core/core.dart';
 import 'package:bus_routes_app/widgets/routes_card.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+// import 'package:bus_routes_app/widgets/route_alert_dialog.dart';
 
 final timeFormat = DateFormat('HH:mm');
 
@@ -56,6 +58,18 @@ class RoutesList extends HookConsumerWidget {
 
             // widget for route card
             return RouteCard(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (context) {
+                    return BusRouteDetails(route: route);
+                  },
+                ));
+                // showDialog(
+                //     context: context,
+                //     builder: (context) {
+                //       return RouteAlertDialog(route: route);
+                //     });
+              },
               route: route,
               remainingTime: remainingTime,
               tripEndTime: tripEndTime,
