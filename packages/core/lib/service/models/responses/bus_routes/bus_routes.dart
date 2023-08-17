@@ -1,4 +1,4 @@
-import 'package:core/services/models/bus_routes/trip.dart';
+import 'package:core/service/models/responses/bus_routes/trip.dart';
 
 // model for bus route to store each route info and it has a shortestTripStartTime property that is extracted by sorting the trips list
 class BusRoute {

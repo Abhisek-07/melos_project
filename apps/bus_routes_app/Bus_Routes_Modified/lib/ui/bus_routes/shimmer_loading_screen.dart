@@ -27,8 +27,8 @@ class ShimmerLoadingScreen extends StatelessWidget {
           children: <Widget>[
             Shimmer.fromColors(
               baseColor: Colors.grey.shade300, // Set your desired base color
-              highlightColor: const Color.fromARGB(
-                  255, 17, 15, 15), // Set your desired highlight color
+              highlightColor:
+                  Colors.grey.shade100, // Set your desired highlight color
               child: Container(
                 width: double.infinity,
                 height: 200,

@@ -1,6 +1,6 @@
-import 'package:bus_routes_app/screens/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:bus_routes_app/ui/bus_routes/bus_routes_list_screen.dart';
 
 // splash screen that displays when app starts
 class SplashScreen extends StatelessWidget {
@@ -30,7 +30,7 @@ class SplashScreen extends StatelessWidget {
         ],
       ),
       backgroundColor: Colors.white,
-      nextScreen: const RoutesScreen(),
+      nextScreen: const BusRoutesListScreen(),
       splashIconSize: 150,
       splashTransition: SplashTransition.slideTransition,
       duration: 1000,

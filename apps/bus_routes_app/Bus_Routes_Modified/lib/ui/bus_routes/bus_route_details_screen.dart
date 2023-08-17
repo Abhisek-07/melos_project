@@ -1,4 +1,4 @@
-import 'package:bus_routes_app/providers/routes_provider.dart';
+import 'package:bus_routes_app/ui/bus_routes/providers/routes_provider.dart';
 import 'package:bus_routes_app/providers/theme_provider.dart';
 import 'package:components/components.dart';
 import 'package:core/core.dart';
@@ -8,8 +8,8 @@ import 'package:intl/intl.dart';
 
 final timeFormat = DateFormat('HH:mm');
 
-class BusRouteDetails extends ConsumerWidget {
-  const BusRouteDetails({super.key, required this.route});
+class BusRouteDetailsScreen extends ConsumerWidget {
+  const BusRouteDetailsScreen({super.key, required this.route});
 
   final BusRoute route;
 

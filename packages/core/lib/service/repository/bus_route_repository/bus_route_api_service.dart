@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:core/services/models/bus_routes/bus_routes.dart';
+import 'package:core/service/models/responses/bus_routes/bus_routes.dart';
 import 'package:http/http.dart' as http;
 // import 'package:flutter_riverpod/flutter_riverpod.dart';
 

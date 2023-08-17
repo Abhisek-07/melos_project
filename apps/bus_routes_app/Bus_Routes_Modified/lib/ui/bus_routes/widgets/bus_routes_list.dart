@@ -1,7 +1,7 @@
-import 'package:bus_routes_app/providers/routes_provider.dart';
-import 'package:bus_routes_app/screens/bus_route_details.dart';
+import 'package:bus_routes_app/ui/bus_routes/bus_route_details_screen.dart';
+import 'package:bus_routes_app/ui/bus_routes/providers/routes_provider.dart';
+import 'package:bus_routes_app/ui/bus_routes/widgets/bus_routes_card.dart';
 import 'package:core/core.dart';
-import 'package:bus_routes_app/widgets/routes_card.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -9,8 +9,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final timeFormat = DateFormat('HH:mm');
 
-class RoutesList extends HookConsumerWidget {
-  const RoutesList({
+class BusRoutesList extends HookConsumerWidget {
+  const BusRoutesList({
     super.key,
     required this.scrollerController,
   });
@@ -57,11 +57,11 @@ class RoutesList extends HookConsumerWidget {
             // removed sorting logic fro trips from here, as they are sorted in sortRoutesByTime method itself (routes as well as their trips)
 
             // widget for route card
-            return RouteCard(
+            return BusRouteCard(
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(
                   builder: (context) {
-                    return BusRouteDetails(route: route);
+                    return BusRouteDetailsScreen(route: route);
                   },
                 ));
                 // showDialog(

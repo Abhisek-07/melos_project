@@ -3,8 +3,8 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 // import 'package:bus_routes_app/widgets/route_alert_dialog.dart';
 
-class RouteCard extends StatelessWidget {
-  const RouteCard(
+class BusRouteCard extends StatelessWidget {
+  const BusRouteCard(
       {super.key,
       required this.route,
       this.remainingTime,

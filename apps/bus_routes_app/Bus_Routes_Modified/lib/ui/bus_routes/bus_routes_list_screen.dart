@@ -1,24 +1,24 @@
 // import 'package:bus_routes_app/models/bus_routes.dart';
 // import 'package:bus_routes_app/service/api_service.dart';
-import 'package:bus_routes_app/providers/routes_provider.dart';
-import 'package:bus_routes_app/screens/shimmer_loading_screen.dart';
+import 'package:bus_routes_app/ui/bus_routes/providers/routes_provider.dart';
+import 'package:bus_routes_app/ui/bus_routes/shimmer_loading_screen.dart';
+import 'package:bus_routes_app/ui/bus_routes/widgets/bus_routes_list.dart';
 // import 'package:core/core.dart';
-import 'package:bus_routes_app/widgets/routes_list.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class RoutesScreen extends StatefulHookConsumerWidget {
-  const RoutesScreen({super.key});
+class BusRoutesListScreen extends StatefulHookConsumerWidget {
+  const BusRoutesListScreen({super.key});
 
   @override
-  ConsumerState<RoutesScreen> createState() {
-    return _RoutesScreenState();
+  ConsumerState<BusRoutesListScreen> createState() {
+    return _BusRoutesListScreenState();
   }
 }
 
-class _RoutesScreenState extends ConsumerState<RoutesScreen> {
+class _BusRoutesListScreenState extends ConsumerState<BusRoutesListScreen> {
   final ScrollController _scrollController = ScrollController();
   bool _isAppBarVisible = true;
   final double _appBarHeight = 200.0;
@@ -99,7 +99,7 @@ class _RoutesScreenState extends ConsumerState<RoutesScreen> {
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(30, 80, 30, 30),
-              child: RoutesList(
+              child: BusRoutesList(
                   // busRoutes: routesNotifier.routes,
                   scrollerController: _scrollController),
               // FutureBuilder(

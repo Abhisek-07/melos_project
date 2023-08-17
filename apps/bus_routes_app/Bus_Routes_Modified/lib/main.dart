@@ -1,7 +1,7 @@
-import 'package:bus_routes_app/app_theme_data_initializer/theme_service.dart';
-import 'package:bus_routes_app/screens/splash_screen.dart';
-import 'package:bus_routes_app/utils/notification_service.dart';
-import 'package:bus_routes_app/utils/themes.dart';
+import 'package:bus_routes_app/providers/theme_defaults_provider.dart';
+import 'package:bus_routes_app/ui/splash/splash_screen.dart';
+import 'package:bus_routes_app/service/notification_service.dart';
+import 'package:bus_routes_app/service/themes.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 

@@ -4,10 +4,10 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:bus_routes_app/utils/notification_service.dart';
+import 'package:bus_routes_app/service/notification_service.dart';
 
 // import 'package:bus_routes_app/utils/utils.dart';
-import 'package:bus_routes_app/utils/shared_preferences_helper.dart';
+import 'package:bus_routes_app/service/shared_preferences_helper.dart';
 import 'package:workmanager/workmanager.dart';
 
 Workmanager workmanager = Workmanager();
