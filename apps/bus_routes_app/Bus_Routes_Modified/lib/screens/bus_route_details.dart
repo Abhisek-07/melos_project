@@ -120,6 +120,7 @@ class BusRouteDetails extends ConsumerWidget {
                         leadingIcon: Image.asset(
                           "assets/images/bus.png",
                         ),
+                        subtitle: "----",
                         showTrailing: true,
                         trailingWidget: Text(
                           '${trip.tripStartTime} : ${routesNotifier.getTripEndTime(trip.tripStartTime, route.tripDuration)}',
