@@ -15,7 +15,7 @@ class BankUserComponent extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ThemeNotifier themeNotifier = ref.watch(themeProvider);
+    final theme = ref.watch(themeProvider);
     BanksNotifier banksNotifier = ref.watch(banksProvider);
     UserNotifier userNotifier = ref.watch(usersProvider);
 
@@ -58,7 +58,7 @@ class BankUserComponent extends HookConsumerWidget {
             }
           },
           title: 'Select Beneficiary',
-          appTheme: themeNotifier.theme,
+          appTheme: theme,
         ),
 
         // AppBar(title: const Text('New component')),

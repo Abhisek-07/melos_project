@@ -19,12 +19,12 @@ class PreviewScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     User selectedUser = ref.watch(selectedUserProvider);
     BanksNotifier banksNotifier = ref.watch(banksProvider);
-    ThemeNotifier themeNotifier = ref.watch(themeProvider);
+    final theme = ref.watch(themeProvider);
 
     return Scaffold(
       appBar: CustomAppBar(
         title: 'Preview',
-        appTheme: themeNotifier.theme,
+        appTheme: theme,
       ),
       // AppBar(
       //   title: const Text('Preview'),
@@ -46,7 +46,7 @@ class PreviewScreen extends HookConsumerWidget {
               height: 24,
             ),
             CustomElevatedButton(
-              appTheme: themeNotifier.theme,
+              appTheme: theme,
               onPressed: () {
                 context.pushNamed('payment categories');
               },

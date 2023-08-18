@@ -14,7 +14,7 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ThemeNotifier themeNotifier = ref.watch(themeProvider);
+    final theme = ref.watch(themeProvider);
 
     Future<bool> onWillPop() {
       DateTime now = DateTime.now();
@@ -32,7 +32,7 @@ class HomeScreen extends ConsumerWidget {
       child: Scaffold(
         appBar: CustomAppBar(
           title: AppLocalizations.of(context)?.appTitle ?? 'My Components',
-          appTheme: themeNotifier.theme,
+          appTheme: theme,
           showBackIcon: false,
         ),
         //     AppBar(
@@ -56,7 +56,7 @@ class HomeScreen extends ConsumerWidget {
                         .read(selectedLocaleProvider.notifier)
                         .changeAppLanguage('en');
                   },
-                  appTheme: themeNotifier.theme),
+                  appTheme: theme),
               const SizedBox(
                 height: spacing16,
               ),
@@ -68,7 +68,7 @@ class HomeScreen extends ConsumerWidget {
                         .read(selectedLocaleProvider.notifier)
                         .changeAppLanguage('hi');
                   },
-                  appTheme: themeNotifier.theme),
+                  appTheme: theme),
             ],
           ),
         ),

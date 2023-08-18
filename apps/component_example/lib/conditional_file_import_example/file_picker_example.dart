@@ -16,10 +16,10 @@ class FilePickerExample extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ThemeNotifier themeNotifier = ref.watch(themeProvider);
+    final theme = ref.watch(themeProvider);
 
     return Scaffold(
-      appBar: CustomAppBar(title: 'File Picker', appTheme: themeNotifier.theme),
+      appBar: CustomAppBar(title: 'File Picker', appTheme: theme),
       body: Center(
         child: ElevatedButton(
           onPressed: () {

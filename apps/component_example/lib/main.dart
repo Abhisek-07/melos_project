@@ -1,9 +1,10 @@
-import 'dart:developer';
+// import 'dart:developer';
 // import 'package:flutter_native_splash/flutter_native_splash.dart';
 
-import 'package:component_example/app_theme_data_initializer/theme_service.dart';
+// import 'package:component_example/app_theme_data_initializer/theme_service.dart';
 import 'package:component_example/l10n/l10n.dart';
 import 'package:component_example/providers/selected_locale_provider.dart';
+import 'package:component_example/providers/theme_defaults_provider.dart';
 import 'package:component_example/providers/theme_provider.dart';
 import 'package:components/components.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +37,7 @@ class ScaffoldWithNestedNavigation extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ThemeNotifier themeNotifier = ref.watch(themeProvider);
+    final theme = ref.watch(themeProvider);
 
     return Scaffold(
         body: navigationShell,
@@ -51,7 +52,7 @@ class ScaffoldWithNestedNavigation extends ConsumerWidget {
               ),
               child: Divider(
                 height: 1,
-                color: themeNotifier.theme.appDefaults.grayScale60,
+                color: theme.appDefaults.grayScale60,
               ),
             ),
             Theme(
@@ -64,37 +65,35 @@ class ScaffoldWithNestedNavigation extends ConsumerWidget {
                 elevation: 0,
                 unselectedFontSize: 12,
                 selectedFontSize: 12,
-                selectedItemColor:
-                    themeNotifier.theme.appDefaults.grayScaleBlack,
-                unselectedItemColor:
-                    themeNotifier.theme.appDefaults.grayScale70,
-                backgroundColor: themeNotifier.theme.appDefaults.grayScaleWhite,
+                selectedItemColor: theme.appDefaults.grayScaleBlack,
+                unselectedItemColor: theme.appDefaults.grayScale70,
+                backgroundColor: theme.appDefaults.grayScaleWhite,
                 // indicatorColor: themeNotifier.theme.appDefaults.grayScaleWhite,
                 currentIndex: navigationShell.currentIndex,
                 items: [
                   BottomNavBarItem(
-                    appTheme: themeNotifier.theme,
-                    activeColor: themeNotifier.theme.appDefaults.grayScaleBlack,
+                    appTheme: theme,
+                    activeColor: theme.appDefaults.grayScaleBlack,
                     activeIconPath: 'assets/icons/home.svg',
                     iconPath: 'assets/icons/home.svg',
-                    inactiveColor: themeNotifier.theme.appDefaults.grayScale70,
+                    inactiveColor: theme.appDefaults.grayScale70,
                     label: AppLocalizations.of(context)?.home ?? 'Home',
                   ),
                   BottomNavBarItem(
-                    appTheme: themeNotifier.theme,
-                    activeColor: themeNotifier.theme.appDefaults.grayScaleBlack,
+                    appTheme: theme,
+                    activeColor: theme.appDefaults.grayScaleBlack,
                     activeIconPath: 'assets/icons/capital.svg',
                     iconPath: 'assets/icons/capital.svg',
-                    inactiveColor: themeNotifier.theme.appDefaults.grayScale70,
+                    inactiveColor: theme.appDefaults.grayScale70,
                     label:
                         AppLocalizations.of(context)?.bankUser ?? 'Bank User',
                   ),
                   BottomNavBarItem(
-                    appTheme: themeNotifier.theme,
-                    activeColor: themeNotifier.theme.appDefaults.grayScaleBlack,
+                    appTheme: theme,
+                    activeColor: theme.appDefaults.grayScaleBlack,
                     activeIconPath: 'assets/icons/app_store.svg',
                     iconPath: 'assets/icons/app_store.svg',
-                    inactiveColor: themeNotifier.theme.appDefaults.grayScale70,
+                    inactiveColor: theme.appDefaults.grayScale70,
                     label:
                         AppLocalizations.of(context)?.appStore ?? 'App Store',
                   ),
@@ -115,22 +114,13 @@ void main() async {
   // WidgetsBinding widgetsBinding =
   WidgetsFlutterBinding.ensureInitialized();
   // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  await ThemeService.initAppStyles();
-  final container = ProviderContainer();
-  await container.read(themeProvider).initAppTheme(
-      textStyles: ThemeService.textStyles,
-      appDefaults: ThemeService.appDefaults,
-      themeData: ThemeService.themeData);
-  log(container.read(themeProvider).appTheme.appDefaults.toJson().toString());
-  log(container
-      .read(themeProvider)
-      .theme
-      .appDefaults
-      .borderRadiusSmall
-      .toString());
+  ThemeDefaultsProvider themeDefaultsProviderImpl =
+      await ThemeDefaultsProvider.init();
   // FlutterNativeSplash.remove();
-  runApp(UncontrolledProviderScope(
-    container: container,
+  runApp(ProviderScope(
+    overrides: [
+      themeDefaultsProvider.overrideWithValue(themeDefaultsProviderImpl)
+    ],
     child: const MyApp(),
   ));
 }
@@ -140,11 +130,11 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ThemeNotifier themeNotifier = ref.watch(themeProvider);
+    final theme = ref.watch(themeProvider);
     final selectedLanguage = ref.watch(selectedLocaleProvider);
 
     return MaterialApp.router(
-      routerConfig: goRouter, theme: themeNotifier.theme.themedata,
+      routerConfig: goRouter, theme: theme.themedata,
       supportedLocales: L10n.all,
       locale: Locale(selectedLanguage),
       localizationsDelegates: const [

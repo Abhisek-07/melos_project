@@ -13,7 +13,7 @@ class AppStore extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ThemeNotifier themeNotifier = ref.watch(themeProvider);
+    final theme = ref.watch(themeProvider);
     GridNotifier gridNotifier = ref.watch(gridDataProvider);
 
     useMemoized(() {
@@ -97,8 +97,7 @@ class AppStore extends HookConsumerWidget {
                               defaultPadding),
                           decoration: BoxDecoration(
                               gradient: LinearGradient(
-                                  colors: themeNotifier
-                                      .theme.appDefaults.gradientPrime1)),
+                                  colors: theme.appDefaults.gradientPrime1)),
                           child: Column(
                             children: [
                               Row(
@@ -107,18 +106,16 @@ class AppStore extends HookConsumerWidget {
                                 children: [
                                   Text(
                                     'App Store',
-                                    style: themeNotifier
-                                        .theme.textStyles.bodyBold.large
+                                    style: theme.textStyles.bodyBold.large
                                         .copyWith(
-                                            color: themeNotifier.theme
+                                            color: theme
                                                 .appDefaults.grayScaleWhite,
                                             fontSize: spacing24),
                                   ),
                                   const Spacer(),
                                   Icon(
                                     Icons.search,
-                                    color: themeNotifier
-                                        .theme.appDefaults.grayScaleWhite,
+                                    color: theme.appDefaults.grayScaleWhite,
                                     size: spacing40,
                                   ),
                                   const SizedBox(
@@ -131,10 +128,8 @@ class AppStore extends HookConsumerWidget {
                               ),
                               Text(
                                 'You can add extra points in your submenu for fast switching between pages',
-                                style: themeNotifier.theme.textStyles.body.small
-                                    .copyWith(
-                                        color: themeNotifier
-                                            .theme.appDefaults.grayScaleWhite),
+                                style: theme.textStyles.body.small.copyWith(
+                                    color: theme.appDefaults.grayScaleWhite),
                               ),
                             ],
                           ),

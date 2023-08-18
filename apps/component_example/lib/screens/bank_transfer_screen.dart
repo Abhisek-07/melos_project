@@ -81,7 +81,7 @@ class BankTransferScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ThemeNotifier themeNotifier = ref.watch(themeProvider);
+    final theme = ref.watch(themeProvider);
     BanksNotifier banksNotifier = ref.watch(banksProvider);
 
     User selectedUser = ref.read(selectedUserProvider);
@@ -99,7 +99,7 @@ class BankTransferScreen extends HookConsumerWidget {
             Navigator.pop(context);
           },
           title: 'Bank Transfer',
-          appTheme: themeNotifier.theme,
+          appTheme: theme,
         ),
         // AppBar(
         //   title: const Text('Bank Transfer'),
@@ -131,7 +131,7 @@ class BankTransferScreen extends HookConsumerWidget {
                 const CircularProgressIndicator()
               else
                 CustomElevatedButton(
-                  appTheme: themeNotifier.theme,
+                  appTheme: theme,
                   onPressed: () {
                     context.pushNamed(
                       'preview screen',

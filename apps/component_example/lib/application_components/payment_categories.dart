@@ -15,7 +15,7 @@ class PaymentCategories extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ThemeNotifier themeNotifier = ref.watch(themeProvider);
+    final theme = ref.watch(themeProvider);
     OptionsNotifier optionNotifier = ref.watch(optionsProvider);
 
     useMemoized(() {
@@ -34,7 +34,7 @@ class PaymentCategories extends HookConsumerWidget {
       // themeNotifier.theme.appDefaults.grayScaleWhite,
       appBar: CustomAppBar(
         title: 'Payment categories',
-        appTheme: themeNotifier.theme,
+        appTheme: theme,
       ),
       // AppBar(
       //   title: const Text('Component'),
@@ -48,7 +48,7 @@ class PaymentCategories extends HookConsumerWidget {
               children: [
                 Expanded(
                   child: PaymentOptions(
-                    appTheme: themeNotifier.theme,
+                    appTheme: theme,
                     title: title,
                     options: optionNotifier.visibleOptions
                         .map((visibleOption) => OptionItem(
@@ -67,7 +67,7 @@ class PaymentCategories extends HookConsumerWidget {
                   height: 24,
                 ),
                 CustomElevatedButton(
-                    appTheme: themeNotifier.theme,
+                    appTheme: theme,
                     title: 'Send Receipt',
                     onPressed: optionNotifier.selectedIndex != -1
                         ? () {

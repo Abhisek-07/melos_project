@@ -20,7 +20,7 @@ class AllOptions extends HookConsumerWidget {
     OptionsNotifier optionsNotifier = ref.watch(optionsProvider);
     final searchController = useTextEditingController();
     // bool clearIcon = false;
-    ThemeNotifier themeNotifier = ref.watch(themeProvider);
+    final theme = ref.watch(themeProvider);
 
     useMemoized(() {
       searchController.addListener(optionsNotifier.showClearIcon);
@@ -41,9 +41,9 @@ class AllOptions extends HookConsumerWidget {
         return false;
       },
       child: Scaffold(
-        backgroundColor: themeNotifier.theme.appDefaults.grayScaleWhite,
+        backgroundColor: theme.appDefaults.grayScaleWhite,
         appBar: CustomAppBar(
-          appTheme: themeNotifier.theme,
+          appTheme: theme,
           title: 'Choose Category',
           onBackButtonPress: () {
             optionsNotifier.resetSelectedIndexInListVewOnBackButtonPress();
@@ -162,7 +162,7 @@ class AllOptions extends HookConsumerWidget {
               ),
             ),
             CustomElevatedButton(
-                appTheme: themeNotifier.theme,
+                appTheme: theme,
                 useFullScrrenWidth: true,
                 onPressed: () {
                   optionsNotifier.selectListOption(

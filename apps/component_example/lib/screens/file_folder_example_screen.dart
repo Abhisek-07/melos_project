@@ -15,7 +15,7 @@ class FileFolderScreen extends ConsumerStatefulWidget {
 class _FileFolderScreenState extends ConsumerState<FileFolderScreen> {
   @override
   Widget build(BuildContext context) {
-    ThemeNotifier themeNotifier = ref.watch(themeProvider);
+    final theme = ref.watch(themeProvider);
 
     return Scaffold(
       floatingActionButton: SizedBox(
@@ -53,7 +53,7 @@ class _FileFolderScreenState extends ConsumerState<FileFolderScreen> {
           // gradientColors: themeNotifier.theme.appDefaults.gradientPrime1,
           // backgroundColor: Colors.red,
           title: 'Files and Folders',
-          appTheme: themeNotifier.theme),
+          appTheme: theme),
       body: const Center(
         child: Text('data'),
       ),

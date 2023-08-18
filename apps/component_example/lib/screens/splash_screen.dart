@@ -41,10 +41,10 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
 
   @override
   Widget build(BuildContext context) {
-    ThemeNotifier themeNotifier = ref.watch(themeProvider);
+    final theme = ref.watch(themeProvider);
 
     return Scaffold(
-      backgroundColor: themeNotifier.appTheme.appDefaults.brandPrime,
+      backgroundColor: theme.appDefaults.brandPrime,
       body: Center(
         child: AnimatedBuilder(
           animation: _controller,

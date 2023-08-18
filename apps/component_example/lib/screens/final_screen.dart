@@ -10,7 +10,7 @@ class FinalScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ThemeNotifier themeNotifier = ref.watch(themeProvider);
+    final theme = ref.watch(themeProvider);
 
     return WillPopScope(
       onWillPop: () async {
@@ -33,7 +33,7 @@ class FinalScreen extends HookConsumerWidget {
                 height: 24,
               ),
               CustomElevatedButton(
-                  appTheme: themeNotifier.theme,
+                  appTheme: theme,
                   title: 'Okay',
                   onPressed: () {
                     ref.read(selectedUserProvider.notifier).clearUser();

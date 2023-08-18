@@ -10,7 +10,7 @@ class GridViewHome extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ThemeNotifier themeNotifier = ref.watch(themeProvider);
+    final theme = ref.watch(themeProvider);
 
     return WillPopScope(
       onWillPop: () async {
@@ -20,7 +20,7 @@ class GridViewHome extends ConsumerWidget {
       child: Scaffold(
         appBar: CustomAppBar(
           title: AppLocalizations.of(context)?.gridviewHome ?? 'GridView Home',
-          appTheme: themeNotifier.theme,
+          appTheme: theme,
           showBackIcon: false,
         ),
         body: Center(
@@ -28,7 +28,7 @@ class GridViewHome extends ConsumerWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               CustomElevatedButton(
-                appTheme: themeNotifier.theme,
+                appTheme: theme,
                 title: AppLocalizations.of(context)?.appStoreComponent ??
                     'App Store Component',
                 onPressed: () {
@@ -36,7 +36,7 @@ class GridViewHome extends ConsumerWidget {
                 },
               ),
               CustomElevatedButton(
-                appTheme: themeNotifier.theme,
+                appTheme: theme,
                 title:
                     AppLocalizations.of(context)?.shakeWidget ?? 'Shake Widget',
                 onPressed: () {
@@ -44,7 +44,7 @@ class GridViewHome extends ConsumerWidget {
                 },
               ),
               CustomElevatedButton(
-                appTheme: themeNotifier.theme,
+                appTheme: theme,
                 title:
                     AppLocalizations.of(context)?.filePicker ?? 'File Picker',
                 onPressed: () {
@@ -52,7 +52,7 @@ class GridViewHome extends ConsumerWidget {
                 },
               ),
               CustomElevatedButton(
-                appTheme: themeNotifier.theme,
+                appTheme: theme,
                 title: AppLocalizations.of(context)?.filesAndFolders ??
                     'Files & Folders',
                 onPressed: () {

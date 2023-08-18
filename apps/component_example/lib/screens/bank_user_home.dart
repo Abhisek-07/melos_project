@@ -10,7 +10,7 @@ class BankUserHome extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ThemeNotifier themeNotifier = ref.watch(themeProvider);
+    final theme = ref.watch(themeProvider);
 
     return WillPopScope(
       onWillPop: () async {
@@ -21,7 +21,7 @@ class BankUserHome extends ConsumerWidget {
         appBar: CustomAppBar(
           // backgroundColor: Colors.green,
           title: AppLocalizations.of(context)?.bankUserHome ?? 'Bank User Home',
-          appTheme: themeNotifier.theme,
+          appTheme: theme,
           showBackIcon: false,
         ),
         // AppBar(
@@ -29,7 +29,7 @@ class BankUserHome extends ConsumerWidget {
         // ),
         body: Center(
           child: CustomElevatedButton(
-            appTheme: themeNotifier.theme,
+            appTheme: theme,
             title: AppLocalizations.of(context)?.bankUserComponent ??
                 'Bank User Component',
             onPressed: () {
