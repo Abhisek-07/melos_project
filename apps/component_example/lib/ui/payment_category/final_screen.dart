@@ -1,4 +1,4 @@
-import 'package:component_example/providers/selected_user_provider.dart';
+import 'package:component_example/ui/bank_user/providers/selected_user_provider.dart';
 import 'package:component_example/providers/theme_provider.dart';
 import 'package:components/components.dart';
 import 'package:flutter/material.dart';

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:component_example/model/bank_account.dart';
+import 'package:component_example/service/local/bank_account.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

@@ -1,18 +1,18 @@
 import 'package:component_example/main.dart';
-import 'package:component_example/conditional_file_import_example/file_picker_example.dart';
-import 'package:component_example/screens/file_folder_example_screen.dart';
-import 'package:component_example/screens/home_screen.dart';
-import 'package:component_example/screens/preview_screen.dart';
-import 'package:component_example/application_components/bank_user_component.dart';
-import 'package:component_example/application_components/payment_categories.dart';
-import 'package:component_example/screens/all_payment_options.dart';
-import 'package:component_example/screens/app_store.dart';
-import 'package:component_example/screens/bank_transfer_screen.dart';
-import 'package:component_example/screens/bank_user_home.dart';
-import 'package:component_example/screens/final_screen.dart';
-import 'package:component_example/screens/grid_view_home.dart';
-import 'package:component_example/screens/shake_widget.dart';
-import 'package:component_example/screens/splash_screen.dart';
+import 'package:component_example/ui/misc/conditional_file_import_example/file_picker_example.dart';
+import 'package:component_example/ui/misc/file_folder_example_screen.dart';
+import 'package:component_example/ui/home/home_screen.dart';
+import 'package:component_example/ui/bank_user/preview_screen.dart';
+import 'package:component_example/ui/bank_user/bank_user_component.dart';
+import 'package:component_example/ui/payment_category/payment_categories.dart';
+import 'package:component_example/ui/payment_category/all_payment_options.dart';
+import 'package:component_example/ui/app_store/app_store.dart';
+import 'package:component_example/ui/bank_user/bank_transfer_screen.dart';
+import 'package:component_example/ui/bank_user/bank_user_home.dart';
+import 'package:component_example/ui/payment_category/final_screen.dart';
+import 'package:component_example/ui/app_store/app_store_home_screen.dart';
+import 'package:component_example/ui/misc/shake_widget.dart';
+import 'package:component_example/ui/splash/splash_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 
@@ -158,11 +158,11 @@ final goRouter = GoRouter(
             navigatorKey: _shellNavigatorBKey,
             routes: [
               GoRoute(
-                  path: '/gridview-home',
-                  name: 'gridview home',
+                  path: '/app-store-home',
+                  name: 'app store home',
                   pageBuilder: (context, state) {
                     return NoTransitionPage(
-                        key: state.pageKey, child: const GridViewHome());
+                        key: state.pageKey, child: const AppStoreHomeScreen());
                   },
                   routes: [
                     GoRoute(

@@ -1,14 +1,14 @@
 import 'dart:convert';
 
-import 'package:component_example/model/grid_option.dart';
+import 'package:component_example/service/local/grid_option.dart';
 // import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class GridNotifier extends ChangeNotifier {
-  GridNotifier() : super();
+class AppStoreNotifier extends ChangeNotifier {
+  AppStoreNotifier() : super();
   List<GridOption> gridOptionsList = [];
   bool isLoadingGridOptions = true;
 
@@ -86,6 +86,6 @@ class GridNotifier extends ChangeNotifier {
   }
 }
 
-final gridDataProvider = ChangeNotifierProvider((ref) {
-  return GridNotifier();
+final appStoreProvider = ChangeNotifierProvider.autoDispose((ref) {
+  return AppStoreNotifier();
 });

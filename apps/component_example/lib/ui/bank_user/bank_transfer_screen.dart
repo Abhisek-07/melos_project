@@ -1,8 +1,8 @@
-import 'package:component_example/providers/banks_provider.dart';
-import 'package:component_example/providers/selected_user_provider.dart';
+import 'package:component_example/ui/bank_user/providers/banks_provider.dart';
+import 'package:component_example/ui/bank_user/providers/selected_user_provider.dart';
 import 'package:component_example/providers/theme_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:component_example/model/user.dart';
+import 'package:component_example/service/local/user.dart';
 import 'package:components/components.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

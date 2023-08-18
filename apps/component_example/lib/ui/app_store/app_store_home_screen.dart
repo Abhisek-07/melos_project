@@ -5,8 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import "package:flutter_gen/gen_l10n/app_localizations.dart";
 
-class GridViewHome extends ConsumerWidget {
-  const GridViewHome({super.key});
+class AppStoreHomeScreen extends ConsumerWidget {
+  const AppStoreHomeScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -19,7 +19,7 @@ class GridViewHome extends ConsumerWidget {
       },
       child: Scaffold(
         appBar: CustomAppBar(
-          title: AppLocalizations.of(context)?.gridviewHome ?? 'GridView Home',
+          title: AppLocalizations.of(context)?.appStoreHome ?? 'App Store Home',
           appTheme: theme,
           showBackIcon: false,
         ),
@@ -32,7 +32,7 @@ class GridViewHome extends ConsumerWidget {
                 title: AppLocalizations.of(context)?.appStoreComponent ??
                     'App Store Component',
                 onPressed: () {
-                  context.push('/gridview-home/app-store');
+                  context.push('/app-store-home/app-store');
                 },
               ),
               CustomElevatedButton(

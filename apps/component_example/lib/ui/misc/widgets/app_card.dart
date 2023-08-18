@@ -3,7 +3,7 @@
 // import 'package:component_example/model/grid_option.dart';
 import 'dart:async';
 
-import 'package:component_example/providers/grid_data_provider.dart';
+import 'package:component_example/ui/app_store/providers/app_store_provider.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter/material.dart';
@@ -16,9 +16,9 @@ class AppCard extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    GridNotifier gridNotifier = ref.watch(gridDataProvider);
+    AppStoreNotifier appStoreNotifier = ref.watch(appStoreProvider);
 
-    final option = gridNotifier.gridOptions[index];
+    final option = appStoreNotifier.gridOptions[index];
     bool isComingSoon = option.isComingSoon;
     bool isPinned = option.isPinned;
 
@@ -89,7 +89,7 @@ class AppCard extends HookConsumerWidget {
                     borderRadius: BorderRadius.circular(8),
                     onLongPress: () {
                       !isComingSoon
-                          ? gridNotifier.showBottomSheet(context, option)
+                          ? appStoreNotifier.showBottomSheet(context, option)
                           : isComingSoon
                               ? runAnimation()
                               : null;

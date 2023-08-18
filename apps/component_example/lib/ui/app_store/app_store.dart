@@ -1,4 +1,4 @@
-import 'package:component_example/providers/grid_data_provider.dart';
+import 'package:component_example/ui/app_store/providers/app_store_provider.dart';
 import 'package:component_example/providers/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -14,10 +14,10 @@ class AppStore extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(themeProvider);
-    GridNotifier gridNotifier = ref.watch(gridDataProvider);
+    AppStoreNotifier appStoreNotifier = ref.watch(appStoreProvider);
 
     useMemoized(() {
-      gridNotifier.getGridOptions();
+      appStoreNotifier.getGridOptions();
       return null;
     }, [
       // gridNotifier.isLoadingGridOptions
@@ -72,7 +72,7 @@ class AppStore extends HookConsumerWidget {
       //             ],
       //           ),
       //         )),
-      body: gridNotifier.isLoadingGridOptions
+      body: appStoreNotifier.isLoadingGridOptions
           ? const Center(child: CircularProgressIndicator())
           : NestedScrollView(
               physics: const ClampingScrollPhysics(),
@@ -163,9 +163,9 @@ class AppStore extends HookConsumerWidget {
                             crossAxisSpacing: 4,
                             // , childAspectRatio:
                           ),
-                          itemCount: gridNotifier.gridOptions.length,
+                          itemCount: appStoreNotifier.gridOptions.length,
                           itemBuilder: (context, index) {
-                            final option = gridNotifier.gridOptions[index];
+                            final option = appStoreNotifier.gridOptions[index];
 
                             return AnimatedCard(
                               name: option.name,
@@ -173,7 +173,8 @@ class AppStore extends HookConsumerWidget {
                               isComingSoon: option.isComingSoon,
                               isPinned: option.isPinned,
                               onLongPress: () {
-                                gridNotifier.showBottomSheet(context, option);
+                                appStoreNotifier.showBottomSheet(
+                                    context, option);
                               },
 
                               /// shakeAnimationTime in milliseconds

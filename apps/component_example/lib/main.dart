@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:component_example/app_router_config/router_config.dart';
+import 'package:component_example/navigation/router_config.dart';
 import 'package:utils/utils.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 // import 'l10n/l10n.dart';

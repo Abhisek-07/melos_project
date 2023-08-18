@@ -1,4 +1,4 @@
-import 'package:component_example/providers/options_provider.dart';
+import 'package:component_example/ui/payment_category/providers/options_provider.dart';
 import 'package:component_example/providers/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:components/components.dart';

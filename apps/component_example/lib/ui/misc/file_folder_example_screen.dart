@@ -1,5 +1,5 @@
 import 'package:component_example/providers/theme_provider.dart';
-import 'package:component_example/widgets/add_modal_item.dart';
+import 'package:component_example/ui/misc/widgets/add_modal_item.dart';
 import 'package:components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
